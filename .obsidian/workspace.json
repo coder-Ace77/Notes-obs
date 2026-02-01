@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "c976067b0f909537",
+        "id": "1dbfbfbaf1209bb4",
         "type": "tabs",
         "children": [
           {
-            "id": "8dca51a15468c7cb",
+            "id": "45c8b2a8225cfb29",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Elasticsearch.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Elasticsearch"
+              "title": "New tab"
             }
           }
         ]
@@ -180,37 +176,37 @@
       "bases:Create new base": false
     }
   },
-  "active": "8dca51a15468c7cb",
+  "active": "45c8b2a8225cfb29",
   "lastOpenFiles": [
-    "Multithreading/Thread lifecycle, pools and executors.md",
-    "Elasticsearch.md",
-    "system-design/Delievery framework.md",
+    "Databases/Database scaling patterns.md",
+    "Databases/Advanced dbs.md",
+    "Databases/Basics of databases.md",
     "system-design/Core concepts.md",
     "system-design/Basics.md",
+    "Databases/Relational databases/6. Concurrency and transactions.md",
+    "system-design/Key technologies/Elasticsearch.md",
+    "Databases/Relational databases/5. Realtional databases.md",
+    "OS/3. Basic evolution of computers.md",
+    "Untitled",
+    "OS/2. Linux booting log.md",
+    "OS/1. Intro.md",
+    "OS/4. Process.md",
+    "OS/5. Thread.md",
+    "OS/6. Synchronization.md",
+    "OS/7. Scheduling.md",
+    "OS/9.Memory management.md",
+    "OS/8.Deadlocks.md",
+    "OS/10.Storage management.md",
+    "Databases/Relational databases/3. Postgres Performance and system design.md",
+    "Databases/Relational databases/2. SQL.md",
+    "Databases/Relational databases/1.Relational model.md",
+    "Databases/Relational databases/4. Psql.md",
+    "Multithreading/Thread lifecycle, pools and executors.md",
+    "system-design/Delievery framework.md",
     "system-design/Interview/Ticketmaster.md",
     "system-design/Patterns/Software architectural patterns.md",
-    "system-design/Patterns/Real time updates.md",
-    "system-design/Key technologies/Locking.md",
-    "system-design/Concurrency.md",
-    "system-design/CAP thoerum.md",
-    "system-design/Key technologies/API(Application programming interface).md",
-    "system-design/Key technologies/Blob storage patterns.md",
-    "system-design/Key technologies/Cassandra.md",
-    "system-design/Key technologies/Districuted locking.md",
-    "system-design/Key technologies/Full text searches.md",
-    "system-design/Key technologies/Postgres database.md",
-    "system-design/Key technologies/Postgres.md",
-    "system-design/Key technologies/Queue and Kafka.md",
-    "system-design/Key technologies/Redis and CDN.md",
-    "system-design/Key technologies/Stream and event sourcing.md",
-    "Databases/Relational databases/Postgres Performance and system design.md",
-    "Databases/Relational databases/1.Relational model.md",
-    "Databases/Relational databases/2. SQL.md",
-    "Databases/Relational databases/Realtional databases.md",
-    "Databases/Basics of databases.md",
     "Databases/Mongodb",
     "Untitled 1",
-    "Untitled",
     "Core-engineering/Pasted image 20250828093202.png",
     "Core-engineering/Pasted image 20250803195824.png",
     "Core-engineering/Pasted image 20250803194214.png"
