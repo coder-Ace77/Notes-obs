@@ -1,7 +1,7 @@
 
 ---
 
-Stack is a datastructure which allows two operations - 
+Stack is a data structure which allows two operations - 
 
 1. push() - Push an element at the end
 2. pop() - Remove the element from the end
@@ -252,7 +252,71 @@ vector<int> mono(vector<int> &arr,bool next,bool greater){
 
 Sometimes we can use contribution technique where we calcalate answer by finding in how many valid subsequences/subarray an element can be found out. 
 
+### Lexicographical ordering and monotonic stack
+
+Sometimes we may need to solve and find the smallest lexicographical / largest lexicographical strings. Lexicographical case has a special property that the ordering between two strings depends entirely on the first point of difference in strings. The smaller string will have this first character smaller. This sole observation is usually enough to have greedy choices. 
+
+Now in these problems the main idea is to assume that given till `ith` step certain algo `A` was able to create the most optimal string. Now what about the step `(i+1)th` can you create some strategy such that answer remains optimal even after `(i+1)th` step. Now in many cases for this greedy approach to work we use stack as it easily allows to remove the most recent additions. Note that if it was guaranted that answer of `i+1th` step will be the expansion/addition of answer of ith step then there is no need of stack. Rather simple addition works fine. Stack is needed in case `A` needs to undo some chars in the optimal string.
+
+#### Proving
+
+Usually since the strategy `A` it is greedy and is required to be proved. We follow this general pattern of proof by contradiction. 
+
+Suppose that optimal string is `x` and our algo`A` produced `y` then at first point of difference `ith`. Our sting has bigger character and then proof depends on the strategy. 
+
+#### Removing duplicate letters
+
+Given a string `s`, remove duplicate letters so that every letter appears once and only once. You must make sure your result is lexicographically smallest among all possible results.
+
+#### Solution
+
+Assume that our stack maintains the optimal ordering now we need to come up with a greedy algo. Assme that string uptil that say ith point is `ans` now if the last character of ans say `c` is larger than `s[i]` and if it comes after i also then we can easily remove it. Note that `ans-c+s[i]` is lexicographically smaller than `ans+s[i]`. However note that we also have restriction to use `1` char in the answer. Now if this char `s[i]` was already in the string earlier. Then it means all the char after it can not removed. Why? Reason being we would have removed this is next was smaller as `s[i]` is present here anyways. This means we should not add this `s[i]`. So we also need to track all the elements already present in the string.
+
+Now can `s[i]` be removed in some later step the answer is yes. Reason being we may encounter some `char b<s[i]` which could empty it.
+
+```cpp
+string removeDuplicateLetters(string s) {
+	map<char,int> mp;
+	vector<int> used(26,1);
+	for(auto ch:s){
+		mp[ch]++;
+		used[ch-'a']=0;
+	}
+	string st;
+	for(char ch:s){
+		mp[ch]--;
+		if(used[ch-'a'])continue;
+		while(!st.empty() && st.back()>ch && mp[st.back()]>0){
+			used[st.back()-'a']=0;
+			st.pop_back();
+		}
+		st+=ch;
+		used[ch-'a']=1;
+	}
+	return st;
+}
+```
+
+We have used map to see if this char comes after it or not. 
+
+Now proof of correctness - By contradiction assume that `ans`is not optimal ans correct ans is `opt` now for the first point of diff `ith` `ans[i]>opt[i]`. Two cases either `ans` has more deleted chars or opt has more deleted chars before i. If ans has more deleted chars the that means we deleted some smaller char and then end up with larger char. But notice with our algo this kind of deletion can never happen. Deleting always happen if smaller char can be pushed towards left. 
+
+Now for the second case opt has more deleted chars. Here that means we must have larger char which we must have been able to delete by upcoming smaller one. This completes the proof. 
+
+Some pointers are one can think of these problems as - 
+
+- Shifting of smaller chars to the left. 
+- Deleting of larger chars. 
+
+To solve such problems one has to come out of the thinking of back and and forth. Clear understanding and implementation and observations are very crucial. 
+
 ### Removing k digits
+
+Given string num representing a non-negative integer `num`, and an integer `k`, return _the smallest possible integer after removing_ `k` _digits from_ `num`.
+
+#### Solution 
+
+Smallest possible integer is actually same as the smallest lexicographical string. Now again observe that we can actually remove any digit such that there is smaller digit upnext. Since we are talking about the lexicographically smallest. This greedy choice is best if applided left to right. 
 
 Observe that we should the digit if prev digit is larger than current one which makes it monotonic increasing stack. 
 

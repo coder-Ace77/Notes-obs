@@ -464,3 +464,32 @@ One thing to note about the isolation levels is postgres predominantly have thre
 ## When not to use postgres
 
 1. Extreme write throughput - Use apache cassandra instead.
+
+### Change data capture
+
+**Change Data Capture (CDC)** is a modern software design pattern used to determine and track data that has changed in a database. Instead of copying an entire database every time you want to update a data warehouse or a search index, CDC allows you to stream only the "deltas"—the specific inserts, updates, and deletes—in real-time.
+
+## How CDC Works (High Level)
+
+Most modern CDC systems follow these steps:
+
+1. **Capture:** The system monitors the database for any changes (DML operations).
+2. **Extract:** The specific change (e.g., "User 5 updated their email") is captured in a structured format (usually JSON or Avro).
+3. **Transport:** The change is sent to a message broker (like Apache Kafka) or a destination system.
+4. **Load:** The destination (like Snowflake, Elasticsearch, or a microservice) applies the change.
+
+
+PostgreSQL implements CDC primarily through a feature called **Logical Decoding**. This is built on top of the **Write-Ahead Log (WAL)**.
+
+Every time you make a change in Postgres, it is first written to the WAL. This is a binary file that records every single operation for crash recovery purposes. Since the WAL already contains all the changes, it is the perfect source for CDC.
+
+The binary data in the WAL is hard for external systems to read. **Logical Decoding** is the process of taking those binary logs and "decoding" them into a readable format (like a series of SQL statements or JSON).
+- **Replication Slot:** This is a "bookmark" in the Postgres WAL. It tells Postgres: _"Don't delete these old log files yet; the CDC consumer hasn't read them yet."_ This ensures no data is lost even if the CDC tool goes offline for a few minutes.
+- **Output Plugin:** This is the "translator." It takes the raw WAL data and formats it. A popular plugin is `pgoutput` (the standard for Postgres 10+).
+
+## The Postgres CDC Workflow
+1. **Operation:** A user runs `UPDATE users SET status = 'active' WHERE id = 10;`.
+2. **WAL Entry:** Postgres writes this operation to the WAL file on disk.
+3. **Logical Slot:** A CDC tool (like **Debezium**) connects to a specific replication slot.
+4. **Decoding:** The `pgoutput` plugin reads the WAL and transforms the binary update into a message: `{ "op": "u", "before": {"id": 10, "status": "inactive"}, "after": {"id": 10, "status": "active"} }`.
+5. **Streaming:** This message is pushed out to the listener in real-time.

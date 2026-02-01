@@ -1,6 +1,4 @@
 
-## Basics of Relational databases
-
 At its core, PostgreSQL stores data in tables (also called relations). Think of a table like a spreadsheet with rows and columns. Each column has a specific data type (like text, numbers, or dates), and each row represents one complete record.
 
 Imagine we are creating a table

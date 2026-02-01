@@ -152,3 +152,4 @@ Now why is this formulation correct. - Binary counting flips bits in a **ripple 
 ### Xor basis
 
 To be done
+
