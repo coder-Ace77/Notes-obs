@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "1dbfbfbaf1209bb4",
+        "id": "31158fe7397ba41f",
         "type": "tabs",
         "children": [
           {
-            "id": "45c8b2a8225cfb29",
+            "id": "55ef51463fd26f26",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "LLD/Behavioural and structural design patterns.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Behavioural and structural design patterns"
             }
           }
         ]
@@ -176,18 +180,28 @@
       "bases:Create new base": false
     }
   },
-  "active": "45c8b2a8225cfb29",
+  "active": "55ef51463fd26f26",
   "lastOpenFiles": [
+    "LLD/Design patterns (creational).md",
+    "LLD/OOPS(basics).md",
+    "LLD/OOPs (advanced).md",
+    "LLD/1.Basics.md",
+    "OOPs",
+    "Linux/Linux commands.md",
+    "Linux/Processes.md",
+    "Linux/File system.md",
+    "Linux/Bash scripting.md",
+    "Linux/AWK.md",
+    "Databases/Relational databases/2. SQL.md",
+    "Databases/Relational databases/6. Concurrency and transactions.md",
     "Databases/Database scaling patterns.md",
     "Databases/Advanced dbs.md",
     "Databases/Basics of databases.md",
     "system-design/Core concepts.md",
     "system-design/Basics.md",
-    "Databases/Relational databases/6. Concurrency and transactions.md",
     "system-design/Key technologies/Elasticsearch.md",
     "Databases/Relational databases/5. Realtional databases.md",
     "OS/3. Basic evolution of computers.md",
-    "Untitled",
     "OS/2. Linux booting log.md",
     "OS/1. Intro.md",
     "OS/4. Process.md",
@@ -195,16 +209,6 @@
     "OS/6. Synchronization.md",
     "OS/7. Scheduling.md",
     "OS/9.Memory management.md",
-    "OS/8.Deadlocks.md",
-    "OS/10.Storage management.md",
-    "Databases/Relational databases/3. Postgres Performance and system design.md",
-    "Databases/Relational databases/2. SQL.md",
-    "Databases/Relational databases/1.Relational model.md",
-    "Databases/Relational databases/4. Psql.md",
-    "Multithreading/Thread lifecycle, pools and executors.md",
-    "system-design/Delievery framework.md",
-    "system-design/Interview/Ticketmaster.md",
-    "system-design/Patterns/Software architectural patterns.md",
     "Databases/Mongodb",
     "Untitled 1",
     "Core-engineering/Pasted image 20250828093202.png",

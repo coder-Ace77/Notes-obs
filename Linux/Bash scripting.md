@@ -428,3 +428,60 @@ sort -u filename.txt
 
 sort -t ',' -k 2 filename.csv # -t changes the delimiter
 ```
+
+### Passing args to script
+
+We can pass argment as space separated list. `./script.sh arg1 arg2` the shell automatically assigns these values to numeric variables.
+
+`$0` is name of script itself, `$1 to $9` first 9 args and `$(10)` for tenth arg onwards. `$#` is used to find length of args and `$@` for all args as list. 
+
+### Arrays and for loops
+
+Bash supports **one-dimensional** indexed arrays.
+
+Defining arrays - 
+
+```sh
+# Method 1: Literal assignment
+servers=("web01" "web02" "db01" "app01")
+
+# Method 2: Index assignment
+servers[4]="backup01"
+```
+
+Accessing array elements requires curly braces `${}`. If you omit them, Bash interprets `$servers` as only the first element. For example to get ith index `${servers[1]}` array length `${#servers[@]}`. Now we can also assign non conscutive numbers. 
+
+```sh
+servers={}
+server[100]="adil"
+```
+
+now in this case we may need to get list of indexes and can be get by  `${!servers[@]}`. Always use **double quotes** around arrays (e.g., `"${servers[@]}"`) to prevent items with spaces from being split into multiple arguments.
+
+The `for` loop is used to iterate over a list of items. In Bash, there are two primary styles:
+
+`in` style 
+
+```sh
+# Iterating over a hardcoded list
+for fruit in apple banana cherry; do
+    echo "I like $fruit"
+done
+
+# Iterating over an array
+for srv in "${servers[@]}"; do
+    echo "Checking status of: $srv"
+done
+```
+
+`c` style
+
+If you need to run a loop a specific number of times or use an incrementing index, use the double-parentheses syntax.
+
+```sh
+# format: (( start ; condition ; step ))
+for (( i=0; i<10; i++ )); do
+    echo "Count is $i"
+done
+```
+
