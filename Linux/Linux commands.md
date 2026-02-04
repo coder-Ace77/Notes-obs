@@ -88,7 +88,7 @@ This is the most common usage. It works like a spreadsheet, where you define wha
 - **`-d`**: The delimiter (the character that separates columns). The default is a **Tab**.
 - **`-f`**: The field number you want to keep.
 
-### System info
+### <font color="#2DC26B">System info</font>
 
 - top/htop - Shows real-time CPU, Memory, and Process usage.
 - df -h -  Shows Disk Free space in a human-readable format.
@@ -161,3 +161,18 @@ sed -i 's/localhost/127.0.0.1/g' config.php
 | `/pattern/d`       | **Delete** lines matching the pattern. |
 | `-i`               | **Edit** the file directly (in-place). |
 | `-n ... p`         | **Print** only specific lines.         |
+
+### Watch 
+
+It clears screen and runs a given command after intervals defult 2s.
+
+```sh
+watch [options] commnad
+```
+
+<font color="#2DC26B">Options</font>
+
+- `-n` Sets the interval in seconds
+- `-d` HIghilight difference between updates
+- `-t` turn of the header.
+
