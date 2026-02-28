@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "interview prep/HLD problems/2. New feed.md",
+                "file": "TODO/TODO.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2. New feed"
+              "title": "TODO"
             }
           }
         ]
@@ -182,12 +182,12 @@
       "bases:Create new base": false
     }
   },
-  "active": "0a49dd3e20e4f770",
+  "active": "931c44da03837a29",
   "lastOpenFiles": [
+    "interview prep/HLD problems/2. New feed.md",
     "interview prep/system-design/Patterns/Software architectural patterns.md",
     "interview prep/system-design/Key technologies/Dynamo db.md",
     "interview prep/HLD problems/3. Whatapp.md",
-    "interview prep/HLD problems/2. New feed.md",
     "interview prep/HLD problems/1. Uber.md",
     "Data/Pasted image 20260225162348.png",
     "Data/Pasted image 20260225121207.png",
