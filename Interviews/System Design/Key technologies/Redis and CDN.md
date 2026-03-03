@@ -21,6 +21,20 @@ Caches have limited storage. eviction policy tells us which items will be remove
 - Write-Around Cache: Writes data directly to the datastore, bypassing the cache. This can minimize cache pollution but might increase data fetch times on subsequent reads.
 - Write-Back Cache: Writes data to the cache and then asynchronously writes the data to the datastore. This can be faster for write operations but can lead to data loss if the cache fails before the data is written to the datastore
 
+**Cache reads**
+
+**Cache aside pattern**: In this model, the **application** is responsible for managing the relationship between the database and the cache. The cache doesn't talk to the database at all. The App checks the cache for data if found it is taken from cache and if missed it is taken from the database and cache is repopulated. 
+
+**Read through cache**
+Unlike Cache-Aside, the **cache library or provider** is the one that talks to the database. The App asks the Cache for data if it's a miss, the **Cache** fetches it from the DB, stores it, and hands it to the App. 
+
+| **Strategy**      | **Who updates the Cache?** | **Logic resides in...**  | **Best Use Case**             |
+| ----------------- | -------------------------- | ------------------------ | ----------------------------- |
+| **Cache-Aside**   | The Application            | Application Code         | Most web apps; flexible.      |
+| **Read-Through**  | The Cache Provider         | Cache Library/Middleware | Read-heavy; clean app code.   |
+| **Write-Through** | The Cache Provider         | Cache Library/Middleware | Data consistency is critical. |
+
+
 Redis is a key-value store that supports many different data structures, including strings, hashes, lists, sets, sorted sets, bitmaps, and hyperloglogs. Memcached is a simple key-value store that supports strings and binary objects.
 
 ## Redis 

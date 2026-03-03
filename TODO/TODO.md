@@ -5,11 +5,11 @@ TODOS
 Budget - 40hrs till monday
 
 - [ ] Langchain both complete 9hrs
-- [ ] 100 questions - `100*10 = 1000/60 = 4hrs`
+- [x] 100 questions - `100*10 = 1000/60 = 4hrs`
 - [ ] System design Problems `10hrs`
-	- [ ] Dynamo db - 1hrs
-	- [ ] Flink - 1 hrs
-	- [ ] Bitly
+	- [x] Dynamo db - 1hrs
+	- [x] Flink - 1 hrs
+	- [x] Bitly
 	- [ ] Dropbox
 	- [ ] Whatapp
 	- [ ] Local delievey 
