@@ -10,7 +10,7 @@ Budget - 40hrs till monday
 	- [x] Dynamo db - 1hrs
 	- [x] Flink - 1 hrs
 	- [x] Bitly
-	- [ ] Dropbox
+	- [x] Dropbox
 	- [ ] Whatapp
 	- [ ] Local delievey 
 	- [ ] Ticketmaster
