@@ -11,7 +11,7 @@ Budget - 40hrs till monday
 	- [x] Flink - 1 hrs
 	- [x] Bitly
 	- [x] Dropbox
-	- [ ] Whatapp
+	- [x] Whatapp
 	- [ ] Local delievey 
 	- [ ] Ticketmaster
 	- [ ] Rate limiter
@@ -29,3 +29,21 @@ Budget - 40hrs till monday
 	- [ ] Design a Pub-Sub System / Kafka Lite (Observer Pattern)
 	- [ ] Design a Parking Lot (Strategy & Factory Patterns)
 	- [ ] Design a Spreadsheet/Excel (Dependency Graphs & Observer)
+
+- [ ] Fast api
+	- [x] Basics syntax
+	- [x] Get query and req param
+	- [x] Post body
+	- [ ] Body fields , Nested fields
+	- [ ] Cookie  and header
+	- [ ] Response model
+	- [ ] Files
+	- [ ] Handling errors
+	- [ ] Security
+	- [ ] Middleware
+	- [ ] Stream data
+	- [ ] SSE
+	- [ ] Background tasks
+	- [ ] Status codes
+	- [ ] Response cookie and headers
+	- [ ] 

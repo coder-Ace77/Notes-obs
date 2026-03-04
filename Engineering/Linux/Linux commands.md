@@ -176,3 +176,14 @@ watch [options] commnad
 - `-d` HIghilight difference between updates
 - `-t` turn of the header.
 
+### Source command
+
+Usually, when you execute a script by typing `./script.sh`, the shell creates a **subshell** (a child process).
+
+- Any variables created or changed in that script stay inside that child process.
+- Once the script finishes, the child process is destroyed.
+- The parent shell (your terminal) remains exactly as it was.
+
+**`source` breaks this rule.** It tells the shell: "Don't start a new process. Take the lines of code in this file and execute them right here in the current session."
+
+In the context of Python, the `activate` script is specifically designed to change your **Shell Environment Variables**. If you ran it as a normal script (`./activate`), it would change the variables in a subshell, the subshell would close, and your terminal would be left unchanged. So the script is runned on current session and so `$PATH` variables get changed. 
