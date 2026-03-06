@@ -12,9 +12,9 @@ Budget - 40hrs till monday
 	- [x] Bitly
 	- [x] Dropbox
 	- [x] Whatapp
-	- [ ] Local delievey 
-	- [ ] Ticketmaster
-	- [ ] Rate limiter
+	- [ ] Local delievey (Design Blinkit)
+	- [x] Ticketmaster
+	- [x] Rate limiter
 	- [ ] You tube
 	- [ ] Distributed cache
 	- [ ] Payment system
