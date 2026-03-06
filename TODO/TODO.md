@@ -15,7 +15,7 @@ Budget - 40hrs till monday
 	- [ ] Local delievey (Design Blinkit)
 	- [x] Ticketmaster
 	- [x] Rate limiter
-	- [ ] You tube
+	- [x] You tube
 	- [ ] Distributed cache
 	- [ ] Payment system
 - [ ] LLD `(8 hrs)`
