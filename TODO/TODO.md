@@ -4,7 +4,9 @@ TODOS
 
 Budget - 40hrs till monday
 
-- [ ] Langchain both complete 9hrs
+- [ ] Langchain both complete 9hrs 
+	- [x] Langchain foundation
+	- [ ] Langchain adv
 - [x] 100 questions - `100*10 = 1000/60 = 4hrs`
 - [ ] System design Problems `10hrs`
 	- [x] Dynamo db - 1hrs
@@ -16,7 +18,7 @@ Budget - 40hrs till monday
 	- [x] Ticketmaster
 	- [x] Rate limiter
 	- [x] You tube
-	- [ ] Distributed cache
+	- [x] Distributed cache
 	- [ ] Payment system
 - [ ] LLD `(8 hrs)`
 	- [ ] Design a Vending Machine (State Pattern)

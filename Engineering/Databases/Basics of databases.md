@@ -76,6 +76,8 @@ In a standard distributed system (like a cache cluster), you might use a simple 
 If you have 4 servers and add a 5th (horizontal scaling), n changes from 4 to 5. Because the denominator has changed, almost every existing key will now map to a different server.
 - **The Result:** A massive "cache miss" storm where you have to move nearly 100% of your data to new locations, potentially crashing your backend database.
 
+### Consistent hashing
+
 **Consistent Hashing** minimizes the disruption caused by adding or removing nodes. Instead of mapping keys directly to a fixed number of servers, it maps both the **servers** and the **keys** onto a conceptual "Hash Ring."
 
 1. **The Ring:** Imagine a circle representing the entire range of possible hash values (e.g., from 0 to 232−1).
