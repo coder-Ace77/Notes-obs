@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "5deacb6e1a84cff9",
+        "id": "372cf5b40f5e36a7",
         "type": "tabs",
         "children": [
           {
-            "id": "20f3fee952b91f6a",
+            "id": "9ef5d2c283cad8a3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Interviews/HLD problems/6. Payment system.md",
+                "file": "Languages/Springboot/3. Web development.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "6. Payment system"
+              "title": "3. Web development"
             }
           }
         ]
@@ -182,53 +182,53 @@
       "bases:Create new base": false
     }
   },
-  "active": "931c44da03837a29",
+  "active": "9ef5d2c283cad8a3",
   "lastOpenFiles": [
+    "Languages/Springboot/2. Springboot Introduction.md",
+    "Languages/Springboot/1. Basics of spring.md",
+    "Languages/Springboot/8. Caching in spring-boot.md",
+    "Languages/Springboot/7. Logging and monitoring.md",
+    "Languages/Springboot/6. Testing in springboot.md",
+    "Languages/Springboot/5. Spring security.md",
+    "Languages/Springboot/4. Data access.md",
+    "Languages/Springboot/3. Web development.md",
+    "Engineering/Core-engineering/Spring basics.md",
+    "Languages/Springboot",
+    "Engineering/Core-engineering/Spring-boot-web.md",
+    "Engineering/Core-engineering/Spring testing and mockito.md",
+    "Engineering/Core-engineering/Spring security.md",
+    "Engineering/Core-engineering/Spring core.md",
+    "Engineering/Core-engineering/Spring Internals.md",
+    "Engineering/Core-engineering/Spring boot data.md",
+    "Engineering/Core-engineering/React under the hood.md",
+    "Engineering/Core-engineering/React testing with jest.md",
+    "Engineering/Core-engineering/React testing.md",
+    "Engineering/Core-engineering/React setup.md",
+    "Engineering/Core-engineering/React hooks.md",
+    "Engineering/Core-engineering/AWS S3.md",
+    "Engineering/Core-engineering/Profile video.md",
+    "TODO/TODO.md",
+    "Interviews/HLD problems/6. Payment system.md",
     "Data/Pasted image 20260307134833.png",
     "Data/Pasted image 20260307134011.png",
     "Data/Pasted image 20260307133305.png",
     "Interviews/HLD problems/7. Ticket master.md",
-    "Interviews/HLD problems/6. Payment system.md",
-    "TODO/TODO.md",
     "Interviews/HLD problems/6. Blinkit.md",
-    "Interviews/HLD problems/10. Distributed cache.md",
-    "Interviews/System Design/Basics/Basics.md",
     "Interviews/System Design/Basics",
-    "Interviews/System Design/Basics/Core concepts.md",
-    "Interviews/System Design/Basics/Delievery framework.md",
-    "Engineering/Databases/Basics of databases.md",
-    "Interviews/System Design/Interview/Ticketmaster.md",
-    "Interviews/System Design/Patterns/Software architectural patterns.md",
-    "Interviews/HLD problems/9. Youtube.md",
     "Data/Pasted image 20260306172409.png",
     "Data/Pasted image 20260306170330.png",
-    "Interviews/HLD problems/5. Dropbox.md",
-    "Interviews/HLD problems/8. Rate limiter.md",
     "Data/Pasted image 20260306160336.png",
     "Data/Pasted image 20260305220430.png",
     "Data/Pasted image 20260305215628.png",
     "Data/Pasted image 20260305215239.png",
     "Data/Pasted image 20260305214828.png",
-    "Interviews/HLD problems/3. Whatapp.md",
-    "Data/Pasted image 20260304203756.png",
-    "Languages/Fastapi/2. Basic semantics.md",
-    "Languages/Fastapi/3. Request body.md",
-    "Languages/Fastapi/1. Set up.md",
-    "Engineering/Linux/Linux commands.md",
-    "Engineering/Linux/Processes.md",
-    "AI/5. Python for rag.md",
     "Languages/Fastapi",
-    "Interviews/HLD problems/4. Bitly.md",
-    "Interviews/System Design/Key technologies/Redis and CDN.md",
-    "Interviews/HLD problems/1. Uber.md",
-    "Interviews/HLD problems/2. New feed.md",
     "DSA and cp/DSA/Design problems",
     "Interviews/HLD problems",
     "Company specific/uber",
     "Company specific",
     "TODO",
     "Interviews/LLD for interview",
-    "Interviews",
-    "DSA and cp"
+    "Interviews"
   ]
 }
