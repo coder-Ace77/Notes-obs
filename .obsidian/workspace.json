@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "d338a9932b109ee9",
+        "id": "15d7742a55d8655a",
         "type": "tabs",
         "children": [
           {
-            "id": "67037ea1f5d622fb",
+            "id": "a7f35f6b029b3690",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "TODO/TODO.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "TODO"
+              "title": "New tab"
             }
           }
         ]
@@ -94,7 +90,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Behaviour.md",
+                "file": "DSA and cp/DSA/Pointer paradigm/Stack.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +100,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Behaviour"
+              "title": "Backlinks for Stack"
             }
           },
           {
@@ -182,38 +178,41 @@
       "bases:Create new base": false
     }
   },
-  "active": "67037ea1f5d622fb",
+  "active": "931c44da03837a29",
   "lastOpenFiles": [
-    "Languages/Springboot/8. Caching in spring-boot.md",
-    "Languages/Springboot/7. Logging and monitoring.md",
-    "Languages/Springboot/6. Testing in springboot.md",
-    "Languages/Springboot/5. Spring security.md",
-    "Languages/Springboot/4. Data access.md",
-    "Languages/Springboot/3. Web development.md",
-    "Languages/Springboot/2. Springboot Introduction.md",
-    "Languages/Springboot/1. Basics of spring.md",
-    "Engineering/Core-engineering/Spring basics.md",
-    "Languages/Springboot",
-    "Engineering/Core-engineering/Spring-boot-web.md",
-    "Engineering/Core-engineering/Spring testing and mockito.md",
-    "Engineering/Core-engineering/Spring security.md",
-    "Engineering/Core-engineering/Spring core.md",
-    "Engineering/Core-engineering/Spring Internals.md",
-    "Engineering/Core-engineering/Spring boot data.md",
-    "Engineering/Core-engineering/React under the hood.md",
-    "Engineering/Core-engineering/React testing with jest.md",
-    "Engineering/Core-engineering/React testing.md",
-    "Engineering/Core-engineering/React setup.md",
-    "Engineering/Core-engineering/React hooks.md",
-    "Engineering/Core-engineering/AWS S3.md",
-    "Engineering/Core-engineering/Profile video.md",
+    "Interviews/System Design/Key technologies/API gateway and loadbalancer.md",
+    "Interviews/System Design/Basics/Delievery framework.md",
+    "Interviews/System Design/Basics/Core concepts.md",
+    "Interviews/System Design/Basics/Basics.md",
+    "DSA and cp/CP/Graph/1. Disjoint set union.md",
+    "DSA and cp/CP/Greedy/2. Important greedy problem types.md",
+    "DSA and cp/CP/Greedy/1. Greedy basics.md",
+    "DSA and cp/DSA/Leetcode 150/7. Two pointer.md",
+    "DSA and cp/DSA/Leetcode 150/2. Sliding window.md",
+    "DSA and cp/DSA/Leetcode 150/1. Arrays.md",
+    "DSA and cp/CP/Other topics/Greedy.md",
+    "DSA and cp/CP/Greedy",
+    "DSA and cp/DSA/Graphs/Basics.md",
+    "Engineering/OS/1. Intro.md",
+    "Engineering/Linux/AWK.md",
+    "Engineering/Linux/Linux commands.md",
+    "Engineering/Linux/File system.md",
+    "DSA and cp/CP/Other topics/Tries.md",
+    "DSA and cp/CP/Other topics/Speical topics.md",
+    "DSA and cp/DSA/Leetcode 150/6.Binary search.md",
+    "DSA and cp/DSA/Blind75/Blind 75.md",
+    "DSA and cp/CP/Segment Trees/Basic idea of segment trees and basic variant.md",
+    "DSA and cp/CP/Other topics",
+    "DSA and cp/CP/Segment Trees",
+    "DSA and cp/DSA/Pointer paradigm/Stack.md",
     "TODO/TODO.md",
-    "Interviews/HLD problems/6. Payment system.md",
+    "Languages/Springboot/8. Caching in spring-boot.md",
+    "Languages/Java/13. Utility for DSA.md",
+    "Languages/Java/14. Working with date and time.md",
+    "Languages/Springboot",
     "Data/Pasted image 20260307134833.png",
     "Data/Pasted image 20260307134011.png",
     "Data/Pasted image 20260307133305.png",
-    "Interviews/HLD problems/7. Ticket master.md",
-    "Interviews/HLD problems/6. Blinkit.md",
     "Interviews/System Design/Basics",
     "Data/Pasted image 20260306172409.png",
     "Data/Pasted image 20260306170330.png",
@@ -226,9 +225,6 @@
     "DSA and cp/DSA/Design problems",
     "Interviews/HLD problems",
     "Company specific/uber",
-    "Company specific",
-    "TODO",
-    "Interviews/LLD for interview",
-    "Interviews"
+    "Company specific"
   ]
 }
