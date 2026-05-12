@@ -1,4 +1,36 @@
 
+TODO - 12/05
+
+Morning todo
+
+- [ ] Solve remaining dp problems of sde sheet
+- [ ] Striver sde array 1 + array2 + array3
+- [ ] Greedy Changes (3-4) patterns
+- [ ] Go remaining complete
+
+Daily + evening 
+
+- [ ] Langchain 
+- [ ] Langchain + fastapi simple project which uses the `RAG` concept
+- [ ] LLD in go simple questions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 TODOS
 
@@ -30,25 +62,8 @@ Budget - 40hrs till monday
 	- [ ] Design a Pub-Sub System / Kafka Lite (Observer Pattern)
 	- [ ] Design a Parking Lot (Strategy & Factory Patterns)
 	- [ ] Design a Spreadsheet/Excel (Dependency Graphs & Observer)
-- [ ] Springboot
-	- [ ] 
 
 
+- 
 
-- [ ] Fast api
-	- [x] Basics syntax
-	- [x] Get query and req param
-	- [x] Post body
-	- [ ] Body fields , Nested fields
-	- [ ] Cookie  and header
-	- [ ] Response model
-	- [ ] Files
-	- [ ] Handling errors
-	- [ ] Security
-	- [ ] Middleware
-	- [ ] Stream data
-	- [ ] SSE
-	- [ ] Background tasks
-	- [ ] Status codes
-	- [ ] Response cookie and headers
-	
+
