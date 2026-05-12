@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "c0f6603a2296019e",
+        "id": "e30e345969f557c1",
         "type": "tabs",
         "children": [
           {
-            "id": "eebef71a77abd03c",
+            "id": "e847d5cb537041f6",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "TODO/TODO.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "TODO"
             }
           }
         ]
@@ -178,17 +182,18 @@
       "bases:Create new base": false
     }
   },
-  "active": "eebef71a77abd03c",
+  "active": "e847d5cb537041f6",
   "lastOpenFiles": [
+    "DSA and cp/CP/DP/2. Classical dp problems.md",
+    "DSA and cp/CP/DP/3. DP optimisation.md",
+    "DSA and cp/CP/DP/1. Dynamic programming basics.md",
     "DSA and cp/DSA/Graphs/Basics.md",
+    "DSA and cp/DSA/Graphs/SDE sheet DSA.md",
+    "DSA and cp/DSA/DP problems/Striver sde a-z sheet.md",
     "Interviews/HLD problems/1. Uber.md",
     "TODO/TODO.md",
     "Company specific/uber/Solutions.md",
     "Company specific/uber/Questions Uber.md",
-    "DSA and cp/CP/DP/2. Classical dp problems.md",
-    "DSA and cp/CP/DP/3. DP optimisation.md",
-    "DSA and cp/DSA/DP problems/Striver sde a-z sheet.md",
-    "DSA and cp/DSA/Graphs/SDE sheet DSA.md",
     "DSA and cp/DSA/DP problems",
     "DSA and cp/DSA/Design problems/Ordering problems.md",
     "DSA and cp/DSA/Blind75/Blind 75.md",
@@ -206,7 +211,6 @@
     "Interviews/System Design/Basics/Delievery framework.md",
     "Interviews/System Design/Basics/Core concepts.md",
     "Interviews/System Design/Basics/Basics.md",
-    "DSA and cp/CP/Graph/1. Disjoint set union.md",
     "DSA and cp/CP/Greedy",
     "DSA and cp/CP/Other topics",
     "DSA and cp/CP/Segment Trees",
