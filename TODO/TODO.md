@@ -6,7 +6,7 @@ Morning todo
 - [ ] Solve remaining dp problems of sde sheet
 - [ ] Striver sde array 1 + array2 + array3
 - [ ] Greedy Changes (3-4) patterns
-- [ ] Go remaining complete
+- [x] Go remaining complete
 
 Daily + evening 
 

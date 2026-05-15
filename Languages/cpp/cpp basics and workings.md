@@ -1,4 +1,0 @@
-
----
-
-CPP is a static , 
