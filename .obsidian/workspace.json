@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "b241203eb5956abd",
+        "id": "e2e2f4a5468eacab",
         "type": "tabs",
         "children": [
           {
-            "id": "650f6ed9ae22c371",
+            "id": "7ed2793e16a3e601",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Languages/LLD/OOPs (basics and class diagram).md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "OOPs (basics and class diagram)"
+              "title": "New tab"
             }
           }
         ]
@@ -182,8 +178,23 @@
       "bases:Create new base": false
     }
   },
-  "active": "931c44da03837a29",
+  "active": "7ed2793e16a3e601",
   "lastOpenFiles": [
+    "Languages/Go/13. Important questions.md",
+    "Languages/Go/14. Go memory model.md",
+    "Languages/Go/8. Generics.md",
+    "Languages/Go/6. Pointers arrays , strings and structs.md",
+    "Languages/Web dev go/4. Routing and middleware.md",
+    "Languages/Web dev go/2. Gin.md",
+    "Languages/Web dev go/5. Validations.md",
+    "Languages/Web dev go/6. Headers and cookies.md",
+    "Languages/Web dev go/3. Gin handlers.md",
+    "Languages/Go/10. Concurrency.md",
+    "Languages/Web dev go/1. Http package.md",
+    "Languages/Go/2. Anatomy of go code.md",
+    "Languages/Go/1. Basics go cli.md",
+    "Engineering/OS/1. Intro.md",
+    "Languages/LLD/OOPs (basics and class diagram).md",
     "AI/Machine Learning/Notes.md",
     "AI/Machine Learning/Langchain.md",
     "AI/Machine Learning/Intro to Machine Learning.md",
@@ -197,12 +208,6 @@
     "AI/7. Vector databases.md",
     "AI/7. Rag pipeline.md",
     "AI/6. Ingestion pipelines.md",
-    "AI/5. Transformers.md",
-    "AI/4. LLM models.md",
-    "AI/3. Model context protocol.md",
-    "AI/3. Agents.md",
-    "AI/2. Foundational models.md",
-    "AI/1. Basics openai.md",
     "AI",
     "langs/Javascript/Data/Pasted image 20250613090308.png",
     "langs/Javascript/Data/Pasted image 20250613090042.png",
@@ -210,16 +215,7 @@
     "langs/Javascript/Data/Pasted image 20250613075044.png",
     "langs/Javascript/Data/Pasted image 20250531085031.png",
     "langs/Javascript/Data",
-    "Languages/LLD/OOPs (basics and class diagram).md",
-    "Languages/LLD/Design patterns (creational).md",
-    "Languages/LLD/Constructors , polymorphism and inheritance.md",
-    "Languages/LLD/Behavioural and structural design patterns.md",
-    "Languages/LLD/1.Basics.md",
     "Languages/LLD",
-    "Languages/Go/9. OS and file system.md",
-    "Languages/Go/8. Generics.md",
-    "Languages/Go/7. Method and interfaces.md",
-    "Languages/Go/6. Pointers arrays , strings and structs.md",
     "Languages/Go",
     "Languages/Java advanced",
     "langs/React",
