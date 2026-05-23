@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "e2e2f4a5468eacab",
+        "id": "01b04263d927f237",
         "type": "tabs",
         "children": [
           {
-            "id": "7ed2793e16a3e601",
+            "id": "43371e839926b856",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Engineering/OS/1. Intro.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "1. Intro"
             }
           }
         ]
@@ -178,8 +182,21 @@
       "bases:Create new base": false
     }
   },
-  "active": "7ed2793e16a3e601",
+  "active": "43371e839926b856",
   "lastOpenFiles": [
+    "Engineering/Linux/Processes.md",
+    "Engineering/Linux/Linux commands.md",
+    "Engineering/Linux/File system.md",
+    "Engineering/Linux/Bash scripting.md",
+    "Engineering/Linux/AWK.md",
+    "DSA and cp/CP/Greedy/4. Exchange argument.md",
+    "DSA and cp/CP/Greedy/3. Greedy regret.md",
+    "DSA and cp/CP/Greedy/5. Backward time sweep and sweep line.md",
+    "DSA and cp/CP/Greedy/6. Cascading eviction.md",
+    "DSA and cp/CP/Segment Trees/Basic idea of segment trees and basic variant.md",
+    "DSA and cp/CP/Greedy/2. Important greedy problem types.md",
+    "DSA and cp/CP/Other topics/Speical topics.md",
+    "DSA and cp/CP/Greedy/1. Greedy basics.md",
     "Languages/Go/13. Important questions.md",
     "Languages/Go/14. Go memory model.md",
     "Languages/Go/8. Generics.md",
@@ -193,21 +210,8 @@
     "Languages/Web dev go/1. Http package.md",
     "Languages/Go/2. Anatomy of go code.md",
     "Languages/Go/1. Basics go cli.md",
-    "Engineering/OS/1. Intro.md",
-    "Languages/LLD/OOPs (basics and class diagram).md",
-    "AI/Machine Learning/Notes.md",
-    "AI/Machine Learning/Langchain.md",
-    "AI/Machine Learning/Intro to Machine Learning.md",
-    "AI/Machine Learning/Deep learning basics.md",
-    "AI/Machine Learning/Basics of ML.md",
-    "AI/Machine Learning/Basic chatbot.md",
     "AI/Machine Learning",
-    "AI/Langchain/1. Basic.md",
     "AI/Langchain",
-    "AI/8. Python for rag.md",
-    "AI/7. Vector databases.md",
-    "AI/7. Rag pipeline.md",
-    "AI/6. Ingestion pipelines.md",
     "AI",
     "langs/Javascript/Data/Pasted image 20250613090308.png",
     "langs/Javascript/Data/Pasted image 20250613090042.png",

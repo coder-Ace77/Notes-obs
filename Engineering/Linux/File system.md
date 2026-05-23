@@ -14,7 +14,7 @@ Linux file system has one root `/` and any files or devices need to get monted o
 - dev - Devices directory - This contains "device files." For example, `/dev/sda` represents your hard drive. You don't "open" these; the system uses them to talk to hardware.
 - etc - The nerve center for **configuration files**. If you want to change how a program behaves system-wide, you usually edit a file in here. So for example the `nginx` config files live here. 
 - home - Where users keep their personal files. Each user gets a subfolder (e.g., `/home/username`). This is the only place a normal user can write files by default.
-- bin - Contains shared library images (the Linux version of `.dll` files) needed by the binaries in `/bin` and `/sbin`.
+- lib - Contains shared library images (the Linux version of `.dll` files) needed by the binaries in `/bin` and `/sbin`.
 - media - The temporary mount point for removable media like USB sticks or external hard drives.
 - mnt - Historically used for manually mounting temporary filesystems.
 
