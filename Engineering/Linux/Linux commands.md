@@ -7,12 +7,12 @@ In linux we have commnds
 
 Running linux commands in the shell allows users to use its wildcard feature. Wildcard feature is not the part of `bin` utility but the part of linux shell. Wildcards are handled by the Shell (Bash/Zsh) before the command even runs.
 
-|**Wildcard**|**Meaning**|**Example**|
-|---|---|---|
-|`*`|Matches **any number** of characters|`ls *.log` (All files ending in .log)|
-|`?`|Matches exactly **one** character|`cat file?.txt` (Matches file1.txt, but not file10.txt)|
-|`[ ]`|Matches any character **inside** the brackets|`ls [abc].txt` (Matches a.txt, b.txt, or c.txt)|
-|`[!]`|Matches any character **not** inside brackets|`ls [!0-9].txt` (Matches any file not named with a number)|
+| **Wildcard** | **Meaning**                                   | **Example**                                                |
+| ------------ | --------------------------------------------- | ---------------------------------------------------------- |
+| `*`          | Matches **any number** of characters          | `ls *.log` (All files ending in .log)                      |
+| `?`          | Matches exactly **one** character             | `cat file?.txt` (Matches file1.txt, but not file10.txt)    |
+| `[ ]`        | Matches any character **inside** the brackets | `ls [abc].txt` (Matches a.txt, b.txt, or c.txt)            |
+| `[!]`        | Matches any character **not** inside brackets | `ls [!0-9].txt` (Matches any file not named with a number) |
 So the command actually is transformed to diffrent command when when transfers control to actual binary. For example `ls *.txt`. bash will handle `*` itself and ls will get all the file names only. 
 
 #### Filters - 
@@ -100,7 +100,7 @@ Note ps aupports the sorting by default `ps aux --sort=-%mem | head -n 5`
 
 Some netowrking commands - 
 
-- ip addr - shows ip address and network interfaces
+- ip addr - shows ip address and network interfaces.
 - ping - Checks if a remote host is reachable.
 - **`curl` / `wget`**: Downloads files or interacts with URLs directly from the CLI.
 - **`ssh`**: Securely connects to a remote Linux machine.

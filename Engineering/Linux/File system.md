@@ -118,11 +118,11 @@ It puts all the content of file to terminal. To look at the files content we use
 cat file
 ```
 
-Options
+Options 
 
 - `-n` - Displays the line numbers
 - `-A` - shows invisible like tabs or end of line merkers.
-- It can be used to combine multiple files into 1
+-  It can be used to combine multiple files into 1
 
 ```bash
 cat a.txt b.txt c.txt > out.txt

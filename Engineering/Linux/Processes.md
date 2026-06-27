@@ -27,13 +27,14 @@ Now to have entirely different process running on the child. We can have `exec` 
 
 While `exec` is not a single call rather its family of functions. We add some flags in suffix to tell how they behave - 
 
-|**Function**|**Argument Style**|**Uses PATH?**|**Custom Env?**|
-|---|---|---|---|
-|`os.execl()`|List|No|No|
-|`os.execp()`|List|**Yes**|No|
-|`os.execv()`|Vector (Array)|No|No|
-|`os.execvp()`|Vector (Array)|**Yes**|No|
-|`os.execvpe()`|Vector (Array)|**Yes**|**Yes**|
+| **Function**   | **Argument Style** | **Uses PATH?** | **Custom Env?** |
+| -------------- | ------------------ | -------------- | --------------- |
+| `os.execl()`   | List               | No             | No              |
+| `os.execp()`   | List               | **Yes**        | No              |
+| `os.execv()`   | Vector (Array)     | No             | No              |
+| `os.execvp()`  | Vector (Array)     | **Yes**        | No              |
+| `os.execvpe()` | Vector (Array)     | **Yes**        | **Yes**         |
+
 
 Here `p` means os will look for the executable in the `$PATH` variable. Similarly `l` means ares arepassed as list of string. Now one quirk is that args are provided as followed for `l`
 First arg has to be the executable and second is `arg0` of standard programs which is usually again the executable. Then we can give dynamic number of arguments. 
@@ -191,11 +192,11 @@ If you use `os.dup2(file_fd, 1)` and then call `print()`, Python's internal buff
 
 `os.open()` is  direct wrapper to posix system call. It does not returns file object but rather an integer called file descriptor. 
 
-|**Flag**|**Meaning**|**What it does**|
-|---|---|---|
-|**`os.O_WRONLY`**|**Write Only**|Opens the file for writing only. You cannot `read()` from this FD.|
-|**`os.O_CREAT`**|**Create**|If the file doesn't exist, create it. Without this, the call fails if the file is missing.|
-|**`os.O_TRUNC`**|**Truncate**|If the file _already_ exists, "truncate" its length to zero (delete all contents) as soon as it's opened.|
+| **Flag**          | **Meaning**    | **What it does**                                                                                          |
+| ----------------- | -------------- | --------------------------------------------------------------------------------------------------------- |
+| **`os.O_WRONLY`** | **Write Only** | Opens the file for writing only. You cannot `read()` from this FD.                                        |
+| **`os.O_CREAT`**  | **Create**     | If the file doesn't exist, create it. Without this, the call fails if the file is missing.                |
+| **`os.O_TRUNC`**  | **Truncate**   | If the file _already_ exists, "truncate" its length to zero (delete all contents) as soon as it's opened. |
 All of these are one bit flags and we use `|` or to combine them. 
 
 Another example
@@ -224,9 +225,9 @@ Piping data is heavy and slow as it has to go through kernel.
 
 Another way to talk is using shared memory. Since we can not allow raed and write at the same time we use semaphores to read and write one by one. 
 
-Normally, the Operating System protects processes from each other. Process A cannot touch Process B's memory—if it tries, you get a `Segmentation Fault`.
+Normally, the Operating System protects processes from each other. Process A cannot touch Process B's memory—if it tries, you get a `Segmentation Fault`. 
 
-**Shared Memory** is a special exception where the kernel maps the same physical RAM to the address space of multiple processes. The benefit is zero copying. 
+**Shared Memory** is a special exception where the kernel maps the same physical RAM to the address space of multiple processes. The benefit is zero copying.  
 
 Now to implement it we need shared memory using low level instruction and the locking is implemented using multiprocessing locking. 
 

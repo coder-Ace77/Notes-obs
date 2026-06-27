@@ -1,11 +1,10 @@
 
 ---
 
-awk is very powerfull text processing tool it can either take values from the files or from other commands using pipe
+awk is very powerfull text processing tool it can either take values from the files or from other commands using pipe. 
 
 ```bash
 awk 'pattern { action }' file
-
 command | awk 'pattern { action }'
 ```
 
@@ -185,3 +184,4 @@ awk '
 }
 ' file
 ```
+
