@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Rabin karp algorithm.md",
+                "file": "Hash algorithms.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Rabin karp algorithm"
+              "title": "Hash algorithms"
             }
           }
         ]
@@ -184,7 +184,7 @@
   },
   "active": "9bb64d83a8e7660e",
   "lastOpenFiles": [
-    "Rabin karp algorithm.md",
+    "Hash algorithms.md",
     "DSA/CP/Arrays and strings/Knuth morris pattinson.md",
     "DSA/CP/Graph/Advanced discussion/2. Leaf-stripping and bottom-up commitment on trees.md",
     "Greedy trees and exchange argument.md",
