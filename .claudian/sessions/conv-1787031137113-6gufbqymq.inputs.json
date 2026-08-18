@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1787031137113-6gufbqymq",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787031137634-t1o9t4w",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1787031137107-y02hg1c",
+      "timestamp": 1787031137107,
+      "rawDisplayText": "Let me know about the client requst flow",
+      "canonicalText": "Let me know about the client requst flow",
+      "context": {
+        "currentNote": {
+          "path": "Engineering/Databases/Relational databases/3. Postgres and system design.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "3663dc0b2f47f8bebf1cd8f9832557d6c76abe835e7173a791652940c0aa4008",
+      "providerUserMessageId": "78c6f968-ef39-47e0-8a7e-568447f6df64",
+      "providerAssistantMessageId": "fbebc52c-23a7-478b-837a-e05b76fd6bc8"
+    }
+  ]
+}

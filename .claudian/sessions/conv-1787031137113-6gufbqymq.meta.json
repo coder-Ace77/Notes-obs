@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787031137113-6gufbqymq",
+  "providerId": "claude",
+  "title": "Explain client request flow",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787031137279,
+  "lastActivityAt": 1787031155531,
+  "sessionId": "d31388d9-5194-452e-ab3e-e1aca787d117",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "d31388d9-5194-452e-ab3e-e1aca787d117"
+  },
+  "currentNote": "Engineering/Databases/Relational databases/3. Postgres and system design.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 7700,
+    "cacheReadInputTokens": 16142,
+    "contextWindow": 200000,
+    "contextTokens": 23850,
+    "percentage": 12,
+    "contextWindowIsAuthoritative": true
+  }
+}
