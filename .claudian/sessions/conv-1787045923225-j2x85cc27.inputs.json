@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1787045923225-j2x85cc27",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787045923284-i1rvmqu",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1787045923223-jp6qnxe",
+      "timestamp": 1787045923223,
+      "rawDisplayText": "Lets optimise the api gateway and loadbalancer for the writeup and read if you can find any gaps. Also i have always though why is loadbalancer and api gateways are so fast second how can they incur huge throughput",
+      "canonicalText": "Lets optimise the api gateway and loadbalancer for the writeup and read if you can find any gaps. Also i have always though why is loadbalancer and api gateways are so fast second how can they incur huge throughput",
+      "context": {
+        "currentNote": {
+          "path": "Interviews/System Design/Key technologies/8. API gateway and loadbalancer.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "1c9f5fbe4658a3df1c6bd19eaa93d44522ea928e9955fc0d9e875e3f3511e0ae",
+      "providerUserMessageId": "7f7175d8-9944-416a-a42d-08c079f89eba",
+      "providerAssistantMessageId": "1839f9be-24b2-4ab5-b369-d0ea6d5163ea"
+    }
+  ]
+}

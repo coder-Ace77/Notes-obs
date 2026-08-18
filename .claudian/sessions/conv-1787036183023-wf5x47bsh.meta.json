@@ -4,7 +4,7 @@
   "title": "Expand client request flow in paragraph format",
   "titleGenerationStatus": "success",
   "createdAt": 1787036183035,
-  "lastActivityAt": 1787041926304,
+  "lastActivityAt": 1787048698471,
   "sessionId": "e9e9df02-6201-4713-80df-97b646562e54",
   "selectedModel": "sonnet",
   "providerState": {
@@ -13,11 +13,11 @@
   "usage": {
     "model": "sonnet",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 2137,
-    "cacheReadInputTokens": 151415,
+    "cacheCreationInputTokens": 9268,
+    "cacheReadInputTokens": 157971,
     "contextWindow": 967000,
-    "contextTokens": 153554,
-    "percentage": 16,
+    "contextTokens": 167241,
+    "percentage": 17,
     "contextWindowIsAuthoritative": true
   }
 }

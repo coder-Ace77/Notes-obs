@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787044121464-60mtwjxkv",
+  "providerId": "claude",
+  "title": "Check file for missing content",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787044121482,
+  "lastActivityAt": 1787044277968,
+  "sessionId": "67c8d237-f634-4065-9bc9-d9bfafa4d5ea",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "67c8d237-f634-4065-9bc9-d9bfafa4d5ea"
+  },
+  "currentNote": "Interviews/System Design/Key technologies/3. Blob storage patterns.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1388,
+    "cacheReadInputTokens": 24674,
+    "contextWindow": 967000,
+    "contextTokens": 26064,
+    "percentage": 3,
+    "contextWindowIsAuthoritative": true
+  }
+}

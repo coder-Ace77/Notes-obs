@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787045923225-j2x85cc27",
+  "providerId": "claude",
+  "title": "Optimize API gateway and load balancer",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787045923230,
+  "lastActivityAt": 1787046036230,
+  "sessionId": "f4531dc5-d1b6-4cc7-97f3-c2d16d0cd716",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "f4531dc5-d1b6-4cc7-97f3-c2d16d0cd716"
+  },
+  "currentNote": "Interviews/System Design/Key technologies/8. API gateway and loadbalancer.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 10120,
+    "cacheReadInputTokens": 24486,
+    "contextWindow": 967000,
+    "contextTokens": 34608,
+    "percentage": 4,
+    "contextWindowIsAuthoritative": true
+  }
+}

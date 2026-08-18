@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1787044121464-60mtwjxkv",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787044121592-cjzxort",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1787044121459-ojd1p3c",
+      "timestamp": 1787044121459,
+      "rawDisplayText": "Read file and check for any thing major missing ?",
+      "canonicalText": "Read file and check for any thing major missing ?",
+      "context": {
+        "currentNote": {
+          "path": "Interviews/System Design/Key technologies/3. Blob storage patterns.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "30adb5d9874b1c5bbbc22936220b87f5885c823c9495fffe06e5896c02723f52",
+      "providerUserMessageId": "b7860020-08ac-4712-aa90-fc9f3d51ef8c",
+      "providerAssistantMessageId": "0b25e85d-c457-4b98-ac8b-49da32d2fc49"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787044259139-mwiy1qj",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1787044259132-7wt6qvy",
+      "timestamp": 1787044259132,
+      "rawDisplayText": "Ok add sections for the multipart , upload validation and post-uplaod processing + notification mechanism",
+      "canonicalText": "Ok add sections for the multipart , upload validation and post-uplaod processing + notification mechanism",
+      "images": [],
+      "contentDigest": "1a0b7932e7543c4d2ac690d2f5b7c23d5093ccf9c37d7bee9f515d7b8ac27eb4",
+      "providerUserMessageId": "dbb45b8a-ef41-4505-afd0-ca74860f5587",
+      "providerAssistantMessageId": "cca1b0aa-b324-4170-b36b-60ee5097d9fa"
+    }
+  ]
+}

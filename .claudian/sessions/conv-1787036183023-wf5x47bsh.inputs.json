@@ -145,6 +145,20 @@
       "contentDigest": "fff539e244bc88f07ef6ecf9d90f1d8cac7b586709845405428695c04c3229ba",
       "providerUserMessageId": "ad8ae6af-4bc4-44bc-9642-3353827f5fed",
       "providerAssistantMessageId": "378cf66c-c2d5-4765-a560-8bb5cb240176"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787048579841-5fqddmu",
+      "userTurnOrdinal": 11,
+      "state": "accepted",
+      "localMessageId": "msg-1787048579833-dpqlgv5",
+      "timestamp": 1787048579833,
+      "rawDisplayText": "@Interviews/System Design/Key technologies/9. Cassandra.md  read the cassandra page add the content and optiise",
+      "canonicalText": "@Interviews/System Design/Key technologies/9. Cassandra.md  read the cassandra page add the content and optiise",
+      "images": [],
+      "contentDigest": "2367850b5c09caf1c4eef38f53c6ad65216939e4e57749626c04eef234d16fdf",
+      "providerUserMessageId": "de98fa5d-29fa-4110-90e6-53e9af61fdbe",
+      "providerAssistantMessageId": "016085fe-99d6-45a5-96d4-d24e7bc3c5b9"
     }
   ]
 }
