@@ -36,6 +36,18 @@ NoSQL databases are **Non-Relational** and come in various shapes (Documents, Ke
 
 SQL dbs are acid compliance by default. However most of NOSQL dbs are not ACID compiant when working in distributed enviornment (Mongodb is acid compliant). However NoSQL dbs follow something called as `BASE`. 
 
+#### ACID
+
+**ACID** is a set of four guarantees that relational databases make about how transactions (a group of one or more operations executed as a single unit) behave. The goal is to make sure the database stays correct and reliable even when there are crashes, power failures, or multiple users hitting the db at the same time.
+
+- **Atomicity** - A transaction is treated as a single indivisible unit - either **all** of its operations succeed, or **none** of them do. If you're transferring money between two accounts (debit one, credit another) and the system crashes after the debit but before the credit, atomicity guarantees the debit gets rolled back too. You never end up in a half-done state.
+
+- **Consistency** - A transaction can only bring the database from one **valid** state to another valid state. All the schema rules, constraints, foreign keys, and triggers defined on the db must hold true before and after the transaction. If a transaction would violate a constraint (like a `NOT NULL` field or a foreign key reference), it gets rejected entirely. Note this is a different meaning of "consistency" than the one used in CAP theorem - here it just means "respecting the rules you've defined on your data," not "all nodes see the same data."
+
+- **Isolation** - Even when multiple transactions run concurrently, the end result should look as if they ran one after another (serially), not interleaved. Without isolation, one transaction could read another transaction's uncommitted changes (a "dirty read") and get inconsistent results. Databases implement isolation using **isolation levels** (from weakest to strongest: Read Uncommitted, Read Committed, Repeatable Read, Serializable) - stronger isolation gives more correctness but costs more performance since it usually means more locking or more work resolving conflicts.
+
+- **Durability** - Once a transaction is committed, its changes are permanent, even if the system crashes immediately after (power loss, OS crash, etc). This is typically achieved using a **Write-Ahead Log (WAL)** - the db writes the intended change to an append-only log on disk *before* actually applying it to the main data files. If the system crashes mid-write, on restart the db replays the log to recover any committed transactions that hadn't been fully flushed to disk yet.
+
 #### BASE
 
 - Bascially available - The system guarantees that it will respond to any request, even if some nodes are down or the data is in an inconsistent state. Idea is that it is better to give the user _some_ answer (even if it's slightly stale) than no answer at all. If you're on a social media site and a database node in Europe goes down, you might not see the latest comment from a friend there, but the site itself still loads and functions for you.

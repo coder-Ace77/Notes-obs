@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787038470883-9r61vex6k",
+  "providerId": "claude",
+  "title": "Add ACID properties to database basics",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787038470937,
+  "lastActivityAt": 1787038497214,
+  "sessionId": "892a3f61-521e-4ab8-bd08-b65d388c9bc9",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "892a3f61-521e-4ab8-bd08-b65d388c9bc9"
+  },
+  "currentNote": "Engineering/Databases/Basics of databases.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1265,
+    "cacheReadInputTokens": 26954,
+    "contextWindow": 967000,
+    "contextTokens": 28221,
+    "percentage": 3,
+    "contextWindowIsAuthoritative": true
+  }
+}

@@ -20,6 +20,20 @@
       "contentDigest": "3663dc0b2f47f8bebf1cd8f9832557d6c76abe835e7173a791652940c0aa4008",
       "providerUserMessageId": "78c6f968-ef39-47e0-8a7e-568447f6df64",
       "providerAssistantMessageId": "fbebc52c-23a7-478b-837a-e05b76fd6bc8"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787033330380-vsiih7i",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1787033330321-uxfkn5s",
+      "timestamp": 1787033330321,
+      "rawDisplayText": "Yes i want deeper dive into the each stage and its conciquences on real db management",
+      "canonicalText": "Yes i want deeper dive into the each stage and its conciquences on real db management",
+      "images": [],
+      "contentDigest": "3eceb20e2325f12a45ff48d9f204ced3479159cd40fb8d358f9bc047afaf60e1",
+      "providerUserMessageId": "a241d936-26ae-4835-8e79-d3d259fec3c0",
+      "providerAssistantMessageId": "1291cf19-e23b-4b89-9ddd-09870941efe3"
     }
   ]
 }

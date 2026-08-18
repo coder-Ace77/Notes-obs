@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1787038470883-9r61vex6k",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787038471207-ke7b70f",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1787038470879-ia7zfwg",
+      "timestamp": 1787038470879,
+      "rawDisplayText": "Ok now in the basics of databases also add a section for acid properties of realtional dbs",
+      "canonicalText": "Ok now in the basics of databases also add a section for acid properties of realtional dbs",
+      "context": {
+        "currentNote": {
+          "path": "Engineering/Databases/Basics of databases.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "3da69968efd15c7e2aa58674e6c2ac6a2694c8ec48a74aa8b7e8bb513e6b7fae",
+      "providerUserMessageId": "e825afc0-7d04-4ebe-b003-bbc4c9ea1f85",
+      "providerAssistantMessageId": "517ab102-b108-4a8a-9639-723afa926b6c"
+    }
+  ]
+}

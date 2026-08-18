@@ -4,39 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "5cfbfd581a344585",
+        "id": "e6170affe4f83992",
         "type": "tabs",
         "children": [
           {
-            "id": "5b02a8172bf71f7c",
+            "id": "0c7182ac858c8228",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Interviews/System Design/Key technologies/Cassandra.md",
+                "file": "Interviews/System Design/Key technologies/3. Blob storage patterns.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Cassandra"
-            }
-          },
-          {
-            "id": "00db3dfcc981ff7d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Engineering/Databases/Relational databases/3. Postgres and system design.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "3. Postgres and system design"
+              "title": "3. Blob storage patterns"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -70,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "acid",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -95,7 +80,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "b6166ee8421ec9a4",
@@ -172,6 +158,7 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "Interviews/System Design/Key technologies/3. Blob storage patterns.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -195,7 +182,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 421.614990234375
+    "width": 305.65594482421875
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -207,47 +194,47 @@
       "command-palette:Open command palette": false,
       "bases:Create new base": false,
       "obsidian-excalidraw-plugin:New drawing": false,
-      "realclaudian:Open Claudian": false
+      "realclaudian:Open Claudian": false,
+      "remotely-save:Remotely Save": false
     }
   },
-  "active": "0e0b647022b1e642",
+  "active": "0c7182ac858c8228",
   "lastOpenFiles": [
-    "Engineering/Databases/Basics of databases.md",
-    "Engineering/Databases/Advanced dbs.md",
-    "Engineering/Databases/Relational databases/3. Postgres and system design.md",
-    "Engineering/Databases/Relational databases/6. Concurrency and transactions.md",
-    "Engineering/Databases/Relational databases/5. Realtional databases.md",
-    "Engineering/Databases/Relational databases/4. Psql.md",
-    "Engineering/Databases/Relational databases/1.Relational model.md",
-    "Interviews/System Design/Key technologies/Full text searches.md",
-    "Interviews/System Design/Key technologies/6. Elasticsearch.md",
-    "Interviews/System Design/Key technologies/5. Dynamodb.md",
-    "System design hld to do.md",
-    "DSA/Ultimate DSA/2. Ultimate guide 101 to implementation problems.md",
-    "Interviews/System Design/Key technologies/Cassandra.md",
-    "Interviews/System Design/Key technologies/API gateway and loadbalancer.md",
-    "Interviews/System Design/Key technologies/4. Redis and CDN.md",
-    "Interviews/System Design/Key technologies/Stream and event sourcing.md",
-    "Interviews/System Design/Key technologies/Queue and Kafka.md",
-    "Interviews/System Design/Key technologies/Locking.md",
-    "Interviews/System Design/Key technologies/Distributed locking.md",
     "Interviews/System Design/Key technologies/3. Blob storage patterns.md",
+    "Interviews/System Design/Key technologies/2. Postgres and system design.md",
+    "Interviews/System Design/Key technologies/2. Postgres and system design.md.tmp.7792.07216e316c49",
+    "Interviews/System Design/Key technologies/2. Postgres and system design.md.tmp.7792.48da3081eab9",
+    "Interviews/System Design/Key technologies/2. Postgres and system design.md.tmp.7792.7c6eca2e54be",
+    "Interviews/System Design/Key technologies/2. Postgres and system design.md.tmp.7792.46657d95150c",
+    "Interviews/System Design/Key technologies/2. Postgres and system design.md.tmp.7792.782d13ac5284",
+    "Interviews/System Design/Key technologies/2. Postgres and system design.md.tmp.7792.eb9ad4fd5a03",
+    "Interviews/System Design/Key technologies/2. Postgres and system design.md.tmp.7792.c4485be8666c",
+    "Interviews/System Design/Key technologies/2. Postgres and system design.md.tmp.7792.409f23fc4bb6",
+    "Interviews/System Design/Key technologies/2. Postgres and system design.md.tmp.7792.750ed107feed",
+    "Interviews/System Design/Key technologies/2. Postgres and system design.md.tmp.7792.a6629d298298",
+    "Engineering/Databases/Relational databases/5. Concurrency and transactions.md",
+    "Engineering/Databases/Basics of databases.md",
+    "Engineering/Databases/Relational databases/1.Relational model.md",
+    "Engineering/Databases/Advanced dbs.md",
+    "Engineering/Databases/Relational databases/4. Realtional databases.md",
+    "Engineering/Databases/Relational databases/3. Psql.md",
+    "Engineering/Databases/Relational databases/2. SQL.md",
+    "Interviews/System Design/Key technologies/7. Elasticsearch.md",
+    "System design hld to do.md",
+    "Interviews/System Design/Key technologies/11. Queue and Kafka.md",
+    "Interviews/System Design/Key technologies/12. Stream and event sourcing.md",
+    "Interviews/System Design/Patterns/Software architectural patterns.md",
     "Interviews/System Design/Key technologies/1. API(Application programming interface).md",
+    "Interviews/System Design/Key technologies/10. Locking.md",
+    "Interviews/System Design/Key technologies/Distributed locking.md",
+    "Interviews/System Design/Key technologies/9. Cassandra.md",
+    "Interviews/System Design/Key technologies/8. API gateway and loadbalancer.md",
+    "Interviews/System Design/Key technologies/6. Full text searches.md",
+    "Welcome.md",
+    "Interviews/System Design/Key technologies/5. Dynamodb.md",
+    "DSA/Ultimate DSA/2. Ultimate guide 101 to implementation problems.md",
+    "Interviews/System Design/Key technologies/4. Redis and CDN.md",
     "Interviews/System Design/Basics/3. Delievery framework.md",
-    "Interviews/System Design/Basics/2. Core concepts.md",
-    "Interviews/System Design/Basics/1. Basics.md",
-    "DSA/Ultimate DSA/1. Ultime DSA 2026 calibration.md",
-    "DSA/Ultimate DSA",
-    "DSA/DSA/Design problems/Ordering problems.md",
-    "Interviews/LLD problems/4. Platform and infra",
-    "Interviews/LLD problems/3. Products",
-    "Interviews/LLD problems/2. Complex",
-    "Interviews/LLD problems/1.Basic",
-    "DSA/cp4/Paradigms",
-    "DSA/cp4",
-    "AI/Langgraph",
-    "AI/Basics",
-    "DSA/CP/DS",
     "langs/Javascript/Data/Pasted image 20250613090308.png",
     "langs/Javascript/Data/Pasted image 20250613090042.png",
     "langs/Javascript/Data/Pasted image 20250613075106.png",

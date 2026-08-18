@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1787038612983-qjc9b056h",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787038613061-ourhf7a",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1787038612979-ez2erox",
+      "timestamp": 1787038612979,
+      "rawDisplayText": "In the durability section make it more elaborative and deeper for example discuss along with wal how does it works and what happens when anything crashes for each schenario",
+      "canonicalText": "In the durability section make it more elaborative and deeper for example discuss along with wal how does it works and what happens when anything crashes for each schenario",
+      "context": {
+        "currentNote": {
+          "path": "Engineering/Databases/Relational databases/5. Concurrency and transactions.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "09d7ab2d696735bb8ed4b3bb6cf4fa7e9165dd7c9b80eabac939f7db9ebbca7b",
+      "providerUserMessageId": "82f1d927-f206-4d58-b76b-3435d7f8f763",
+      "providerAssistantMessageId": "f0ab2cda-9430-419c-bbbe-f12ac8eeac25"
+    }
+  ]
+}

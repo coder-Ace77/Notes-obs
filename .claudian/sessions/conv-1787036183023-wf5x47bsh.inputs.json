@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1787036183023-wf5x47bsh",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787036183137-56rfwi3",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1787036183019-yy8w6i6",
+      "timestamp": 1787036183019,
+      "rawDisplayText": "Lets edit the client request flow to be more deeper in and in more detailed manner and use paragraph mode instead of writing in the buttlet points",
+      "canonicalText": "Lets edit the client request flow to be more deeper in and in more detailed manner and use paragraph mode instead of writing in the buttlet points",
+      "context": {
+        "currentNote": {
+          "path": "Interviews/System Design/Key technologies/2. Postgres and system design.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "209690179f6b416d834a6d75e157f20be655b28ea9120f13fac40a1e93fff9c3",
+      "providerUserMessageId": "4283e42b-5028-4a97-9c4c-cb6f960719a7",
+      "providerAssistantMessageId": "635a01fc-b486-4250-8d75-69aa1d7c7b6e"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787036335832-ns2fn3y",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1787036335826-ntg1imk",
+      "timestamp": 1787036335826,
+      "rawDisplayText": "Ok so also add one paragraph on the pg bouncer after introduction of it and why it is used and some key things one must know before using them",
+      "canonicalText": "Ok so also add one paragraph on the pg bouncer after introduction of it and why it is used and some key things one must know before using them",
+      "images": [],
+      "contentDigest": "0a7d31ce76902738d529531cef05d9c7e07f529a8b4d00bbecb275b3dec14d88",
+      "providerUserMessageId": "8aa4b3e8-8c3a-4dc6-8a90-9e00ef543797",
+      "providerAssistantMessageId": "1c176889-67e0-4cc8-8a05-bbe24f2e1167"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787036454837-63qwrxh",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1787036454831-jlfonm1",
+      "timestamp": 1787036454831,
+      "rawDisplayText": "Ok so before clinet requenst para can you also add how backend apps use the dbs and add stuff like why connection pooling etc",
+      "canonicalText": "Ok so before clinet requenst para can you also add how backend apps use the dbs and add stuff like why connection pooling etc",
+      "images": [],
+      "contentDigest": "0bc9dcc030d0898e512c51ac638e4cddb03cd50521ea431be32e029e0f88b6fa",
+      "providerUserMessageId": "045c18bd-3847-4072-acb0-c593873dfc54",
+      "providerAssistantMessageId": "60a2c61c-7db4-4069-9e25-c6957043bfb2"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787036630305-m060208",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1787036630299-tnc74xp",
+      "timestamp": 1787036630299,
+      "rawDisplayText": "Ok so you added with in practice dbs don't open new db connection for each req first lets clarify the connection and also lets go add first the application how do request goes so that this client request flow looks like one read making sence not some stiched paras",
+      "canonicalText": "Ok so you added with in practice dbs don't open new db connection for each req first lets clarify the connection and also lets go add first the application how do request goes so that this client request flow looks like one read making sence not some stiched paras",
+      "images": [],
+      "contentDigest": "5b16517ecd949c09a4025a34b606768311b114fc00652e1249b2f8c78316ef8e",
+      "providerUserMessageId": "d8eaa492-40c6-44e5-9bfc-a662e85d3771",
+      "providerAssistantMessageId": "03a6ad30-7be2-4cc2-bebd-5e4dfaf6490f"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787036859958-hqm9qps",
+      "userTurnOrdinal": 5,
+      "state": "accepted",
+      "localMessageId": "msg-1787036859951-qmzuu4j",
+      "timestamp": 1787036859951,
+      "rawDisplayText": "In the context and this is not any edit req tell me for any typicall application what will be difference in terms of numbers and procedure and failures if we use new connection per req compared to connection pooling. Don't edit let me know on chat",
+      "canonicalText": "In the context and this is not any edit req tell me for any typicall application what will be difference in terms of numbers and procedure and failures if we use new connection per req compared to connection pooling. Don't edit let me know on chat",
+      "images": [],
+      "contentDigest": "267bd99f424bc1ab0f00f900ef84778c2056e0633d7683882c36662bdde33cdb",
+      "providerUserMessageId": "4fe9889e-0904-42b7-b96a-9d4b407fd6fd",
+      "providerAssistantMessageId": "db1ffc06-ead1-45b1-bb43-a79afb0f7c42"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787039295104-u8kkjfl",
+      "userTurnOrdinal": 6,
+      "state": "accepted",
+      "localMessageId": "msg-1787039295098-b528i02",
+      "timestamp": 1787039295098,
+      "rawDisplayText": "ok now lets enhance the writeup for the optimization which postgres does",
+      "canonicalText": "ok now lets enhance the writeup for the optimization which postgres does",
+      "images": [],
+      "contentDigest": "10c0e2ff00cd3b4555b45ca82ea77f017683716327bf4fca8c2599d4b57763e8",
+      "providerUserMessageId": "f6f4a3da-5cfa-4f6a-8cb3-e9ba41f283af",
+      "providerAssistantMessageId": "f52a683a-4a51-4d0d-b0fc-76cce2439418"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787039757102-r6uug37",
+      "userTurnOrdinal": 7,
+      "state": "accepted",
+      "localMessageId": "msg-1787039757057-wvca3d9",
+      "timestamp": 1787039757057,
+      "rawDisplayText": "Ok now lets optimise the writeup from the indexes all the way upto partial indexes",
+      "canonicalText": "Ok now lets optimise the writeup from the indexes all the way upto partial indexes",
+      "images": [],
+      "contentDigest": "ddbf19c682f68fc28f6c06ed3b449963a4f1e55fafb0cded45cb05695b6e7e81",
+      "providerUserMessageId": "91356143-c915-4d88-81c9-43eba1514e24"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787039783685-gzny7kn",
+      "userTurnOrdinal": 8,
+      "state": "accepted",
+      "localMessageId": "msg-1787039783676-2ixaci6",
+      "timestamp": 1787039783676,
+      "rawDisplayText": "@Interviews/System Design/Key technologies/2. Postgres and system design.md  Ok now lets optimise the writeup from the indexes all the way upto partial indexes",
+      "canonicalText": "@Interviews/System Design/Key technologies/2. Postgres and system design.md  Ok now lets optimise the writeup from the indexes all the way upto partial indexes",
+      "images": [],
+      "contentDigest": "6e5b9ec4cb8814272d512357bc86f16d67cc6da8016d6aad41e8b0e1142f78eb",
+      "providerUserMessageId": "a483f42d-5baf-472b-acb0-fd5f6fd791f2",
+      "providerAssistantMessageId": "f87ec290-a05d-45cd-8a97-4ba672becb7b"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787041473446-fwgeid0",
+      "userTurnOrdinal": 9,
+      "state": "accepted",
+      "localMessageId": "msg-1787041473436-cwc7gh9",
+      "timestamp": 1787041473436,
+      "rawDisplayText": "ok now analyse the practical performance section upto end and let me know any proper gap there or nathing worth adding",
+      "canonicalText": "ok now analyse the practical performance section upto end and let me know any proper gap there or nathing worth adding",
+      "images": [],
+      "contentDigest": "7fce641e55d51b307c11c3eeb05e8fc6efb926f1ab0468b229b880f7e1de4770",
+      "providerUserMessageId": "94485621-baa6-4e76-a767-3fc004387729",
+      "providerAssistantMessageId": "07397d14-a00c-4650-a74d-e06edd0dd5d0"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787041671711-4fwwi03",
+      "userTurnOrdinal": 10,
+      "state": "accepted",
+      "localMessageId": "msg-1787041671700-802r5kj",
+      "timestamp": 1787041671700,
+      "rawDisplayText": "ok so optimise section and add these - \n\n- vaccum / autovaccum - small and short\n- phyisical vs logical \n- when not to use postgres \n\nOptimise other sections i mentioned as well",
+      "canonicalText": "ok so optimise section and add these - \n\n- vaccum / autovaccum - small and short\n- phyisical vs logical \n- when not to use postgres \n\nOptimise other sections i mentioned as well",
+      "images": [],
+      "contentDigest": "fff539e244bc88f07ef6ecf9d90f1d8cac7b586709845405428695c04c3229ba",
+      "providerUserMessageId": "ad8ae6af-4bc4-44bc-9642-3353827f5fed",
+      "providerAssistantMessageId": "378cf66c-c2d5-4765-a560-8bb5cb240176"
+    }
+  ]
+}
