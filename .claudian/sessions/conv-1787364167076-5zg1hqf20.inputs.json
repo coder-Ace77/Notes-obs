@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1787364167076-5zg1hqf20",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787364167401-gov6j0m",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1787364167053-nnofapa",
+      "timestamp": 1787364167053,
+      "rawDisplayText": "As you can see its ultimate dsa sheet now what i would like you to do is make a guide writeup chapter wise for sections for me to make learning and practicing all these questions easily and overall having better experience for me so for an instance chapters or group of chapters on each section with not only theory but the also practical tips and aha moements detailed discussion begineer friendly in reading but depth can be good. Please don't spit the keywords and maths only.",
+      "canonicalText": "As you can see its ultimate dsa sheet now what i would like you to do is make a guide writeup chapter wise for sections for me to make learning and practicing all these questions easily and overall having better experience for me so for an instance chapters or group of chapters on each section with not only theory but the also practical tips and aha moements detailed discussion begineer friendly in reading but depth can be good. Please don't spit the keywords and maths only.",
+      "context": {
+        "currentNote": {
+          "path": "DSA/Ultimate DSA/1. Ultime DSA 2026 calibration.md"
+        },
+        "editorSelection": {
+          "notePath": "DSA/Ultimate DSA/1. Ultime DSA 2026 calibration.md",
+          "mode": "selection",
+          "selectedText": "LC 218 · The Skyline Problem",
+          "lineCount": 1,
+          "startLine": 50
+        }
+      },
+      "images": [],
+      "contentDigest": "5407872035dc319edf2cec39a4e5a7fceb7367dbe164432c5c10922b960d7424",
+      "providerUserMessageId": "98238dd6-1e0d-40f5-a46a-a82406705e32",
+      "providerAssistantMessageId": "a6ea078e-fd8f-4568-bab5-f6f473abc7af"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787366777372-n9iyy39",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1787366777364-tf8ycow",
+      "timestamp": 1787366777364,
+      "rawDisplayText": "I did not liked the first article 01 implementation and simulation what i want was insightful article which is general enough for me to make sence of sence of a general problem the actual article though feels like a patch some random paragraphs it does not looks good and is also not good for learning lets rerite 01 implementation and simulation to cater that",
+      "canonicalText": "I did not liked the first article 01 implementation and simulation what i want was insightful article which is general enough for me to make sence of sence of a general problem the actual article though feels like a patch some random paragraphs it does not looks good and is also not good for learning lets rerite 01 implementation and simulation to cater that",
+      "images": [],
+      "contentDigest": "59bc54ead8c1a47cafcb04fb2bc12eb107f3e0f31ee95f3caff7ff88ab4e87f8",
+      "providerUserMessageId": "95ca4c0a-ac06-4d03-b4de-a15cfd2a60af",
+      "providerAssistantMessageId": "937ae3df-a85e-48a6-8760-8d600e7f447b"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787373994869-358yb9y",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1787373994855-m84f2kk",
+      "timestamp": 1787373994855,
+      "rawDisplayText": "Ok so the article things that questions have been read and then it also gives tricks and tips to solve however i want to be read before and much more simpler english to be used. \n\nFor example this section Parsing deserves its own section not because it's special, but because it's the case where the general model has a *particularly clean* instantiation, and knowing that saves you from memorising anything. at apperent there looks nothing wrong but the flavour and reading of this is not learning friendly",
+      "canonicalText": "Ok so the article things that questions have been read and then it also gives tricks and tips to solve however i want to be read before and much more simpler english to be used. \n\nFor example this section Parsing deserves its own section not because it's special, but because it's the case where the general model has a *particularly clean* instantiation, and knowing that saves you from memorising anything. at apperent there looks nothing wrong but the flavour and reading of this is not learning friendly",
+      "context": {
+        "editorSelection": {
+          "notePath": "DSA/Ultimate DSA/Guide/01 Implementation and Simulation.md",
+          "mode": "selection",
+          "selectedText": "Parsing deserves its own section not because it's special, but because it's the case where the general model has a *particularly clean* instantiation, and knowing that saves you from memorising anything.",
+          "lineCount": 1,
+          "startLine": 259
+        }
+      },
+      "images": [],
+      "contentDigest": "6b179df701e601b16989100da4f2847af2fd12ae0eebc58165e1191fb9f01a5e",
+      "providerUserMessageId": "bb7faa91-cb50-471a-8a37-b5302240d4ff",
+      "providerAssistantMessageId": "8c157bb7-5e0a-4476-a111-78a8ea3a65ea"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787374405371-gosijep",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1787374405354-7iqd0tz",
+      "timestamp": 1787374405354,
+      "rawDisplayText": "see this is the problem here in sentence forming You lose these problems in your **memory**, not in your **thinking**. The statement has eleven rules. Your head holds about four. The seven you drop are the tests you fail.  and this So the method is simple: **get things out of your head and onto the page before they fall out.** both sentences add nothing and use sentence freaming not used in learning which short sentences Use better sentence framing than this may be you can frame this different ways and i will let you know which is needed",
+      "canonicalText": "see this is the problem here in sentence forming You lose these problems in your **memory**, not in your **thinking**. The statement has eleven rules. Your head holds about four. The seven you drop are the tests you fail.  and this So the method is simple: **get things out of your head and onto the page before they fall out.** both sentences add nothing and use sentence freaming not used in learning which short sentences Use better sentence framing than this may be you can frame this different ways and i will let you know which is needed",
+      "context": {
+        "editorSelection": {
+          "notePath": "DSA/Ultimate DSA/Guide/01 Implementation and Simulation.md",
+          "mode": "selection",
+          "selectedText": "So the method is simple: **get things out of your head and onto the page before they fall out.**",
+          "lineCount": 1,
+          "startLine": 22
+        }
+      },
+      "images": [],
+      "contentDigest": "1035131b5c7c245b9997dd7b2cfd1511a243cbc4c581dd993340f7d9c6d0213f",
+      "providerUserMessageId": "a59d9c0e-8d7f-49c2-9dc6-39c03588ff8b",
+      "providerAssistantMessageId": "23812ca7-ef72-424e-ae2b-f1f1ddde1f39"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787374618418-9kjd5hf",
+      "userTurnOrdinal": 5,
+      "state": "accepted",
+      "localMessageId": "msg-1787374618404-ngos8ob",
+      "timestamp": 1787374618404,
+      "rawDisplayText": "A is best keep it for all the sections",
+      "canonicalText": "A is best keep it for all the sections",
+      "context": {
+        "editorSelection": {
+          "notePath": "DSA/Ultimate DSA/Guide/01 Implementation and Simulation.md",
+          "mode": "selection",
+          "selectedText": "So the method is simple: **get things out of your head and onto the page before they fall out.**",
+          "lineCount": 1,
+          "startLine": 22
+        }
+      },
+      "images": [],
+      "contentDigest": "f38b27aafa5c720aea3c2b45285bf18fc55a8d470969279fd37e4b10a7a145e5",
+      "providerUserMessageId": "bf13b2f6-4ef0-452d-8922-4b829306ca9d",
+      "providerAssistantMessageId": "37832bd6-c6eb-489f-a261-3423fbce442e"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787374889588-jsxudr4",
+      "userTurnOrdinal": 6,
+      "state": "accepted",
+      "localMessageId": "msg-1787374889570-41tg86w",
+      "timestamp": 1787374889570,
+      "rawDisplayText": "go ahead",
+      "canonicalText": "go ahead",
+      "context": {
+        "editorSelection": {
+          "notePath": "DSA/Ultimate DSA/Guide/01 Implementation and Simulation.md",
+          "mode": "selection",
+          "selectedText": "So the method is simple: **get things out of your head and onto the page before they fall out.**",
+          "lineCount": 1,
+          "startLine": 22
+        }
+      },
+      "images": [],
+      "contentDigest": "83ca65a61c486ce661e241ed9224db9768d5cfc0c8d76fbbf9bb6f509512c2da",
+      "providerUserMessageId": "5746c7b0-6579-4f45-8b61-a0c6eb704344",
+      "providerAssistantMessageId": "6f75d0b5-c569-43a7-bcfc-ad38ab05edcb"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787377284528-zuhxaxi",
+      "userTurnOrdinal": 7,
+      "state": "accepted",
+      "localMessageId": "msg-1787377284516-vkffkjx",
+      "timestamp": 1787377284516,
+      "rawDisplayText": "continue",
+      "canonicalText": "continue",
+      "images": [],
+      "contentDigest": "61b00692723054a5a149bf4fbe7176ccd6af5efb8445c87903bfb287b52a662a",
+      "providerUserMessageId": "11a61055-3d3f-4c8f-ace5-f61f8114e192"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787537498117-uo1279t",
+      "userTurnOrdinal": 7,
+      "state": "accepted",
+      "localMessageId": "msg-1787537498008-rylqcat",
+      "timestamp": 1787537498008,
+      "rawDisplayText": "continue",
+      "canonicalText": "continue",
+      "images": [],
+      "contentDigest": "61b00692723054a5a149bf4fbe7176ccd6af5efb8445c87903bfb287b52a662a",
+      "providerUserMessageId": "4ba4f84e-bf0d-4693-9c30-1612c99fbb43"
+    }
+  ]
+}

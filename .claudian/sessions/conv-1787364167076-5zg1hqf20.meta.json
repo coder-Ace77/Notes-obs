@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787364167076-5zg1hqf20",
+  "providerId": "claude",
+  "title": "Create chapter-wise DSA guide with insights",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787364167084,
+  "lastActivityAt": 1787538443839,
+  "sessionId": "5abd7444-8668-4e3b-94c7-301fb43fe19d",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "5abd7444-8668-4e3b-94c7-301fb43fe19d"
+  },
+  "currentNote": "DSA/Ultimate DSA/1. Ultime DSA 2026 calibration.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 7668,
+    "cacheReadInputTokens": 454683,
+    "contextWindow": 967000,
+    "contextTokens": 462353,
+    "percentage": 48,
+    "contextWindowIsAuthoritative": true
+  }
+}

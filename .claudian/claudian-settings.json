@@ -3,7 +3,7 @@
   "permissionMode": "normal",
   "model": "sonnet",
   "thinkingBudget": "off",
-  "effortLevel": "high",
+  "effortLevel": "medium",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
   "titleGenerationLocale": "",
@@ -104,7 +104,7 @@
     "claude": "sonnet"
   },
   "savedProviderEffort": {
-    "claude": "high"
+    "claude": "medium"
   },
   "savedProviderServiceTier": {},
   "savedProviderThinkingBudget": {},

@@ -2,6 +2,6 @@
 ---
 
 - [x] postgres
-- [ ] Cassandra
-- [ ] Streaming and event sourcing
-- [ ] other key technologies
+- [x] Cassandra
+- [x] Streaming and event sourcing
+- [x] other key technologies
