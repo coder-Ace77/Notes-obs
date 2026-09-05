@@ -4,38 +4,49 @@ chapter: 13
 sheet-section: M
 ---
 
-# Chapter 13 · Trees: LCA, Rerooting, Small-to-Large, Tree DP
+# Chapter 13 · Trees
 
-> **Read this before you start the problems.** Each technique is introduced with a small example, so no prior familiarity with the problems is assumed.
+A tree is a graph in which there is exactly one path between any two vertices, and that single fact is what every technique in this chapter exploits in a different way. Because trees are a familiar structure, the difficulty here is rarely about recognising that you are looking at one.  The distinction that causes the most trouble in practice is between a computation that needs one pass over the tree and one that needs two. 
 
-Back to [[00 Guide Index]] · Sheet section **M** in [[1. Ultime DSA 2026 calibration]]
+### Structural problems in trees
 
----
+The main secret to solving observation-based tree problems is shifting from a **global requirement** (checking all subtrees) to a **local property** (checking adjacent nodes or edges).
 
-## What makes these problems hard
+Here are three core techniques: 
 
-A tree is a graph in which there is exactly one path between any two vertices, and that single fact is what every technique in this chapter exploits in a different way. Because trees are a familiar structure, the difficulty here is rarely about recognising that you are looking at one. It is about choosing which of several available machines applies, since a tree supports at least five distinct kinds of computation and using the wrong one produces a working but far too slow solution.
+- **Local Edge Analysis:** How to simplify complex subtree requirements into simple checks between neighbor nodes. 
+- **Small Example Strategy:** How to draw minimal test cases systematically to reveal hidden structural rules without getting overwhelmed.
+- **Necessary vs. Sufficient Thinking:** How to test if an observation holds true for _all_ cases or if it misses sneaky edge cases.
 
-The distinction that causes the most trouble in practice is between a computation that needs one pass over the tree and one that needs two. Many tree problems ask for something about each vertex's own subtree, which a single depth-first search answers directly. A smaller number ask for something about the whole tree, evaluated separately as if each vertex in turn were the root, and answering that naively means running the single-pass computation once per vertex, which is far too slow. The technique that solves the second kind in one additional pass, called rerooting, is one of the least practised ideas relative to how often it is actually needed, and it is one of the two techniques this chapter spends the most time on. The other is a family of techniques for questions about the multiset of values inside a subtree, which is a different kind of aggregation from a simple sum or count and needs its own machinery.
 
----
+In tree problems, global conditions (like "every subtree must be monochromatic") can feel overwhelming because there are so many subtrees to check. **Local Edge Analysis** is the technique of translating a complex global rule down to the smallest possible unit: a single edge between two neighboring nodes $(u,v)$
 
-## What these problems look like
+Here is the 3-step mental framework to spot these local patterns:
 
-| The question | The technique |
-|---|---|
-| distance between two vertices, the k-th ancestor of a vertex, whether one vertex is an ancestor of another | lowest common ancestor, using binary lifting or an Euler tour |
-| a value computed for each vertex from its own subtree | an ordinary tree dynamic program, one depth-first search |
-| a value computed for every vertex, each time as if that vertex were the root | rerooting, two depth-first searches |
-| a question about the multiset of values inside each subtree | small-to-large merging, or the closely related technique usually called union-find on a tree despite not literally using a union-find structure |
-| counting or optimising over paths, as opposed to subtrees | centroid decomposition, or occasionally a more direct dynamic program |
-| an update to a single vertex, and a query over a path | heavy-light decomposition, or an Euler tour combined with a Fenwick tree when the aggregate can be undone |
+- **Identify the Boundary Conflict:** Look at two adjacent nodes $u$ and $v$. Ask: What relationship between $u$ and $v$ forces a boundary?
+- **Trace the Structural Impact:** Ask: "If $u$ and $v$ conflict, what does that force upon the rest of the tree?"
+- **Aggregate Local Signals:** Instead of re-checking the whole tree for every candidate, count local conflict edges per vertex or edge in a single pass $O(N)$
 
----
+So this practice to be able to convert the global requirement to a simpler local property is important here. 
 
-## Part 1 · The Euler tour
+##### Problem 
 
-This is the single idea in this chapter with the widest reach, and it is simpler than its name suggests.
+Given a tree with weights on the node. A valid rooted tree is one that has `W[par]>W[child]`. Now for a tree find the root node `r` that makes it valid or state its impossible. 
+
+##### Solution
+
+Now lets think in terms of locals. There can not be edge with equal weight on both sides. Now suppose for local property think what should be structurally true. We can define direction for the edges `(u,v)` with u has more wt. Now root has to have `0` indeg and all the other nodes has to have `1` indeg. Thus entire big porblem was converted to some small local checks. 
+
+Now if the local properties is not clear its better to write some small examples which should reveal the property. Practice such that we make actual correct instance and then look what local properties are hidden. Then test if such hidden property can be inside the incorrect instance as well. 
+
+ Necessary condition - Something that must be true. If it fails, the answer is definitely `NO`
+ Sufficient conditon - Something that is _enough_ by itself to guarantee the answer is `YES` 
+
+To quickly test if conditions are correct try with star and line graphs as they mostly reaveal flaws in strategy. 
+
+
+
+### The Euler tour
 
 Run a depth-first search over the tree, recording the moment each vertex is first entered and the moment its exploration finishes:
 

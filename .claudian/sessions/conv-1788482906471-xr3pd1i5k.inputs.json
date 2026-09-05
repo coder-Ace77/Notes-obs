@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1788482906471-xr3pd1i5k",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1788482906714-sjtpyot",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1788482906468-6h61ubg",
+      "timestamp": 1788482906468,
+      "rawDisplayText": "how to solve step by step",
+      "canonicalText": "how to solve step by step",
+      "context": {
+        "currentNote": {
+          "path": "DSA/Ultimate DSA/Guide/03 Greedy and Exchange Arguments.md"
+        },
+        "editorSelection": {
+          "notePath": "DSA/Ultimate DSA/Guide/03 Greedy and Exchange Arguments.md",
+          "mode": "selection",
+          "selectedText": "**CSES Reading Books** — *two people read all books, never the same book simultaneously; find the minimum time.* The answer is the larger of twice the longest book and the total, which is worth deriving rather than looking up.",
+          "lineCount": 1,
+          "startLine": 173
+        }
+      },
+      "images": [],
+      "contentDigest": "8d747b7e01d61cd90295355aa1a0a7ae7ce6798044d0804c0ed07523617363a7",
+      "providerUserMessageId": "223fbf46-a869-42ea-b251-df265ef4e466",
+      "providerAssistantMessageId": "e5d32963-edca-4301-a0b0-9af432b907e3"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1788483147681-k0iepvm",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1788483147677-v2fh6my",
+      "timestamp": 1788483147677,
+      "rawDisplayText": "I was not able to think in terms of each book reading is two events how to think in those terms",
+      "canonicalText": "I was not able to think in terms of each book reading is two events how to think in those terms",
+      "images": [],
+      "contentDigest": "f7445b869ab0aec3656124c7356631fa6084f6215f4beda51880fe01fd5ae5f2",
+      "providerUserMessageId": "bfacd543-d3c0-48ae-a79c-e85eef8e0a03",
+      "providerAssistantMessageId": "71884f5d-1ea8-4b81-9d23-275285709fdd"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1788517389811-9wblnv0",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1788517389777-03ozxlg",
+      "timestamp": 1788517389777,
+      "rawDisplayText": "Let me know how to solve this",
+      "canonicalText": "Let me know how to solve this",
+      "context": {
+        "editorSelection": {
+          "notePath": "DSA/Ultimate DSA/Guide/03 Greedy and Exchange Arguments.md",
+          "mode": "selection",
+          "selectedText": "CF 763A Timofey and a tree -  is there a vertex such that removing it leaves all subtrees single-coloured? A checking problem with a clean observation behind it.",
+          "lineCount": 1,
+          "startLine": 175
+        }
+      },
+      "images": [],
+      "contentDigest": "66211547f9e0150276e12e012d2608f8e656baf660c275a8ebe3447d44fe2b64",
+      "providerUserMessageId": "1f5f4ddb-2f7e-416e-a114-e12196b11d23",
+      "providerAssistantMessageId": "040f6038-550b-4b4b-b78e-af78ac411e6e"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1788597241894-mqskhch",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1788597241841-1j9522n",
+      "timestamp": 1788597241848,
+      "rawDisplayText": "For the ultimate lld sheet create the checkbox style tracking for all the problems",
+      "canonicalText": "For the ultimate lld sheet create the checkbox style tracking for all the problems",
+      "images": [],
+      "contentDigest": "5a960be5712b129306b618dfa920a40e35b4ecf976f789ad9faac67ad838e56b",
+      "providerUserMessageId": "dd022201-7152-437b-a126-d66e2bfdedc2",
+      "providerAssistantMessageId": "5d48199e-3982-470a-890a-6e2696190250"
+    }
+  ]
+}

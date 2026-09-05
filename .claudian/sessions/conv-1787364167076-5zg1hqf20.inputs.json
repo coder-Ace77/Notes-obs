@@ -158,7 +158,8 @@
       "canonicalText": "continue",
       "images": [],
       "contentDigest": "61b00692723054a5a149bf4fbe7176ccd6af5efb8445c87903bfb287b52a662a",
-      "providerUserMessageId": "4ba4f84e-bf0d-4693-9c30-1612c99fbb43"
+      "providerUserMessageId": "4ba4f84e-bf0d-4693-9c30-1612c99fbb43",
+      "providerAssistantMessageId": "24c29d3c-578e-4bf5-8b19-19abb9e53a3b"
     }
   ]
 }

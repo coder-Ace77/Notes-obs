@@ -33,7 +33,7 @@ Instead of sorting the intervals, break each one into two events: an event at `l
 
 ```cpp
 vector<pair<int,int>> ev;                  // (coordinate, change)
-for (auto& [l, r] : intervals) {
+for(auto& [l, r] : intervals){
     ev.push_back({l, +1});
     ev.push_back({r, -1});
 }

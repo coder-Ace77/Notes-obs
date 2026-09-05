@@ -1,0 +1,23 @@
+{
+  "id": "conv-1788482906471-xr3pd1i5k",
+  "providerId": "claude",
+  "title": "Solve problem step by step",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788482906480,
+  "lastActivityAt": 1788597285484,
+  "sessionId": "625d89dd-93d9-42ac-a396-132d0c655400",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "625d89dd-93d9-42ac-a396-132d0c655400"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 3387,
+    "cacheReadInputTokens": 50993,
+    "contextWindow": 1000000,
+    "contextTokens": 54382,
+    "percentage": 5,
+    "contextWindowIsAuthoritative": true
+  }
+}

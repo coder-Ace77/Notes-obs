@@ -4,15 +4,9 @@ chapter: 5
 sheet-section: E
 ---
 
-# Chapter 5 · Sliding Window & Two Pointers, Hard Variants
-
-> **Read this before you start the problems.** Each technique is introduced with a small example, so no prior familiarity is assumed.
-
-Back to [[00 Guide Index]] · Sheet section **E** in [[1. Ultime DSA 2026 calibration]] · Builds on your note [[2. Sliding window]]
+# Chapter 5 · Sliding Window & Two Pointers
 
 ---
-
-## What makes these problems hard
 
 A sliding window works because of a promise: the left edge of the window never moves backwards. That promise is what makes the whole scan linear, since each element enters the window once and leaves it once.
 
@@ -20,22 +14,13 @@ The promise is only safe under a particular condition, which is that shrinking a
 
 Most of the difficulty in the harder problems in this block comes from two places. The first is that the condition quietly fails, most often because negative numbers are permitted, and the window has to be replaced with something else. The second is that the quantity being maintained inside the window is no longer a simple count or sum, so you have to decide what structure to carry and how to add to and remove from it efficiently.
 
-There is also a shift in how these problems are phrased. The older form asks for the longest or shortest window satisfying a condition. The current form more often asks you to count how many windows satisfy it, which requires a different counting argument even when the window mechanics are identical.
 
----
-
-## What these problems look like
-
-The signal is that the problem concerns contiguous pieces of an array or string. Once you have noticed that, the useful question is which of four things it is:
+The signal is that the problem concerns contiguous pieces of an array or string. Main ones are as follows - 
 
 - **Longest or shortest run satisfying a condition** points to a sliding window, provided the shrinking condition holds.
 - **Counting runs satisfying a condition** points to a window combined with the decomposition in Part 3, or to prefix sums with a hash map from chapter [[06 Prefix Sums and Difference Arrays]].
 - **An aggregate over every window of a fixed size** points to a monotonic deque, or a heap, or a multiset.
 - **Anything involving sums where negative values are permitted** usually points away from windows entirely and towards prefix sums.
-
-That last one is the most useful disqualifier to have in mind, because it is the case where a window looks applicable and is not.
-
----
 
 ## Part 1 · The condition that makes a window valid
 

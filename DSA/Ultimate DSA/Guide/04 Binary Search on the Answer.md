@@ -196,9 +196,7 @@ This requires the cost to behave convexly as a function of `k`, which is the sub
 These are the same problem several times over. Solving three of them establishes the pattern; solving all seven consecutively is not a good use of time, so the rest are better saved for a review pass.
 
 - **LC 875 Koko Eating Bananas** — *choose an eating speed so that all piles are finished within h hours.* The standard first example.
-- **LC 1011 Capacity To Ship Packages** — *choose a ship capacity so that all packages ship within D days.* Note that the lower bound is the largest single package.
 - **LC 410 Split Array Largest Sum** — *split an array into k parts minimising the largest part sum.* The same problem again. It also has a classic quadratic dynamic program, which is worth writing because it is the version the Aliens trick later optimises.
-- **CSES Array Division** — *the same problem in CSES form.*
 - **LC 1482 Minimum Days to Make m Bouquets** — *wait until enough adjacent flowers have bloomed.* The check counts consecutive runs.
 - **LC 1231 Divide Chocolate** — *cut a chocolate bar into k+1 pieces maximising the smallest piece.*
 - **LC 2064**, **LC 2226**, **LC 1760** — *three further restatements.* Solve one, read the other two, and return to them later.
@@ -218,7 +216,6 @@ These are the same problem several times over. Solving three of them establishes
 
 - **LC 668 Kth Smallest in Multiplication Table** — *the k-th smallest entry of an m by n multiplication table.* The count is a sum of `min(n, v / i)` across the rows.
 - **LC 719 Find K-th Smallest Pair Distance** — *the k-th smallest distance among all pairs.* Sort, then count with two pointers.
-- **LC 3007 Maximum Number That Sum of the Prices Is ≤ K** — *find the largest n whose accumulated bit-counting price stays within a budget.* The search half belongs here and the digit-counting half belongs to chapter [[16 Digit DP and Expectation]], where the sheet has you revisit it.
 
 ### Block 4 · Searching over graphs
 
