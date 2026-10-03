@@ -8,20 +8,60 @@ sheet-section: E
 
 ---
 
-A sliding window works because of a promise: the left edge of the window never moves backwards. That promise is what makes the whole scan linear, since each element enters the window once and leaves it once.
+The **sliding window technique** is an algorithmic optimization pattern used to transform nested-loop computations over contiguous sequences (arrays, strings, or vectors) from $O(N^2)$ or $O(N^3)$ time complexity down to $O(N)$. Instead of recalculating state for overlapping contiguous subarrays from scratch, the technique maintains a running state across a bounded range defined by two pointers (`left` and `right`) and updates the state incrementally as the range "slides" across the structure.
 
-The promise is only safe under a particular condition, which is that shrinking a valid window always leaves it valid. When that holds, an invalid window can always be repaired by advancing the left edge, and there is never a reason to reconsider a position you have already passed. When it does not hold, the technique produces answers that look plausible and are wrong.
+The first version of it is fixed size sliding window.
 
-Most of the difficulty in the harder problems in this block comes from two places. The first is that the condition quietly fails, most often because negative numbers are permitted, and the window has to be replaced with something else. The second is that the quantity being maintained inside the window is no longer a simple count or sum, so you have to decide what structure to carry and how to add to and remove from it efficiently.
+#### Fixed size window
+
+In this variation, the window length $K$ remains constant throughout the traversal. The goal is to evaluate a specific property (e.g., sum, maximum, average) across every contiguous subarray of size $K$. Template
 
 
-The signal is that the problem concerns contiguous pieces of an array or string. Main ones are as follows - 
+```cpp
+// caclute properties for first window
+for(int i=0;i<k;i++){
+}
 
-- **Longest or shortest run satisfying a condition** points to a sliding window, provided the shrinking condition holds.
-- **Counting runs satisfying a condition** points to a window combined with the decomposition in Part 3, or to prefix sums with a hash map from chapter [[06 Prefix Sums and Difference Arrays]].
-- **An aggregate over every window of a fixed size** points to a monotonic deque, or a heap, or a multiset.
-- **Anything involving sums where negative values are permitted** usually points away from windows entirely and towards prefix sums.
+// now calc for next windows
+for(int i=1;i+k-1<n;i++){
+	
+}
+```
 
+Bottom line is that first window should be doable in `O(k)` time length of window but for every subsequent window it should `O(1)` operation. 
+
+#### Varaible size sliding window
+
+In this variation, the window expands and contracts dynamically based on a condition or constraint. The objective is usually to find the **longest**, **shortest**, or **total count** of contiguous subarrays satisfying a criteria. Now there is a invariant that needs to be met to apply this technique in the first place and that is and subarray of a valid array must be valid. Using this 
+
+Template
+
+```cpp
+while(i<n){
+	add(v[i]);
+	
+	while(!valid(window)){
+		remove(window);
+		j++;
+	}
+	
+	// now compute at this point the window is valid 
+	ans = compute(window);
+	i++;
+}
+```
+
+Now there are three sections and points we maintain a variable size window whose property is that any subarray of valid window is also valid. We keep it as `(i,j)`. Mechnaism is that we first add element to the window. At this point window can become invalid and this is fine since we write another loop which removes elements from stating of window until window does not becoems valid. Once inner while loop is terminated window becomes valid and finally we compute answer. 
+
+Observe that when reach compute state the window actually holds for ending index i longest valid subarray or empty window if not possible. This invariant that compute stage the window is longest valid among all the subarrays ending at `i` means we always traverse all the valid subarrays. 
+
+Most of the difficulty in the harder problems in this block comes from two places. The first is that the condition quietly fails, most often because negative numbers are permitted, and the window has to be replaced with something else. 
+
+The second is that the quantity being maintained inside the window is no longer a simple count or sum, so you have to decide what structure to carry and how to add to and remove from it efficiently. Many times structures are counts or maps. 
+
+Finally it should be established before using this technique that all the valid subarrays of valid window are also valid for example in question shortest subarray with at least given sum. If the numbers are pve this condition of if window is valid subarray keeps on to be valid however as soon as negative numbers are introduced it may be false. 
+
+Also sometimes we track the opposite variation of it 
 ## Part 1 · The condition that makes a window valid
 
 The technique applies when shrinking a valid window leaves it valid, or equivalently when growing an invalid window leaves it invalid.

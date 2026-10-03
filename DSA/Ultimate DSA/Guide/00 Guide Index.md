@@ -6,7 +6,7 @@ status: active
 
 # The Ultimate DSA Guide — Index
 
-Companion to [[1. Ultime DSA 2026 calibration]].
+Companion to [[Ultime DSA 2026 calibration]].
 
 The sheet tells you **what** to solve. This guide tells you **why each block exists, what the underlying machine is, and what the three or four genuine insights are** that make the whole block collapse into something you can do in 35 minutes.
 

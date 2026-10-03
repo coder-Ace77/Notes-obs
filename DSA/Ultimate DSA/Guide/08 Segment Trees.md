@@ -1,162 +1,178 @@
----
-tags: [dsa, guide, segment-tree, lazy-propagation, data-structures]
-chapter: 8
-sheet-section: H
----
-
-# Chapter 8 · Segment Trees Beyond Range Sum
-
-> **Read this before you start the problems.** Each design is introduced with a worked example, so no prior familiarity with the problems is assumed.
-
-Back to [[00 Guide Index]] · Sheet section **H** in [[1. Ultime DSA 2026 calibration]]
 
 ---
 
-## What makes these problems hard
+#### What makes these problems hard
 
-Most people learn segment trees once, as a structure that supports range sums with point updates, and then find that this knowledge transfers poorly. The difficulty is that a segment tree is better understood as a framework with two things left unspecified rather than as a single structure. The two things are what each node stores, and how the information in two adjacent nodes combines into information about their union.
+A segment tree is best understood as a framework with two things left unspecified rather than as a single structure. The two things are what each node stores and how the information in two adjacent nodes combines into information about their union.
 
-Every problem in this section supplies a different pair of answers to those two questions. Sometimes the combination is straightforward, as with sums. More often the information you actually want cannot be combined at all, and the design work consists of finding *additional* information to store whose only purpose is to make the combination possible. Recognising when that is what you need, and working out what the extra fields should be, is the skill this section develops.
+Every problem in this section supplies a different pair of answers to those two questions. Sometimes the combination is straightforward as with sums. More often the information you actually want cannot be combined at all and the design work consists of finding *additional* information to store whose only purpose is to make the combination possible. 
 
-Recognising that a segment tree is required is comparatively easy. The number of elements and the number of queries are both in the region of a hundred thousand to two hundred thousand, updates and queries are interleaved, and the direct approach would be quadratic. That pattern of constraints is close to an explicit statement of intent from the problem setter. The difficulty comes afterwards, when you have to invent the node design under time pressure, which is why this chapter is organised around the designs rather than around the problems.
+## The framework
 
----
+A segment tree over an array is a binary tree in which each leaf corresponds to one element each internal node corresponds to the concatenation of the ranges covered by its two children and each node stores a summary of its own range.
 
-## Part 1 · The framework
+For this to work the operation that combines two summaries must be associative so that grouping does not affect the result and there must be an identity value to use for empty ranges. Sums qualify with an identity of zero maimums qualify with an identity of negative infinity greatest common divisors qualify with an identity of zero and matri products qualify with the identity matri. The identity eists because the recursion must return something for ranges it misses entirely.
 
-A segment tree over an array is a binary tree in which each leaf corresponds to one element, each internal node corresponds to the concatenation of the ranges covered by its two children, and each node stores a summary of its own range.
+What is **not** required is commutativity since nothing in that argument ever swapped two pieces only re-bracketed them. Gluing the pieces in left-to-right order is enough.
 
-For this to work, the operation that combines two summaries must be associative, so that grouping does not affect the result, and there must be an identity value to use for empty ranges. That is the entire mathematical requirement. Sums qualify with an identity of zero, maximums qualify with an identity of negative infinity, greatest common divisors qualify with an identity of zero, and matrix products qualify with the identity matrix.
+**Why a range only ever needs a logarithmic number of blocks.** Every node the recursion visits either misses the query sits entirely inside it or straddles its edge. A node can only straddle if one of the two query endpoints lands strictly inside it. At any given depth the nodes are non-overlapping intervals laid side by side the left endpoint falls in eactly one of them and the right endpoint in eactly one so **at most two nodes per depth straddle** and everything else at that depth stops immediately. Two recursing nodes per level each producing at most two children that stop and get taken over a tree of depth `log n`.
 
-The design work therefore consists of two questions, asked in this order:
+The design work therefore consists of two questions asked in this order:
 
-1. What does a node need to store, so that a query over an arbitrary range can be answered by combining the summaries of the logarithmically many nodes that cover it?
+1. What does a node need to store so that a query over an arbitrary range can be answered by combining the summaries of the logarithmically many nodes that cover it?
 2. Is that information sufficient to compute a parent's summary from its two children?
 
-The second question is where the interesting cases arise. Frequently the answer to the first question alone turns out to be insufficient, because the quantity you want cannot be recovered from the same quantity in the two children. When that happens the response is to store more, and the extra fields exist purely to make the combination possible rather than because the problem asked for them.
+ Frequently the answer to the first question alone turns out to be insufficient because the quantity you want cannot be recovered from the same quantity in the two children. When that happens the response is to store more and the etra fields eist purely to make the combination possible rather than because the problem asked for them.
+### The non-lazy template
 
----
-
-## Part 2 · The non-lazy template
-
-Segment trees can be written recursively or iteratively. For trees without lazy propagation the iterative bottom-up form is shorter, faster, and carries no risk of exceeding the recursion depth, so it is the one worth learning first.
+Ranges are inclusive `[l r]` the root is node `0` and the children of `i` are `2i+1` and `2i+2`.
 
 ```cpp
-struct SegTree {
-    int n; vector<long long> t;
-    SegTree(int n) : n(n), t(2*n, 0) {}
-
-    void build(vector<long long>& a) {
-        for (int i = 0; i < n; i++) t[n + i] = a[i];
-        for (int i = n - 1; i > 0; i--) t[i] = t[2*i] + t[2*i+1];
+class SegTree {
+    void build(vector<int>& arr int l int r int i) {
+        if (l == r) { tree[i] = arr[l]; return; }
+        int mid = (l + r) / 2;
+        build(arr l mid 2*i+1);
+        build(arr mid+1 r 2*i+2);
+        tree[i] = tree[2*i+1] + tree[2*i+2];
     }
-    void update(int p, long long v) {                 // assign to a single position
-        for (t[p += n] = v; p > 1; p >>= 1) t[p>>1] = t[p] + t[p^1];
+    void upd(int ind int val int l int r int i) {
+        if (l == r) { tree[i] = val; return; }
+        int mid = (l + r) / 2;
+        if (ind <= mid) upd(ind val l mid 2*i+1);
+        else            upd(ind val mid+1 r 2*i+2);
+        tree[i] = tree[2*i+1] + tree[2*i+2];
     }
-    long long query(int l, int r) {                   // over [l, r), half-open
-        long long resL = 0, resR = 0;
-        for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
-            if (l & 1) resL = resL + t[l++];
-            if (r & 1) resR = t[--r] + resR;
-        }
-        return resL + resR;
+    int qry(int ql int qr int l int r int i) {
+        if (ql > r || l > qr) return 0;              // no overlap so the identity
+        if (ql <= l && r <= qr) return tree[i];      // fully inside
+        int mid = (l + r) / 2;
+        return qry(ql qr l mid 2*i+1) + qry(ql qr mid+1 r 2*i+2);
     }
+public:
+    int n; vector<int> tree;
+    SegTree(int arr_size) { tree.resize(4*arr_size); n = arr_size; }
+    void build(vector<int>& arr) { build(arr 0 arr.size()-1 0); }
+    void upd(int ind int val)   { upd(ind val 0 n-1 0); }
+    int  qry(int ql int qr)     { return qry(ql qr 0 n-1 0); }
 };
 ```
+
+Here lets first observe the `update` function, philosphy is to start from root and at each node move down the tree in the direction to `indx` index to be updated. The result is that entire path from `root` to the `leaf` node is updated while traversal from `root` node towards leaf. This path is of length `logn`. Also note that since value of leaf is updated only the `nodes` which lie on the path needs to get updated. This updation happens bottom up and thus this style of coding segment tree is bottom up segment tree. More importantanly observe the last line of `upd` function 
+
+```
+tree[i]=tree[2*i+1]+tree[2*i+2]; 
+```
+
+This line is true only because of the invariant that tree nodes get updated to their true values bottom up only.  
 
 Three details generalise beyond this particular tree.
 
-The range is half-open, matching the convention used in chapters [[02 Intervals and Sweep Line]] and [[06 Prefix Sums and Difference Arrays]]. Keeping one convention across the whole toolkit prevents more errors than any individual choice of convention.
+The three-case structure inside `qry`  being no overlap full containment and partial overlap is the same in every recursive segment tree in this chapter lazy or not. Everything that varies between problems is the return type the `+` in the two recombination lines and the identity returned on no overlap.
+## Lazy propagation
 
-The query accumulates into two separate variables rather than one. For combinations where order does not matter, such as sums, maximums and greatest common divisors, a single accumulator would work. For combinations where order does matter, such as matrix products or the bracket-matching design in Part 5, the pieces coming from the left must be combined left to right and the pieces from the right must be combined right to left, with the two halves joined at the end. Learning the single-accumulator version means the first order-sensitive problem you meet will fail in a way that is difficult to trace.
-
-The update line uses `t[p] + t[p^1]`, where `p^1` is the sibling of `p`. This is compact but relies on order not mattering. For an order-sensitive combination it should be written explicitly in terms of the two children in their correct order.
-
----
-
-## Part 3 · Lazy propagation
-
-When updates apply to whole ranges rather than single positions, the tree needs to defer work, and the deferral requires the recursive form because pending operations have to be pushed down along a path from the root.
+When updates apply to whole ranges rather than single positions the tree needs to defer work and the deferral requires the recursive form because pending operations have to be pushed down along a path from the root.
 
 ```cpp
-struct LazySeg {
-    int n; vector<long long> t, lz;
-    LazySeg(int n) : n(n), t(4*n, 0), lz(4*n, 0) {}
-
-    void apply(int node, int l, int r, long long v) {   // apply "add v" across a whole node
-        t[node] += v * (r - l);
-        lz[node] += v;
+class LazySeg {
+    void apply(int i,int l,int r,long long v) {      // "add v" across the whole node
+        tree[i] += v * (r - l + 1);                     // inclusive range so +1
+        lz[i]   += v;
     }
-    void push(int node, int l, int r) {
-        if (lz[node] == 0) return;
-        int m = (l + r) / 2;
-        apply(2*node, l, m, lz[node]);
-        apply(2*node+1, m, r, lz[node]);
-        lz[node] = 0;
+    void push(int l int r int i) {
+        if (lz[i] == 0) return;
+        int mid = (l + r) / 2;
+        apply(2*i+1,l,mid,lz[i]);
+        apply(2*i+2,mid+1,r,lz[i]);
+        lz[i]=0;
     }
-    void update(int node, int l, int r, int ql, int qr, long long v) {
-        if (qr <= l || r <= ql) return;                              // no overlap
-        if (ql <= l && r <= qr) { apply(node, l, r, v); return; }    // fully inside
-        push(node, l, r);
-        int m = (l + r) / 2;
-        update(2*node, l, m, ql, qr, v);
-        update(2*node+1, m, r, ql, qr, v);
-        t[node] = t[2*node] + t[2*node+1];
+    void upd(int ql int qr long long v int l int r int i) {
+        if (ql > r || l > qr) return;                                // no overlap
+        if (ql <= l && r <= qr) { apply(i l r v); return; }        // fully inside
+        push(l r i);
+        int mid = (l + r) / 2;
+        upd(ql qr v l mid 2*i+1);
+        upd(ql qr v mid+1 r 2*i+2);
+        tree[i] = tree[2*i+1] + tree[2*i+2];                          // never omit
     }
-    long long query(int node, int l, int r, int ql, int qr) {
-        if (qr <= l || r <= ql) return 0;
-        if (ql <= l && r <= qr) return t[node];
-        push(node, l, r);
-        int m = (l + r) / 2;
-        return query(2*node, l, m, ql, qr) + query(2*node+1, m, r, ql, qr);
+    long long qry(int ql int qr int l int r int i) {
+        if (ql > r || l > qr) return 0;
+        if (ql <= l && r <= qr) return tree[i];
+        push(l r i);
+        int mid = (l + r) / 2;
+        return qry(ql qr l mid 2*i+1) + qry(ql qr mid+1 r 2*i+2);
     }
+public:
+    int n; vector<long long> tree lz;
+    LazySeg(int sz) : n(sz) tree(4*sz 0) lz(4*sz 0) {}
+    void upd(int ql int qr long long v) { upd(ql qr v 0 n-1 0); }
+    long long qry(int ql int qr)         { return qry(ql qr 0 n-1 0); }
 };
 ```
 
-The three-case structure of no overlap, full containment, and partial overlap is the same in every recursive segment tree, so it is worth memorising the shape and then varying only the application, the pushing, and the recombination line.
+### Why deferring the work is correct
 
-The array is allocated with four times the number of elements rather than twice, because the recursive indexing scheme leaves gaps when the size is not a power of two. The extra memory is not worth economising on.
+Note here invariant is - Once you reach a given node the node will be pure and will not have any pending lazy updates. What means is that the responsibility to make a node pure actually lies on the parent of a given node. And is mostly the premise. 
 
-**A pending operation, usually called a lazy tag, is a deferred transformation of an entire range.** Making one work requires three definitions, and it is worth writing all three down before coding:
+Here `tree` is the actual array holding the value. With lazy technique it means sometimes value of tree may not be true. `lazy` actually holds the tag for the parent and it does means that values in the subtree of current nodes are correct or not. With simple sum queries `lazy[i]!=0` means the childs are not correct which is sometimes referred to as impure. However that does not means value is incorrect for current node. It means value is correct for the node but the childs are impure.
 
-1. **What the tag represents.** Adding a value to every element, assigning a value to every element, or flipping every bit.
-2. **How to apply a tag to a node's summary without descending.** For an addition tag on a sum node this is adding the value multiplied by the range length. For an assignment tag it is replacing the sum with the value multiplied by the length. For a flip tag on a node counting ones it is subtracting the current count from the range length.
-3. **How to combine a tag with a tag that is already pending.** For addition the two values add. For assignment the newer one replaces the older. For a tree supporting both addition and assignment, the tag becomes a small structure and the combination rules need care, because an arriving assignment must discard any pending addition while an arriving addition must accumulate on top of a pending assignment.
+**A tag is a message addressed to your children. It is not a note to yourself.** When a tag is placed on node `i` `tree[i]` is updated immediately and completely. The tag eists only to record that the same operation still owes an update to everything underneath `i`. So `lz[i] != 0` never means "`tree[i]` is wrong". It means "`tree[2i+1]` and `tree[2i+2]` are wrong and here is the information they need in order to become right".
 
-The third definition is where errors concentrate. Being unable to state the combination rule means the tree does not yet have a consistent design, and writing the rules out as a small table for anything more complex than plain addition is worth the minute it takes.
+Now lets talk about two functions 
 
-**CSES Polynomial Queries** is a good exercise in tag design. The update adds an increasing sequence across a range, so the tag is an arithmetic progression described by its first term and common difference. Applying it to a node requires summing that progression across the node's length, which has a closed form, and combining two tags means adding them component by component. Once you have seen that a tag can be any transformation which is closed under combination and whose effect on a summary is computable directly, the whole family of lazy problems becomes approachable.
+- apply - This is required to make the current node pure or correct. Once apply is run for a given node the node becomes correct and pure. This function essentially needs to do two things first one being the updation of correct value `tree[i]`. And second point is to update `lazy` tag correctly. Note once again this `lazy` tag refers that bottom nodes will be impure and not this current child. apply runs at two places first is when we reach a full update node where the entire update is to be done `ql<=l && r<=qr` here we need to apply and reason is that we are reaching this node finally and recursion will stop here. Note that we just need to do two things here - make current node pure and remember tag. However what value needs to be updated is actually the value. How and why is this the case we will see in a bit. 
 
----
+- push - This function exists to make children pure before reaching them and we know that this responsibility lies on parent of a given node. And `push(l,r,i)` Exists for exactly this case. When we reach a given node with id `i`. We try to make both of the childrens correct. So what we do is apply both of them now since at this time `lazy` tag for `i` is correct. We can simply use `lazy[i]` to apply to both of its children. Now as childrens are made correct we update lag to make it `0` to announce that we no longer have its children update pending. Note that push is done before the both childrens recursion is called. Once we return from the recursion of both of the children we update the latest values to the correct value of node with id `i`. This completes the update and query is importantly same for non lazy use case except the fact for the `push`. 
 
-## Part 4 · Designing the combination
+Now some notes about the philosphy of `upd` for the lazy case note that while we try to update may be node very deep down the tree most of the updates need to propogate through the path from root. This matters because if this lazy tag application or implementation was not happening from the very top we could have corrupted the history. However since we always start from the very top and move to the nodes through a path lazy tags get applied one step at a time and finally we get a node on which prev history is already applied. 
+
+### Designing the combination
 
 This is the part that distinguishes being able to use a segment tree from having seen one.
 
-**CSES Prefix Sum Queries** asks for the largest prefix sum within a range, where the empty prefix is permitted so the answer is never negative. A node storing only that quantity cannot be combined, because the best prefix of a combined range may run through the whole left child and into the right, and nothing in the two stored values reveals the total of the left child.
+#### The mechanical way to find the fields
 
-The fix is to store two values:
+The question is always the same: **if I know the quantity for the left half and for the right half do I know it for the whole?** There is a procedure for answering that which is far better than staring at the problem hoping for insight.
+
+**Try to break it.** Look for two different left halves that have the *same* summary but behave *differently* when the same thing is glued onto the right. If you find such a pair no combine function can eist and the pair also tells you what field is missing.
+
+**CSES Prefi Sum Queries** asks for the largest prefi sum within a range where the empty prefi is permitted so the answer is never negative. Try to break "store the best prefi and nothing else":
+
+```
+A  = [3 -3]   best prefi = 3
+A' = [3]       best prefi = 3        identical summaries
+
+glue B = [10] onto each:
+[3 -3 10]    best prefi = 10
+[3 10]        best prefi = 13       different answers
+```
+
+Identical inputs to `combine` two different required outputs so the function cannot eist. Storing only the best prefi is dead and not because it is hard.
+
+Now the useful half. **What differed between `A` and `A'`?** Their totals `0` against `3`. That is the missing information since the total is what decides how much a prefi is worth once it has swallowed the entire left side. So the fi is to store two values:
 
 ```
 sum  = the total of the range
-best = the largest prefix sum of the range
+best = the largest prefi sum of the range
 ```
 
 which combine as
 
 ```
 sum  = L.sum + R.sum
-best = max(L.best, L.sum + R.best)
+best = ma(L.best L.sum + R.best)
 ```
 
-The second line says that the best prefix either stays inside the left child, or consumes the left child entirely and then takes a prefix of the right. The `sum` field is stored purely so that this line can be written; the problem never asks for it.
+The second line says that the best prefi either stops somewhere inside the left child or runs off the end of the left child in which case it is *all* of the left plus a prefi of the right. Those two cases are ehaustive so taking the better of them is correct. The empty prefi of the right child has to be legal otherwise the case "eactly all of the left" is not representable. The `sum` field is stored purely so that this line can be written; the problem never asks for it.
 
-**CSES Subarray Sum Queries** asks for the largest sum over any contiguous piece within a range, and needs four fields:
+**The general loop** is worth stating on its own because it is what you run under time pressure rather than trying to recall a design. Propose a summary try to break it with a same-summary-different-result pair and whatever distinguished that pair becomes a new field. Repeat. You stop when every output field is computable from the input fields at which point the field set is closed and the tree eists. The procedure is finite and mechanical and its failure mode is informative too: if you keep needing new fields without ever closing the quantity genuinely is not summarisable and the problem is something else.
+
+**CSES Subarray Sum Queries** asks for the largest sum over any contiguous piece within a range and needs four fields:
 
 ```
 sum  = the total
-pref = the largest prefix sum
-suf  = the largest suffix sum
+pref = the largest prefi sum
+suf  = the largest suffi sum
 best = the largest sum over any piece inside
 ```
 
@@ -164,197 +180,258 @@ combining as
 
 ```
 sum  = L.sum + R.sum
-pref = max(L.pref, L.sum + R.pref)
-suf  = max(R.suf,  R.sum + L.suf)
-best = max(L.best, R.best, L.suf + R.pref)
+pref = ma(L.pref L.sum + R.pref)
+suf  = ma(R.suf  R.sum + L.suf)
+best = ma(L.best R.best L.suf + R.pref)
 ```
 
-The last line carries the idea: the best piece lies entirely in the left child, entirely in the right child, or crosses the boundary, in which case it consists of a suffix of the left joined to a prefix of the right. Deriving these four lines by hand once is worthwhile, because they serve as the model for every subsequent combination you have to design.
+The last line carries the idea and it is worth proving properly since every later design is modelled on it. Take any contiguous piece sitting inside the combined range. Its positions are consecutive so eactly one of three things holds: every position is in the left child every position is in the right child or it has at least one position in each. The third case has a consequence that is easy to skim past. Because the piece is contiguous and spans the boundary it is forced to contain the **last** position of the left child and the **first** position of the right so it is precisely a suffi of the left joined to a prefi of the right and not merely something vaguely crossing the middle. Those three cases are mutually eclusive and cover everything and the maimum over a union of sets is the maimum of the individual maima so taking the best of the three case-winners is correct.
 
-**CF 380C Sereja and Brackets** asks for the length of the longest valid bracket subsequence within a range. A node stores the number of matched pairs, the number of unmatched opening brackets, and the number of unmatched closing brackets:
+One step there is usually left implicit. In the crossing case you are allowed to maimise the suffi and the prefi **separately** only because the two choices are independent since any suffi of the left may be paired with any prefi of the right and the value is simply their sum. Independent choices with an additive objective can be optimised one at a time. If a constraint linked them such as a cap on the combined length that step would collapse and the design would need more fields. Deriving these four lines by hand once is worthwhile because they serve as the model for every subsequent combination you have to design.
+
+**CF 380C Sereja and Brackets** asks for the length of the longest valid bracket subsequence within a range. A node stores the number of matched pairs the number of unmatched opening brackets and the number of unmatched closing brackets:
 
 ```
-newPairs = min(L.open, R.close)
+newPairs = min(L.open R.close)
 matched  = L.matched + R.matched + newPairs
 open     = L.open  + R.open  - newPairs
 close    = L.close + R.close - newPairs
 ```
 
-The derivation is a single sentence: the opening brackets left over in the left child can pair with the closing brackets left over in the right child, and everything else follows.
+The structural fact that makes three numbers sufficient is worth seeing directly. **Take any bracket string and cancel matched pairs repeatedly. What survives always looks like `)))(((`** some closers followed by some openers never an opener before a closer. The reason is immediate: if a leftover opener sat to the left of a leftover closer those two would have matched each other and neither would be leftover. So the residue of a range is completely described by two counts and nothing else about its arrangement eists as far as the outside world is concerned. That is eactly why the triple of matched open and close is a complete summary.
 
-**CSES Pizzeria Queries** asks for the minimum of `p[j] + |i - j|` over all `j`. Splitting the absolute value gives `(p[j] - j) + i` when `j` is at or before `i`, and `(p[j] + j) - i` when `j` is at or after `i`. Keeping two separate minimum trees, one over `p[j] - j` and one over `p[j] + j`, turns each query into two range minimums. Splitting an absolute difference into two expressions of this kind is a named move that reappears in LC 2926 below and in chapter [[17 DP Optimization]].
+The merge follows. Every leftover opener of the left child sits to the left of every leftover closer of the right child so all such pairs are legal and the only limit is supply giving `min(L.open R.close)` new pairs. Nothing better is available either since the leftover closers of the left child sit to the left of the entire right side and can never find a partner there and the leftover openers of the right child have nothing to their right at all.
 
----
+**CSES Pizzeria Queries** asks for the minimum of `p[j] + |i - j|` over all `j`. Splitting the absolute value gives `(p[j] - j) + i` when `j` is at or before `i` and `(p[j] + j) - i` when `j` is at or after `i`. Keeping two separate minimum trees one over `p[j] - j` and one over `p[j] + j` turns each query into two range minimums. 
 
-## Part 5 · Walking down the tree
+#### Walking down the tree
 
-There is a class of query of the form "find the leftmost position satisfying some property". The direct approach binary searches over positions and performs a range query at each step, which costs two logarithmic factors. Walking down the tree costs one.
+There is a class of query of the form "find the leftmost position satisfying some property". The direct approach binary searches over positions and performs a range query at each step which costs two logarithmic factors. Walking down the tree costs one.
 
-**CSES Hotel Queries** asks you to find the leftmost hotel with at least a given number of free rooms and then book them. With a tree storing maximums:
+**CSES Hotel Queries** asks you to find the leftmost hotel with at least a given number of free rooms and then book them. With a tree storing maimums:
 
 ```cpp
-int descend(int node, int l, int r, long long k) {
-    if (t[node] < k) return -1;                    // no suitable leaf in this subtree
-    if (r - l == 1) { t[node] -= k; return l; }    // a leaf, so book here
-    int m = (l + r) / 2;
-    int res = (t[2*node] >= k) ? descend(2*node, l, m, k)
-                               : descend(2*node+1, m, r, k);
-    t[node] = max(t[2*node], t[2*node+1]);
+int descend(long long k int l int r int i) {
+    if (tree[i] < k) return -1;                     // no suitable leaf in this subtree
+    if (l == r) { tree[i] -= k; return l; }         // a leaf so book here
+    int mid = (l + r) / 2;
+    int res = (tree[2*i+1] >= k) ? descend(k l mid 2*i+1)
+                                 : descend(k mid+1 r 2*i+2);
+    tree[i] = ma(tree[2*i+1] tree[2*i+2]);        // recombine on the way back up
     return res;
 }
 ```
+## Usage patterns
 
-The technique rests on the line choosing between the two children. The maximum stored in the left child tells you whether a suitable leaf exists there, so the search never enters a subtree that cannot contain the answer and never needs to backtrack.
+### Multiple trees over the same array
 
-CSES *List Removals* and CSES *Salary Queries* are the order-statistics forms of the same idea, where the tree stores counts and the descent locates the k-th remaining element.
+A multi-tree design is a technique in which a single hard query is split into two or more independent easy queries, each answered by its own plain segment tree, and the final answer is obtained by combining the individual results. It is used when an expression contains a case split, such as an absolute value or a minimum of two terms, that a single tree cannot evaluate directly.
 
-**The counting-inversions family** consists of LC 315, LC 327 and LC 493, which all ask you to count pairs of positions where the earlier one relates to the later one in some way. Three interchangeable approaches solve all three: a Fenwick tree over compressed values swept from left to right, which is chapter [[09 Fenwick Offline and Mos]]; a merge sort counting crossing pairs during the merge; and a segment tree indexed by value. Solving LC 315 with all three takes about forty minutes and permanently connects three techniques that are otherwise learned separately.
+Consider an array `p` of `n` values, where a query gives an index `i` and asks for the minimum value of `p[j] + |i - j|` over every position `j` in the array. The absolute value makes this impossible to answer with a single range-minimum tree directly, so it is split into two cases: when `j <= i`, the expression equals `(p[j] - j) + i`, and when `j >= i`, it equals `(p[j] + j) - i`. Both cases are now plain range-minimum expressions, so two trees are built — one over the array `p[j] - j` and one over the array `p[j] + j` — and each query reads one range minimum from each tree, adds or subtracts `i`, and returns the smaller of the two results.
 
----
+The same technique applies whenever a hard operation decomposes into several independent easy operations. Building one tree per bit of a number turns a range XOR update into a simple flip on each tree.
 
-## Part 6 · Indexing by value instead of position
+### Zero/one presence trees
 
-A segment tree does not have to be indexed by position in the array. Indexing it by value, so that a node covers a range of possible values rather than a range of positions, makes two things easy: counting how many elements are below a threshold becomes a prefix query, and finding the k-th smallest becomes a descent.
+A presence tree is a segment tree in which every leaf holds either 0 or 1, representing whether a position is currently active or has been removed. The value stored at each node is the sum of its leaves, which gives the count of active positions in that range. This count is used in two ways: to answer how many positions remain in a given range, and to locate the k-th active position through a descent that carries a running count downward. 
 
-**LC 2926 Maximum Balanced Subsequence Sum** is the clearest illustration of why this matters. The recurrence is that the best total ending at position `i` equals `a[i]` plus the best total over all earlier positions `j` where `a[j] - j` is at most `a[i] - i`. Compressing the values of `a[i] - i` and building a maximum tree indexed by them turns each step into one range query and one point update, giving a solution in `n log n` time.
+Two operations are common with presence trees:
 
-The general form is worth stating, because it applies well beyond this problem. **When a dynamic programming transition takes a maximum, minimum or sum over all earlier states satisfying an inequality, index a segment tree by the quantity in that inequality, and the transition becomes a range query.** CF 474E uses the same shape, and this pattern is much of the practical justification for section H.
+- **Finding and removing the k-th active element.** Descend to the left child if its count is at least `k`; otherwise subtract the left child's count from `k` and descend right. Removing the element found is then a single point update.
+- **Finding the nearest active position at or after a given index.** The same descent, applied to the question "what is the leftmost active position at or after `x`."
 
-**CSES Distinct Values Queries** asks how many distinct values appear in a range, with all queries supplied in advance. Sorting the queries by their right endpoint and sweeping that endpoint from left to right, you maintain a structure in which position `j` holds one if `j` is currently the rightmost occurrence of its value, and zero otherwise. Advancing to a new right endpoint means zeroing the previous occurrence of the new value and setting the current position. The number of distinct values in a range is then the sum over that range. CF 1000F and CF 522D are variations on the same sweep, and the technique belongs as much to chapter [[09 Fenwick Offline and Mos]] as to this one.
+Consider `n` seats, numbered left to right, all initially free. Queries are of two kinds: mark a specific seat as taken, and given a count `k`, find the `k`-th seat, counting from the left, that is still free, then mark that seat as taken too. A presence tree answers both in `O(log n)`: the first is a plain point update, and the second is the descent described above, using the running count to decide whether to go left or right at every step.
 
-**CSES Range Queries and Copies** introduces persistence. Each update creates only the logarithmically many nodes along one root-to-leaf path and shares the rest with the previous version, producing a new root that represents the updated array while all earlier roots remain valid. Storing the roots in a list gives access to every historical version. The concept is simple and the implementation is fiddly, so it is worth allocating real time to it.
+### Merge-sort tree
 
----
+A merge-sort tree is a static segment tree in which each node stores a sorted copy of the values in its range, instead of a single aggregated value. It is used to answer range queries such as "how many values in `[l, r]` are less than or equal to `x`" when the queries are not known in advance and therefore cannot be processed with the offline sweep described earlier in this guide.
 
-## Part 7 · A tree that needs no lazy propagation
+The tree is built in `O(n log n)` time, since each value appears in `O(log n)` nodes, one for every level it belongs to. A query visits the same `O(log n)` nodes an ordinary range query would visit, and at each node performs a binary search on its sorted list, giving a total query time of `O(log^2 n)`.
 
-The sweep in chapter [[02 Intervals and Sweep Line]] for LC 850 needs a tree supporting range additions of plus one and minus one, reporting the total length covered by at least one interval. This design is unusual and worth understanding rather than copying.
+Consider an array of `n` numbers, where each query gives a range `[l, r]` and a value `x`, and asks how many numbers in that range are less than or equal to `x`. If the queries arrive one at a time and must be answered immediately, rather than all being known in advance, they cannot be sorted and processed with the offline sweep described earlier. A merge-sort tree answers each one independently, in `O(log^2 n)`, without needing to know the others ahead of time. The same structure also answers "what is the `k`-th smallest value in `[l, r]`," either by merging the sorted lists from the visited nodes or by binary searching on the answer and counting, in each node, how many values fall below it.
 
-Each node stores two values: a count of how many intervals fully cover this node's range, arising from range updates that stopped at this node, and the total covered length within the node's range. The covered length is recomputed on the way back up:
+### A combo query answered by two trees together
+
+A combo query is a technique in which a node stores two different summaries, and a single descent through the tree consults both summaries together at every step, rather than answering two separate queries and combining their results afterward.
+
+Consider `n` rows of a theatre, where row `i` currently has `a[i]` free seats. Queries are of two kinds: given a group size `k`, either seat the whole group together in a single row, or seat the group using as few rows as possible, filling each row completely from the left before moving to the next. Each node stores two fields: the maximum number of free seats in any single row within its range, and the total number of free seats within its range. The first query type is answered with a plain descent using only the maximum field, exactly as in the walking-down technique above. The second query type also descends, but the choice at each step uses the sum field: if the left child's total is enough to hold everything still needed, the group is placed starting there and the descent continues into the left child first, and whatever the left side could not hold is only then passed into the right child.
+
+What distinguishes this technique from using two independent trees is that the meaning of the second field during the descent depends on a decision already made using the first field higher up in the tree. The two fields are not queried separately and merged afterward; they are used together, step by step, during a single walk down the tree.
+
+### Compression technique
+
+Note that we are writing the tree on array which leads to the max index upto `1e6`. The issue occurs when we are req to track following queries - 
+
+- upd(x,c) update count of element x by c
+- qry(a,b) - Return total count of all elements in between a and b
+
+This problem is easy to solve when x is atmost `1e6`. However what to do when its `1e9` or beyond. We introduce coordinate compression. Even though the maximum salary or value might be $10^9$, the total number of distinct values processed across $N$ initial elements and $Q$ queries is bounded by at most $N + 2Q$.
+
+For typical constraints where $N, Q \le 2 \times 10^5$, there are at most $5 \times 10^5$ unique numbers involved. Range count queries care only about the **relative ordering** of values, not their absolute scale.
+
+By mapping each unique value in the $10^9$ space to a dense rank in the range $[0, M-1]$, we compress the universe of values down to a manageable size $M \approx 5 \times 10^5$.
+
+To perform coordinate compression offline (when queries are known in advance):
+
+Collect every value that will ever be updated or queried into a single vector. For query bounds $[a, b]$, both endpoints $a$ and $b$ must be included.
+
+```cpp
+vector<int> pts;
+
+// 1. Initial values
+for (int x : initial_array) pts.push_back(x);
+
+// 2. Query values
+for (auto& q : queries) {
+    if (q.type == UPDATE) {
+        pts.push_back(q.new_val);
+    } else if (q.type == QUERY) {
+        pts.push_back(q.a);
+        pts.push_back(q.b);
+    }
+}
+```
+
+Sort the collected points and remove duplicates to build a strictly increasing sequence of unique values.
+
+```cpp
+sort(pts.begin(), pts.end());
+pts.erase(unique(pts.begin(), pts.end()), pts.end());
+int M = pts.size(); // Size of our compressed coordinate space
+```
+
+Now once `pts` are available people have multiple ways -
+
+- use simple maps `unordered_map` or `map` to map the sparse set of values to `dense` space. 
+```cpp
+int curr_ind=0;
+for(auto pt:pts){
+	if(mp.find(pt)==mp.end()){
+		mp[pt]=curr_ind++;
+	}
+}
+```
+
+Now it is usable but does not works well since we can create test cases where unordered_map are quanteed to follow `O(n)` per query. However there is better way to keep all the pts in a vector and use `lower_bound`. Since value is guarantted to exist in the vector and will be unq we will always get correct index. 
+
+```cpp
+int get_compressed_idx(int x) {
+    return lower_bound(pts.begin(),pts.end(),x)-pts.begin();
+}
+```
+
+
+### Handling the frequencies in segment trees
+
+### What can be stored
+
+Vitually tree in segment tree can store anything you can come up with. However there are some things which usually come pretty frequently based on usage. 
+
+- First thing is the interger or count itself. Where its count of summary of something.
+- Second thing is small array stroing multiple things like count as well as sum. 
+- Third thing is the small set which one needs to maintain for an example set of characters. One can think of maintaining small hashmap per node. But actually a integer with its bits can actually fullfill the job. 
+- Sets can also be stored per node or an hashmap. 
+
+Handling frequency queries and quickly querying on the range is more difficult. We are trying to handle following queries here -
+
+- How many elements in the range `l,r` are of value atleast `x`.
+- How many elements in the range `l,r` have frequeny atleast `x`.  and these kinds of queries. 
+
+First data structure we see is merge sort tree. 
+
+### Merge sort tree
+
+In a standard segment tree, each node represents a range $[L, R]$ and stores a single merged value (like a sum or maximum). In a **Merge Sort Tree**, each node instead stores a **sorted list** of all elements belonging to that range.
+
+At the leaf level, each node stores a single-element list `[arr[i]]`. As we move up, each parent node combines the sorted lists of its two children using the standard `merge()` step from Merge Sort.
+
+Now observe that each node has the not only the summary but a detailed analysis stored on a node. However while querying you can not traverse this data structure linearly reason is then our query will take around linear time and around `O(logn)` nodes are touched meaning `O(nlogn)` time is taken. 
+
+Now lets see basic question which can be solved using this - 
 
 ```
-len = (cnt > 0) ? (realRight - realLeft) : (leftChild.len + rightChild.len)
+qry(l,r,x) = freq of x in the range l,r
 ```
 
-Because a positive count means the entire node is covered regardless of anything below it, there is never a need to push information downwards, which removes lazy propagation entirely. Removals always exactly cancel earlier additions, so the count never becomes negative.
+Now note that we already have stored the sorted list in each node equal to size of range of node. Now space complexity for merge segment tree - 
 
----
+We are storing `r-l+1` elements for a node marking `l,r` observe that only `n` elements are used across the entire horizon at any given depth `d`. Since we have `O(logn)` depth segment trees full space complexity is `O(nlogn)`. 
 
-## The ideas worth carrying forward
+Now how do we handle query - 
 
-1. **Two questions define any segment tree**: what a node stores, and how two nodes combine. Asking both explicitly, in writing, before coding is what makes the design work tractable.
+```
+1. Find the relevant nodes. 
+2. Now in a given node fully inside range (ql,qr) we need to find the count of x 
+3. Which is easy since range is sorted. use binary search (`std::upper_bound - std::lower_bound`) on its stored sorted list to count occurrences of $X$. Sum the counts across all matching nodes
+```
 
-2. **Store extra fields until the combination becomes possible.** The `sum` field exists to compute the best prefix; the open and close counts exist to compute the matched count. These fields are structural rather than requested by the problem.
+Note that time complexity is `O((logn)^2)`.
 
-3. **Every interesting combination has a crossing term.** The best piece is in the left, in the right, or made from a suffix of the left and a prefix of the right, and that third case carries the content of the design.
+Now if the sorted data structure used is `vector`, we will face difficulty in update since its inefficient to update a sorted vector. Rather we can use `set` however it has higher cost associated. 
 
-4. **Keep the left and right accumulators separate in the iterative query**, so that order-sensitive combinations work correctly.
+When each node holds a `std::multiset` instead of a `std::vector`:
 
-5. **A lazy tag needs three definitions**: what it means, how it changes a summary directly, and how it combines with a tag already pending. An inability to state the third means the design is not yet complete.
+- ✏️ **Point Update ($O(\log^2 N)$):** When `arr[i]` changes from $X$ to $Y$, we visit the $O(\log N)$ ancestor nodes that contain index $i$. In each ancestor node's multiset, we erase $X$ and insert $Y$ in $O(\log N)$ time.
+- 🔍 **Range Frequency Query ($O(\log^2 N)$):** We visit $O(\log N)$ canonical nodes covering $[QL, QR]$ and use `equal_range()` or iterator subtraction on each multiset in $O(\log N)$ time.
 
-6. **Walking down the tree replaces a binary search over queries**, using the child summaries to decide which way to go, which removes one logarithmic factor.
+Now lets move to another problem
 
-7. **Indexing by value rather than position** makes order statistics and threshold counting into range queries.
+```
+qry(l,r,x) = how many elements in the range have values strictly less than x
+```
 
-8. **A transition constrained by an inequality becomes a range query on a tree indexed by that inequality's quantity.** This pattern alone justifies much of section H.
+Now if you know we can use the `pbds` in `cpp` to solve the problem. Since pbds allows us to find how many elements atmost `x` in `O(logn)` time. We can use that instead of our simple set. 
 
-9. **An absolute difference splits into two expressions**, one for each side, handled by two separate trees.
+### Value segment tree 
 
-10. **Sorting queries by right endpoint and maintaining a rightmost-occurrence marker** solves the whole distinct-values family, and the pattern recurs widely.
+In a standard Segment Tree, node indices correspond to **array positions** ($0$ to $N-1$).
 
-11. **Allocate four times the size for recursive trees and twice for iterative ones.** This is not worth optimising and not worth getting wrong.
+In a **Value-Indexed Segment Tree** (sometimes called a Frequency Segment Tree or Coordinate Tree), the leaves correspond to **element values** (from $1$ to $\text{MAX\_VAL}$). Each leaf at index $V$ stores the **frequency** of value $V$ in our collection.
 
----
+Usage of such trees is first we can very easily find freq of some ranges. May be max or total occurance etc. Adding or removing an element just means incrementing or decrementing its value leaf and updating the ancestors.
 
-## Where people lose these problems
+#### Concept Note: Lazy-Only Segment Trees
 
-**Building for one combination and discovering another is needed.** Writing the two design questions down first costs under a minute, against twenty minutes of rewriting.
+When a segment tree only handles **range updates** and **point queries**, internal nodes do not need to store or compute aggregate values (like range sum, min, or max). Instead, range updates assign lazy tags to target subtrees, and point queries traverse down to a specific leaf, pushing pending tags along that single path. Because range queries across internal nodes are never performed, parent nodes never need to combine child values (`tree[i] = tree[left] + tree[right]`). Internal node `tree` entries remain unused, while leaves hold the fully resolved values.
 
-**Using the wrong identity value.** Sums use zero, maximums use a very small number, minimums use a very large one, and greatest common divisors use zero. Using zero as the identity for a maximum tree over possibly-negative values produces silently wrong answers.
+```cpp
+void push(int l, int r, int i) {
+    if (lazy[i] == NO_TAG) return;
+    int mid = (l + r) / 2;
+    apply(l, mid, 2 * i + 1, lazy[i]);
+    apply(mid + 1, r, 2 * i + 2, lazy[i]);
+    lazy[i] = NO_TAG;
+}
 
-**Failing to push pending operations before descending.** The push belongs in both the update and the query, immediately after the containment check. Without it, queries that partially overlap a node read stale values.
+void upd(int ql, int qr, int val, int l, int r, int i) {
+    if (ql > r || l > qr) return;
+    if (ql <= l && r <= qr) {
+        apply(l, r, i, val);
+        return; // Fully covered: tag and return
+    }
+    push(l, r, i);
+    int mid = (l + r) / 2;
+    upd(ql, qr, val, l, mid, 2 * i + 1);
+    upd(ql, qr, val, mid + 1, r, 2 * i + 2);
+    // Notice: No parent re-calculation step needed here!
+}
 
-**Omitting the recombination line at the end of an update.** Easy to leave out and immediately fatal.
+int qry(int ind, int l, int r, int i) {
+    if (l == r) return tree[i]; // Leaf reached: returns exact point value
+    push(l, r, i);
+    int mid = (l + r) / 2;
+    if (ind <= mid) return qry(ind, l, mid, 2 * i + 1);
+    else return qry(ind, mid + 1, r, 2 * i + 2);
+}
+```
 
-**Getting the combination of assignment and addition tags wrong.** An arriving assignment must discard a pending addition, and an arriving addition must accumulate on top of a pending assignment.
+- **`push()`**: Pushes pending lazy tags down to direct child nodes whenever traversing through node `i`.
+    
+- 🏷️ **`upd()`**: Sets the tag directly on fully contained ranges and recurses on partial overlaps. It skips any post-recursion parent updates.
+    
+- 🎯 **`qry()`**: Clears lazy tags along the path from the root down to index `ind` and returns `tree[i]` once it hits the leaf `l == r`.
 
-**Overflow when applying a tag.** A value of `10^9` applied across two hundred thousand positions reaches `2 * 10^14`, so 64-bit arithmetic is needed.
 
-**Using a single accumulator with an order-sensitive combination.** The result is wrong in a way that depends on the query range, which makes it hard to diagnose.
 
-**In LC 699, mishandling adjacency.** The maximum-assignment tag combines by taking the larger value, which is valid here because heights only ever increase. The square boundaries need compressing, and each square should be treated as half-open so that squares merely touching at an edge do not interact.
 
----
 
-## Working through the problem list
-
-### Block H1 · Lazy propagation
-
-These are best done in order, since each adds exactly one complication.
-
-- **CSES Range Update Queries** — *add a value across a range, then read single positions.* The simplest possible pending operation, and also solvable with a difference array and a Fenwick tree, which is worth noticing.
-- **CSES Range Updates and Sums** — *support range addition, range assignment, and range sums.* The combined-tag problem, and the most instructive one in this block. Write out the combination table before coding.
-- **AC ACL Practice K · Range Affine Range Sum** — *apply a linear transformation across a range and query sums.* The tag is a linear function, and two of them combine by function composition. Once linear functions are visible as tags, tags in general become much clearer.
-- **AC ACL Practice L · Lazy Segment Tree** — *count inversions in a binary array under range flips.* A node stores the counts of zeros and ones and the inversion count, and a flip exchanges the first two while replacing the third with the product minus itself. An elegant piece of design.
-- **CSES Polynomial Queries** — *add an increasing sequence across a range.* The arithmetic-progression tag.
-- **CSES Increasing Array Queries** — *harder, and a reasonable stretch.*
-- **LC 2569 Handling Sum Queries After Update** — *flip bits across a range in one array and use it to update another.* The LeetCode version of the ACL flip problem, and considerably gentler.
-- **LC 699 Falling Squares** — *squares drop onto a line; report the height after each.* Compression with a maximum-assignment tag.
-- **CF 52C Circular RMQ** — *range addition and range minimum on a circular array.* A wrapping range becomes two ordinary ranges.
-
-### Block H2 · Designing the combination
-
-- **AC ACL Practice J · Segment Tree** — *maximum queries with a descent.* A warm-up.
-- **CSES Prefix Sum Queries** — *the two-field design from Part 4.* Do this first in this block.
-- **CSES Subarray Sum Queries** — *the four-field design.* The model for every later combination, and worth deriving by hand.
-- **CF 380C Sereja and Brackets** — *the bracket design.*
-- **CSES Pizzeria Queries** — *two trees and the split absolute value.*
-- **CF 474E Pillars** — *a longest-chain dynamic program with a value constraint.* A segment tree over compressed values accelerating the transition, which leads directly into the idea in Part 6.
-
-### Block H3 · Descending the tree
-
-- **CSES Hotel Queries** — *assign each group to the leftmost hotel with enough rooms.* The descent template.
-- **CSES List Removals** — *repeatedly remove the k-th remaining element.* Order-statistics descent.
-- **CSES Salary Queries** — *count salaries in a range, with updates.* A tree over values, and the first real taste of Part 6.
-- **LC 315 Count of Smaller Numbers After Self** — *for each element, count smaller elements to its right.* Worth doing all three ways, which is the highest-value single exercise in section H.
-- **LC 493 Reverse Pairs** — *count pairs where the earlier element exceeds twice the later one.* The same skeleton, with overflow to watch in the comparison.
-- **LC 327 Count of Range Sum** — *count ranges whose sum falls within given bounds.* The same skeleton applied to prefix sums, combining this chapter with chapter [[06 Prefix Sums and Difference Arrays]].
-
-### Block H4 · Value space and merging
-
-- **CSES Distinct Values Queries** — *the offline sweep from Part 6.*
-- **CF 1000F One Occurrence** — *report a value occurring exactly once in a range.* The same sweep, storing the value rather than a count.
-- **CF 522D Closest Equals** — *find the closest pair of equal values in a range.* The same family.
-- **LC 2276 Count Integers in Intervals** — *the interval-counting problem from chapter [[02 Intervals and Sweep Line]].* The sheet asks you to revisit it here, and the reason is to compare the disjoint-interval map against a tree over value space, and to see that the map is itself a merging structure with an amortised guarantee.
-- **LC 2926 Maximum Balanced Subsequence Sum** — *the transition-acceleration problem from Part 6.* If only one problem from this block stays with you, this is the one to choose.
-- **CSES Range Queries and Copies** — *query historical versions of an array.* Persistence, and worth allocating an evening.
-
-### Block H5 · Optional extensions
-
-These use balanced binary search trees with implicit keys, supporting splitting, merging and reversing sequences.
-
-- **CSES Cut and Paste**, **CSES Substring Reversals**, **CSES Reversals and Sums** — *sequence manipulation problems.*
-- **CF 1187D Subarray Sorting** — *decide whether sorting arbitrary ranges can transform one array into another.* A segment tree used as a feasibility oracle, which is an unusual and pleasing use.
-
-These are genuinely optional for assessment purposes and are worth doing for enjoyment or for competitive programming rather than because the sheet lists them.
-
----
-
-**For blocks H1 and H2 the measure worth tracking is fluency rather than accuracy**, since this is a calibration block.
-
-The question to answer is whether you can write a working lazy segment tree from an empty file in under fifteen minutes. If not, that is the finding, and the response is repetition of the same few problems rather than a larger number of new ones.
-
----
-
-## Check yourself
-
-1. State the two design questions for any segment tree.
-2. Give the four fields and four combination lines for the largest piece sum in a range, and explain the crossing term.
-3. Why does the largest-prefix design need to store the total as well?
-4. Name the three things a pending operation must define, and give the combination rule for a linear-function tag.
-5. Why must the two accumulators be kept separate in the iterative query?
-6. Write the descent step for finding the leftmost position with a value of at least `k` in a maximum tree.
-7. What does indexing a tree by value mean, and which two query types does it make easy?
-8. Given a transition that maximises over earlier states satisfying an inequality, what do you index the tree by, and what are the two operations per step?
-9. Describe the sweep that answers how many distinct values appear in a range.
-10. Why does the covered-length design need no lazy propagation?

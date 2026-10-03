@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:codeforces.com)",
+      "WebFetch(domain:codejeet.com)",
+      "Bash(echo \"exit:$?\")"
+    ]
+  }
+}

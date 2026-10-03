@@ -1,48 +1,33 @@
-
----
-
-# Hard OA Sheet 2026 Calibration
-
-
-**Sources:** LeetCode, CSES, Codeforces, AtCoder.
-
-**Companion guide:** [[00 Guide Index]] — one chapter per section: theory, templates, aha moments, and a re-ordered warm-up → core → boss path through each problem list.
-
-**Rules of engagement**
-1. **35-minute hard cap.** 
-2. **First-submission accuracy is the metric**, not solve count. 
-3. **Hand-trace edge cases before submitting.** n=1, all-equal, all-distinct, max constraints, empty, duplicates, negative, overflow.
-
----
-
 ## A · Implementation, Parsing & Simulation
 
 > 📖 Guide: [[01 Implementation and Simulation]]
 
 *Why:* The single most under-practiced category at your level, and the most common dialect in product/SaaS OAs. These fail on carelessness, not on ideas. Target: first-submission accuracy above 80% in this block before moving on.
 
-- [x] LC 68 · Text Justification
+- [ ] CSES · Digit Queries
+- [ ] CSES · Gray Code
+- [ ] CSES · Palindrome Reorder
+- [ ] CSES · Number Spiral
+- [ ] CSES · Creating Strings
 - [x] LC 65 · Valid Number
+- [x] LC 68 · Text Justification
 - [x] LC 224 · Basic Calculator
 - [x] LC 388 · Longest Absolute File Path
 - [x] LC 481 · Magical String
 - [ ] LC 591 · Tag Validator
 - [ ] LC 640 · Solve the Equation
 - [ ] LC 726 · Number of Atoms
-- [ ] LC 736 · Parse Lisp Expression — *recursive descent + scoping*
+- [ ] LC 736 · Parse Lisp Expression
 - [ ] LC 761 · Special Binary String
 - [ ] LC 770 · Basic Calculator IV
 - [ ] LC 899 · Orderly Queue
-- [ ] LC 936 · Stamping The Sequence — *reverse simulation*
+- [ ] LC 936 · Stamping The Sequence
 - [ ] LC 1096 · Brace Expansion II
-- [ ] LC 2019 · The Score of Students Solving Math Expression — *parsing + interval DP*
+- [ ] LC 2019 · The Score of Students Solving Math Expression
 - [ ] LC 2296 · Design a Text Editor
-- [ ] CSES · Digit Queries
-- [ ] CSES · Gray Code
-- [ ] CSES · Palindrome Reorder
-- [ ] CSES · Number Spiral
-- [ ] CSES · Creating Strings
 - [ ] CF 1560E · Polycarp and String Transformation
+
+---
 
 ## B · Intervals, Sweep Line & Scheduling
 
@@ -54,44 +39,49 @@
 - [x] LC 699 · Falling Squares
 - [x] LC 715 · Range Module
 - [x] LC 732 · My Calendar III
-- [x] LC 850 · Rectangle Area II 
+- [x] LC 850 · Rectangle Area II
 - [x] LC 1024 · Video Stitching
 - [x] LC 1235 · Maximum Profit in Job Scheduling
 - [x] LC 1288 · Remove Covered Intervals
 - [x] LC 1851 · Minimum Interval to Include Each Query
 - [x] LC 2054 · Two Best Non-Overlapping Events
 - [x] LC 2276 · Count Integers in Intervals
-- [x] LC 2381 · Shifting Letters II — *difference array*
+- [x] LC 2381 · Shifting Letters II
 - [x] LC 2402 · Meeting Rooms III
 - [ ] CF 545C · Woodcutters
+
+---
+
 ## C · Greedy with a Proof Obligation
 
 > 📖 Guide: [[03 Greedy and Exchange Arguments]]
 
+- [x] CSES · Tasks and Deadlines
+- [x] CSES · Reading Books
+- [x] CSES · Stick Lengths
 - [ ] LC 135 · Candy
 - [ ] LC 316 · Remove Duplicate Letters
 - [ ] LC 321 · Create Maximum Number
 - [ ] LC 330 · Patching Array
-- [ ] LC 402 · Remove K Digits
-- [ ] LC 502 · IPO
-- [ ] LC 630 · Course Schedule III
+- [x] LC 402 · Remove K Digits
+- [x] LC 502 · IPO
+- [x] LC 630 · Course Schedule III
 - [ ] LC 767 · Reorganize String
-- [ ] LC 871 · Minimum Number of Refueling Stops
-- [ ] LC 1642 · Furthest Building You Can Reach
+- [x] LC 871 · Minimum Number of Refueling Stops
+- [x] LC 1642 · Furthest Building You Can Reach
 - [ ] LC 1663 · Smallest String With A Given Numeric Value
 - [x] LC 1953 · Maximum Number of Weeks for Which You Can Work
-- [ ] LC 2136 · Earliest Possible Day of Full Bloom — *sort by grow time, prove it*
+- [x] LC 2136 · Earliest Possible Day of Full Bloom
 - [ ] LC 2311 · Longest Binary Subsequence Less Than or Equal to K
-- [ ] LC 2589 · Minimum Time to Complete All Tasks
+- [x] LC 2589 · Minimum Time to Complete All Tasks
 - [ ] LC 2856 · Minimum Array Length After Pair Removals
-- [x] CSES · Tasks and Deadlines
-- [x] CSES · Reading Books
-- [x] CSES · Factory Machines
-- [x] CSES · Stick Lengths
 - [ ] CF 985C · Liebig's Barrels
 - [ ] CF 1042C · Array Product
 - [ ] CF 1401D · Maximum Distributed Tree
 - [x] CF 763A · Timofey and a tree
+
+---
+
 ## D · Binary Search
 
 > 📖 Guide: [[04 Binary Search on the Answer]]
@@ -106,10 +96,10 @@
 - [ ] LC 1889 · Minimum Space Wasted From Packaging
 - [x] LC 1898 · Maximum Number of Removable Characters
 - [ ] LC 2064 · Minimized Maximum of Products Distributed to Any Store
-- [x] LC 2141 · Maximum Running Time of N Computers — *feasibility is the whole trick*
+- [x] LC 2141 · Maximum Running Time of N Computers
 - [ ] LC 2226 · Maximum Candies Allocated to K Children
 - [x] LC 2439 · Minimize Maximum of Array
-- [x] LC 2513 · Minimize the Maximum of Two Arrays 
+- [x] LC 2513 · Minimize the Maximum of Two Arrays
 - [x] LC 2560 · House Robber IV
 - [x] LC 2861 · Maximum Number of Alloys
 
@@ -121,14 +111,18 @@
 
 *Why:* Windows that aren't monotone. The 2026 version adds "count subarrays where predicate holds" which needs the at-most-K decomposition or a monotonic deque inside the window.
 
+- [ ] CSES · Subarray Distinct Values
+- [ ] CSES · Sliding Median
+- [ ] CSES · Sliding Cost
+- [ ] CSES · Maximum Subarray Sum II
 - [ ] LC 76 · Minimum Window Substring
 - [ ] LC 239 · Sliding Window Maximum
 - [ ] LC 480 · Sliding Window Median
-- [ ] LC 992 · Subarrays with K Different Integers — *exactly-K = atMost(K) − atMost(K−1)*
+- [ ] LC 992 · Subarrays with K Different Integers
 - [ ] LC 1004 · Max Consecutive Ones III
 - [ ] LC 1438 · Longest Continuous Subarray With Absolute Diff ≤ Limit
 - [ ] LC 1499 · Max Value of Equation
-- [ ] LC 1521 · Find a Value of a Mysterious Function Closest to Target — *window on AND, log-many distinct values*
+- [ ] LC 1521 · Find a Value of a Mysterious Function Closest to Target
 - [ ] LC 1793 · Maximum Score of a Good Subarray
 - [ ] LC 1888 · Minimum Number of Flips to Make the Binary String Alternating
 - [ ] LC 2009 · Minimum Number of Operations to Make Array Continuous
@@ -137,10 +131,6 @@
 - [ ] LC 2537 · Count the Number of Good Subarrays
 - [ ] LC 2762 · Continuous Subarrays
 - [ ] LC 3234 · Count the Number of Substrings With Dominant Ones
-- [ ] CSES · Subarray Distinct Values
-- [ ] CSES · Sliding Median
-- [ ] CSES · Sliding Cost
-- [ ] CSES · Maximum Subarray Sum II
 - [ ] CF 6E · Exposition
 
 ---
@@ -151,24 +141,24 @@
 
 *Why:* Cheap to state, easy to get wrong at scale. The infra version is 2D, or on a hashed key, or requires processing queries offline in sorted order.
 
+- [ ] CSES · Subarray Sums I
+- [ ] CSES · Subarray Sums II
+- [ ] CSES · Subarray Divisibility
+- [ ] CSES · Forest Queries
+- [ ] CSES · Forest Queries II
 - [ ] LC 363 · Max Sum of Rectangle No Larger Than K
 - [ ] LC 523 · Continuous Subarray Sum
 - [ ] LC 525 · Contiguous Array
-- [ ] LC 862 · Shortest Subarray with Sum at Least K — *monotonic deque on prefix sums*
+- [ ] LC 862 · Shortest Subarray with Sum at Least K
 - [ ] LC 918 · Maximum Sum Circular Subarray
 - [ ] LC 974 · Subarray Sums Divisible by K
 - [ ] LC 1074 · Number of Submatrices That Sum to Target
 - [ ] LC 1310 · XOR Queries of a Subarray
 - [ ] LC 1735 · Count Ways to Make Array With Product
 - [ ] LC 2100 · Find Good Days to Rob the Bank
-- [ ] LC 2132 · Stamping the Grid — *2D difference array, genuinely nasty*
+- [ ] LC 2132 · Stamping the Grid
 - [ ] LC 2536 · Increment Submatrices by One
 - [ ] LC 3179 · Find the N-th Value After K Seconds
-- [ ] CSES · Subarray Sums I
-- [ ] CSES · Subarray Sums II
-- [ ] CSES · Subarray Divisibility
-- [ ] CSES · Forest Queries
-- [ ] CSES · Forest Queries II
 
 ---
 
@@ -178,12 +168,13 @@
 
 *Why:* The "contribution of each element as a range minimum/maximum" trick shows up constantly in 2026 hards, usually one layer down from the surface.
 
+- [ ] CSES · Nearest Smaller Values
 - [ ] LC 42 · Trapping Rain Water
 - [ ] LC 84 · Largest Rectangle in Histogram
 - [ ] LC 85 · Maximal Rectangle
-- [ ] LC 316 · Remove Duplicate Letters — *revisit with stack lens*
+- [ ] LC 316 · Remove Duplicate Letters
 - [ ] LC 456 · 132 Pattern
-- [ ] LC 907 · Sum of Subarray Minimums — *contribution technique*
+- [ ] LC 907 · Sum of Subarray Minimums
 - [ ] LC 962 · Maximum Width Ramp
 - [ ] LC 1063 · Number of Valid Subarrays
 - [ ] LC 1130 · Minimum Cost Tree From Leaf Values
@@ -193,103 +184,83 @@
 - [ ] LC 2262 · Total Appeal of A String
 - [ ] LC 2334 · Subarray With Elements Greater Than Varying Threshold
 - [ ] LC 2419 · Longest Subarray With Maximum Bitwise AND
-- [ ] LC 2818 · Apply Operations to Maximize Score — *contribution + sorting + modpow*
+- [ ] LC 2818 · Apply Operations to Maximize Score
 - [ ] LC 3113 · Find the Number of Subarrays Where Boundary Elements Are Maximum
-- [ ] CSES · Nearest Smaller Values
 - [ ] CF 1288D · Minimax Problem
 
 ---
 
-## H · Segment Trees Beyond Range Sum
+## H · Segment Trees
 
 > 📖 Guide: [[08 Segment Trees]]
 
-### H1 · Lazy propagation
-- [ ] CSES · Range Update Queries
-- [ ] CSES · Range Updates and Sums
-- [ ] CSES · Polynomial Queries — *lazy tag is an arithmetic progression*
-- [ ] CSES · Increasing Array Queries
-- [ ] LC 699 · Falling Squares — *revisit with lazy max*
-- [ ] LC 2569 · Handling Sum Queries After Update — *lazy flip*
-- [ ] CF 52C · Circular RMQ
-- [ ] AC ACL Practice K · Range Affine Range Sum
-- [ ] AC ACL Practice L · Lazy Segment Tree
+#### Classics
 
-### H2 · Non-trivial merge functions
-- [ ] CSES · Prefix Sum Queries — *node stores (sum, best prefix)*
-- [ ] CSES · Subarray Sum Queries — *node stores (sum, pref, suf, best)*
-- [ ] CSES · Pizzeria Queries — *two trees, a[i]±i trick*
-- [ ] CF 380C · Sereja and Brackets — *node stores (matched, open, close)*
-- [ ] CF 474E · Pillars — *segment tree over compressed values, DP transitions*
-- [ ] LC 2916 · Subarray String Matches — *if unavailable, skip*
-- [ ] AC ACL Practice J · Segment Tree
-
-### H3 · Descend-the-tree queries
-- [ ] CSES · Hotel Queries — *walk down on max*
-- [ ] CSES · List Removals — *order-statistics descent*
-- [ ] CSES · Salary Queries — *tree over value space*
-- [ ] LC 315 · Count of Smaller Numbers After Self
-- [ ] LC 327 · Count of Range Sum
-- [ ] LC 493 · Reverse Pairs
-
-### H4 · Segment tree on value space / merging structures
+- [x] CSES · Range Update Queries
+- [x] CSES · Prefix Sum Queries
+- [x] CSES · Subarray Sum Queries
+- [x] CSES · List Removals
+- [x] CSES Salary Queries 
 - [ ] CSES · Distinct Values Queries
-- [ ] CSES · Range Queries and Copies — *persistence*
-- [ ] CF 1000F · One Occurrence
+- [x] CSES · Range Updates and Sums
+- [ ] CSES · Polynomial Queries - [HARD]
+- [x] AC ACL Practice J · Segment Tree - (Lower bound impl)
+- [x] AC ACL Practice K · Range Affine Range Sum
+- [x] AC ACL Practice L · Lazy Segment Tree
+- [x] CF 380C · Sereja and Bracket 
+
+#### Node holds something that is not a number
+
+- [x] AC ABC 341 E · Alternating String
+- [x] LC 1157 · Online Majority Element In Subarray
+- [x] LC 2213 · Longest Substring of One Repeating Character
+- [x] CF 242E · XOR on Segment - `[Asked in rubrik]`
+
+#### Tree flattening `[Euler]`
+
+- [x] CF 383C · Propagating Tree
+- [x] CF 620E · New Year Tree
+
+### Tricky lazy problems
+
+- [x] AC ABC 179 F · Simplified Reversi
+- [x] CF 292E · Copying Data
+- [x]  CSES · Increasing Array Queries
+
+###  Swept across a plane
+
+- [ ] CSES · Area of Rectangles
 - [ ] CF 522D · Closest Equals
-- [ ] LC 2276 · Count Integers in Intervals — *revisit as ordered-set merge*
-- [ ] LC 2926 · Maximum Balanced Subsequence Sum — *segment tree over compressed a[i]−i*
 
-### H5 · Stretch
-- [ ] CSES · Reversals and Sums — *implicit balanced BST / treap*
-- [ ] CSES · Cut and Paste
-- [ ] CSES · Substring Reversals
-- [ ] CF 1187D · Subarray Sorting — *segment tree feasibility check*
-
-## I · Fenwick, Offline Queries & Mo's Algorithm
+## I · Mo's Algorithm
 
 > 📖 Guide: [[09 Fenwick Offline and Mos]]
 
-
-- [ ] CSES · Dynamic Range Sum Queries
-- [ ] CSES · Range Xor Queries
-- [ ] CSES · Static Range Minimum Queries — *sparse table*
-- [ ] CSES · Josephus Problem II
-- [ ] CSES · Collecting Numbers II
-- [ ] CF 459D · Pashmak and Parmida's problem
-- [ ] CF 61E · Enemy is weak — *count inversion triples*
-- [ ] CF 703D · Mishka and Interesting sum — *offline BIT, XOR of distinct*
+- [ ] SPOJ DQUERY · D-query
+- [ ] AC ABC 174 F · Range Set Query
+- [ ] AC ABC 242 G · Range Pairing Query
 - [ ] CF 220B · Little Elephant and Array
-- [ ] CF 86D · Powerful array — *Mo's, classic*
-- [ ] CF 617E · XOR and Favorite Number — *Mo's on prefix XOR*
-- [ ] CF 1093E · Intersection of Permutations — *BIT of ordered sets / CDQ*
-- [ ] LC 1157 · Online Majority Element In Subarray
-- [ ] LC 2179 · Count Good Triplets in an Array — *two BITs*
-- [ ] LC 2519 · Count the Number of K-Big Indices
-- [ ] LC 3245 · Alternating Groups III — *if unavailable, skip*
-- [ ] AC ACL Practice B · Fenwick Tree
-- [ ] AC ACL Practice C · Floor Sum
+- [ ] CF 86D · Powerful array
+- [ ] AC ABC 293 G · Triple Index
+- [ ] CF 617E · XOR and Favorite Number
+- [ ] CF 877F · Ann and Books
+- [ ] CF 940F · Machine Learning
+- [ ] SPOJ COT2 · Count on a Tree II
+
+---
+
 ## J · DSU: Rollback, Offline, Small-to-Large, Reconstruction
 
 > 📖 Guide: [[10 DSU Advanced]]
 
-- [ ] CSES · Road Reparation
-- [ ] CSES · Road Construction
-- [ ] CSES · New Roads Queries
-- [ ] CSES · Dynamic Connectivity — *offline segment tree on time + DSU rollback*
-- [ ] LC 803 · Bricks Falling When Hit — *reverse time*
-- [ ] LC 924 · Minimize Malware Spread
-- [ ] LC 1101 · The Earliest Moment When Everyone Become Friends
-- [ ] LC 1697 · Checking Existence of Edge Length Limited Paths — *offline DSU sweep*
-- [ ] LC 1970 · Last Day Where You Can Still Cross
-- [ ] LC 2503 · Maximum Number of Points From Grid Queries — *offline + DSU/heap*
-- [ ] LC 2867 · Count Valid Paths in a Tree
-- [ ] LC 3235 · Check if the Rectangle Corner Is Reachable
-- [ ] CF 891C · Envy — *DSU with rollback on MST*
-- [ ] CF 1213G · Path Queries
-- [ ] CF 1416D · Graph and Queries — *Kruskal reconstruction tree*
-- [ ] CF 25D · Roads not only in Berland
-- [ ] AC ACL Practice A · Disjoint Set Union
+- [x] AC ACL Practice A · Disjoint Set Union
+- [x] LC 1697 · Checking Existence of Edge Length Limited Paths - `[Offline query sorting]`
+- [x] LC 803 · Bricks Falling When Hit `[Clever graph]`
+- [x] CSES · Road Construction
+- [x] CSES · New Roads Queries
+- [ ] CSES · Dynamic Connectivity ` -- [todo]`
+- [x] LC 2867 · Count Valid Paths in a Tree
+- [x] CF 1213G · Path Queries
 
 ---
 
@@ -299,60 +270,62 @@
 
 - [ ] CSES · Shortest Routes I
 - [ ] CSES · Shortest Routes II
-- [ ] CSES · Flight Discount — *layered graph*
-- [ ] CSES · Flight Routes — *k shortest paths*
-- [ ] CSES · Investigation — *count + min edges on shortest paths*
-- [ ] CSES · High Score — *Bellman-Ford + reachable negative cycle*
+- [ ] CSES · Flight Discount
+- [ ] CSES · Flight Routes
+- [ ] CSES · Investigation
+- [ ] CSES · High Score
 - [ ] CSES · Cycle Finding
 - [ ] CSES · Monsters
 - [ ] CSES · Message Route
 - [ ] CSES · Labyrinth
-- [ ] LC 407 · Trapping Rain Water II — *heap-based flood*
+- [ ] LC 407 · Trapping Rain Water II
 - [ ] LC 787 · Cheapest Flights Within K Stops
 - [ ] LC 815 · Bus Routes
-- [ ] LC 847 · Shortest Path Visiting All Nodes — *BFS on (node, mask)*
+- [ ] LC 847 · Shortest Path Visiting All Nodes
 - [ ] LC 864 · Shortest Path to Get All Keys
 - [ ] LC 1129 · Shortest Path with Alternating Colors
 - [ ] LC 1293 · Shortest Path in a Grid with Obstacles Elimination
-- [ ] LC 1368 · Minimum Cost to Make at Least One Valid Path in a Grid — *0-1 BFS*
+- [ ] LC 1368 · Minimum Cost to Make at Least One Valid Path in a Grid
 - [ ] LC 1928 · Minimum Cost to Reach Destination in Time
 - [ ] LC 2045 · Second Minimum Time to Reach Destination
-- [ ] LC 2290 · Minimum Obstacle Removal to Reach Corner — *0-1 BFS*
+- [ ] LC 2290 · Minimum Obstacle Removal to Reach Corner
 - [ ] LC 2577 · Minimum Time to Visit a Cell In a Grid
-- [ ] LC 2812 · Find the Safest Path in a Grid — *multi-source BFS + binary search*
+- [ ] LC 2812 · Find the Safest Path in a Grid
 - [ ] CF 20C · Dijkstra?
 - [ ] CF 1063B · Labyrinth
-- [ ] CF 173B · Chamber of Secrets — *0-1 BFS*
-- [ ] CF 59E · Shortest Path — *state = (prev, cur)*
+- [ ] CF 173B · Chamber of Secrets
+- [ ] CF 59E · Shortest Path
+
+---
+
 ## L · Graph Structure: SCC, 2-SAT, Bridges, Eulerian
 
 > 📖 Guide: [[12 Graph Structure SCC 2SAT Bridges]]
 
-
 - [ ] CSES · Planets and Kingdoms
-- [ ] CSES · Coin Collector — *SCC condensation + DP*
-- [ ] CSES · Giant Pizza — *2-SAT*
+- [ ] CSES · Coin Collector
+- [ ] CSES · Giant Pizza
 - [ ] CSES · Flight Routes Check
 - [ ] CSES · Round Trip II
-- [ ] CSES · Necessary Roads — *bridges*
-- [ ] CSES · Necessary Cities — *articulation points*
-- [ ] CSES · Mail Delivery — *Eulerian circuit*
-- [ ] CSES · Teleporters Path — *Eulerian path*
+- [ ] CSES · Necessary Roads
+- [ ] CSES · Necessary Cities
+- [ ] CSES · Mail Delivery
+- [ ] CSES · Teleporters Path
 - [ ] CSES · De Bruijn Sequence
 - [ ] CSES · Course Schedule
 - [ ] CSES · Longest Flight Route
 - [ ] CSES · Game Routes
-- [ ] CSES · Planets Queries I — *binary lifting on functional graph*
+- [ ] CSES · Planets Queries I
 - [ ] CSES · Planets Cycles
+- [ ] AC ACL Practice G · SCC
+- [ ] AC ACL Practice H · Two SAT
 - [ ] LC 1192 · Critical Connections in a Network
-- [ ] LC 2360 · Longest Cycle in a Graph
 - [ ] LC 2101 · Detonate the Maximum Bombs
+- [ ] LC 2360 · Longest Cycle in a Graph
 - [ ] CF 999E · Reachability from the Capital
 - [ ] CF 427C · Checkposts
 - [ ] CF 118E · Bertown roads
 - [ ] CF 776D · The Door Problem
-- [ ] AC ACL Practice G · SCC
-- [ ] AC ACL Practice H · Two SAT
 
 ---
 
@@ -361,18 +334,20 @@
 > 📖 Guide: [[13 Trees]]
 
 ### M1 · Ancestry & path queries
+
 - [ ] CSES · Company Queries I
 - [ ] CSES · Company Queries II
 - [ ] CSES · Distance Queries
 - [ ] CSES · Subtree Queries
 - [ ] CSES · Path Queries
-- [ ] CSES · Path Queries II — *HLD or LCT*
+- [ ] CSES · Path Queries II
 - [ ] CSES · Counting Paths
 - [ ] LC 236 · Lowest Common Ancestor of a Binary Tree
-- [ ] LC 1483 · Kth Ancestor of a Tree Node — *binary lifting*
+- [ ] LC 1483 · Kth Ancestor of a Tree Node
 - [ ] LC 2846 · Minimum Edge Weight Equilibrium Queries in a Tree
 
 ### M2 · Rerooting (all-roots DP)
+
 - [ ] CSES · Tree Distances I
 - [ ] CSES · Tree Distances II
 - [ ] LC 834 · Sum of Distances in Tree
@@ -381,22 +356,24 @@
 - [ ] CF 543D · Road Improvement
 
 ### M3 · Tree DP
+
 - [ ] CSES · Subordinates
 - [ ] CSES · Tree Matching
 - [ ] CSES · Tree Diameter
 - [ ] CSES · Finding a Centroid
 - [ ] AC EDPC P · Independent Set
-- [ ] AC EDPC V · Subtree — *rerooting with modular prefix/suffix products*
+- [ ] AC EDPC V · Subtree
 - [ ] LC 337 · House Robber III
-- [ ] LC 968 · Binary Tree Cameras — *greedy/DP hybrid*
+- [ ] LC 968 · Binary Tree Cameras
 - [ ] LC 1547 · Minimum Cost to Cut a Stick
 - [ ] LC 2246 · Longest Path With Different Adjacent Characters
 - [ ] LC 2440 · Create Components With Same Value
 - [ ] CF 274B · Zero Tree
 
 ### M4 · Small-to-large / DSU on tree / centroid decomposition
+
 - [ ] CSES · Distinct Colors
-- [ ] CSES · Fixed-Length Paths I — *centroid decomposition*
+- [ ] CSES · Fixed-Length Paths I
 - [ ] CSES · Fixed-Length Paths II
 - [ ] CF 600E · Lomsat gelral
 - [ ] CF 375D · Tree and Queries
@@ -411,60 +388,64 @@
 > 📖 Guide: [[14 Dynamic Programming Core]]
 
 ### N1 · Educational DP Contest (do all 26, in order)
+
 - [ ] AC EDPC A · Frog 1
 - [ ] AC EDPC B · Frog 2
 - [ ] AC EDPC C · Vacation
 - [ ] AC EDPC D · Knapsack 1
-- [ ] AC EDPC E · Knapsack 2 — *DP on value, not weight*
+- [ ] AC EDPC E · Knapsack 2
 - [ ] AC EDPC F · LCS
 - [ ] AC EDPC G · Longest Path
 - [ ] AC EDPC H · Grid 1
-- [ ] AC EDPC I · Coins — *probability DP*
-- [ ] AC EDPC J · Sushi — *expected value with multi-dim state*
-- [ ] AC EDPC K · Stones — *game DP*
-- [ ] AC EDPC L · Deque — *interval game DP*
-- [ ] AC EDPC M · Candies — *prefix-sum optimized counting*
-- [ ] AC EDPC N · Slimes — *interval DP*
-- [ ] AC EDPC O · Matching — *bitmask permanent*
+- [ ] AC EDPC I · Coins
+- [ ] AC EDPC J · Sushi
+- [ ] AC EDPC K · Stones
+- [ ] AC EDPC L · Deque
+- [ ] AC EDPC M · Candies
+- [ ] AC EDPC N · Slimes
+- [ ] AC EDPC O · Matching
 - [ ] AC EDPC P · Independent Set
-- [ ] AC EDPC Q · Flowers — *DP + BIT*
-- [ ] AC EDPC R · Walk — *matrix exponentiation*
-- [ ] AC EDPC S · Digit Sum — *digit DP*
-- [ ] AC EDPC T · Permutation — *counting DP with prefix sums*
-- [ ] AC EDPC U · Grouping — *subset-sum-over-subsets*
+- [ ] AC EDPC Q · Flowers
+- [ ] AC EDPC R · Walk
+- [ ] AC EDPC S · Digit Sum
+- [ ] AC EDPC T · Permutation
+- [ ] AC EDPC U · Grouping
 - [ ] AC EDPC V · Subtree
-- [ ] AC EDPC W · Intervals — *DP + lazy segment tree*
-- [ ] AC EDPC X · Tower — *exchange-argument sort, then knapsack*
-- [ ] AC EDPC Y · Grid 2 — *inclusion-exclusion over obstacles*
-- [ ] AC EDPC Z · Frog 3 — *convex hull trick*
+- [ ] AC EDPC W · Intervals
+- [ ] AC EDPC X · Tower
+- [ ] AC EDPC Y · Grid 2
+- [ ] AC EDPC Z · Frog 3
 
 ### N2 · LeetCode hard DP with a twist
-- [ ] LC 87 · Scramble String
-- [ ] LC 115 · Distinct Subsequences
-- [ ] LC 174 · Dungeon Game — *reverse-direction state*
-- [ ] LC 312 · Burst Balloons
-- [ ] LC 322 · Coin Change — *baseline; skip if trivial*
-- [ ] LC 375 · Guess Number Higher or Lower II
-- [ ] LC 546 · Remove Boxes — *three-dimensional interval DP*
-- [ ] LC 664 · Strange Printer
-- [ ] LC 887 · Super Egg Drop — *classic reformulation trap*
-- [ ] LC 1039 · Minimum Score Triangulation of Polygon
-- [ ] LC 1235 · revisit as DP + binary search
-- [ ] LC 1531 · String Compression II — *state design is the problem*
-- [ ] LC 1866 · Number of Ways to Rearrange Sticks With K Sticks Visible — *Stirling*
-- [ ] LC 1959 · Minimum Total Space Wasted With K Resizing Operations
-- [ ] LC 2565 · Subsequence With the Minimum Score
-- [ ] LC 3122 · Minimum Number of Operations to Satisfy Conditions
+
 - [ ] CSES · Increasing Subsequence
 - [ ] CSES · Projects
 - [ ] CSES · Removal Game
 - [ ] CSES · Rectangle Cutting
 - [ ] CSES · Array Description
 - [ ] CSES · Counting Towers
+- [ ] LC 87 · Scramble String
+- [ ] LC 115 · Distinct Subsequences
+- [ ] LC 174 · Dungeon Game
+- [ ] LC 312 · Burst Balloons
+- [ ] LC 322 · Coin Change
+- [ ] LC 375 · Guess Number Higher or Lower II
+- [ ] LC 546 · Remove Boxes
+- [ ] LC 664 · Strange Printer
+- [ ] LC 887 · Super Egg Drop
+- [ ] LC 1039 · Minimum Score Triangulation of Polygon
+- [ ] LC 1235 · Maximum Profit in Job Scheduling (revisit)
+- [ ] LC 1531 · String Compression II
+- [ ] LC 1866 · Number of Ways to Rearrange Sticks With K Sticks Visible
+- [ ] LC 1959 · Minimum Total Space Wasted With K Resizing Operations
+- [ ] LC 2565 · Subsequence With the Minimum Score
+- [ ] LC 3122 · Minimum Number of Operations to Satisfy Conditions
 - [ ] CF 4D · Mysterious Present
 - [ ] CF 10D · LCIS
 - [ ] CF 1114D · Flood Fill
 - [ ] CF 1132F · Clear the String
+
+---
 
 ## O · Bitmask DP, Broken Profile & Subset Convolution
 
@@ -473,27 +454,28 @@
 *Why:* n ≤ 20 in an OA statement is a giveaway, and candidates still miss it. The harder 2026 version hides the small dimension (distinct values, colors, primes) rather than stating it.
 
 - [ ] CSES · Elevator Rides
-- [ ] CSES · Counting Tilings — *broken profile*
+- [ ] CSES · Counting Tilings
 - [ ] CSES · Hamiltonian Flights
-- [ ] CSES · Knight's Tour — *Warnsdorff, not DP, but same block*
+- [ ] CSES · Knight's Tour
 - [ ] CSES · Beautiful Subgrids
 - [ ] CSES · Meet in the Middle
 - [ ] LC 464 · Can I Win
 - [ ] LC 473 · Matchsticks to Square
 - [ ] LC 691 · Stickers to Spell Word
-- [ ] LC 943 · Find the Shortest Superstring — *bitmask + path reconstruction*
+- [ ] LC 943 · Find the Shortest Superstring
 - [ ] LC 1125 · Smallest Sufficient Team
 - [ ] LC 1434 · Number of Ways to Wear Different Hats to Each Other
 - [ ] LC 1655 · Distribute Repeating Integers
 - [ ] LC 1723 · Find Minimum Time to Finish All Jobs
 - [ ] LC 1799 · Maximize Score After N Operations
 - [ ] LC 1815 · Maximum Number of Groups Getting Fresh Donuts
-- [ ] LC 2035 · Partition Array Into Two Arrays to Minimize Sum Difference — *meet in the middle*
+- [ ] LC 2035 · Partition Array Into Two Arrays to Minimize Sum Difference
 - [ ] LC 2664 · The Knight's Tour
 - [ ] LC 3149 · Find the Minimum Cost Array Permutation
 - [ ] CF 580D · Kefa and Dishes
 - [ ] CF 8C · Looking for Order
 
+---
 
 ## P · Digit DP, Automata DP, Probability & Expectation
 
@@ -508,20 +490,22 @@
 - [ ] CSES · Throwing Dice
 - [ ] CSES · Graph Paths I
 - [ ] CSES · Graph Paths II
-- [ ] CSES · Required Substring — *KMP automaton + DP*
+- [ ] CSES · Required Substring
 - [ ] LC 233 · Number of Digit One
 - [ ] LC 357 · Count Numbers with Unique Digits
 - [ ] LC 600 · Non-negative Integers without Consecutive Ones
+- [ ] LC 837 · New 21 Game
 - [ ] LC 902 · Numbers At Most N Given Digit Set
 - [ ] LC 1012 · Numbers With Repeated Digits
+- [ ] LC 1467 · Probability of a Two Boxes Having The Same Number of Distinct Balls
 - [ ] LC 2376 · Count Special Integers
 - [ ] LC 2719 · Count of Integers
-- [ ] LC 3007 · revisit as digit DP
-- [ ] LC 837 · New 21 Game — *probability with sliding window*
-- [ ] LC 1467 · Probability of a Two Boxes Having The Same Number of Distinct Balls
-- [ ] CF 55D · Beautiful numbers — *digit DP mod lcm(1..9)*
+- [ ] LC 3007 · Maximum Number That Sum of the Prices Is Less Than or Equal to K (revisit)
+- [ ] CF 55D · Beautiful numbers
 - [ ] CF 628D · Magic Numbers
-- [ ] CF 442B · Andrey and Problem — *greedy on probabilities, prove the choice*
+- [ ] CF 442B · Andrey and Problem
+
+---
 
 ## Q · DP Optimization
 
@@ -529,21 +513,23 @@
 
 *Why:* The clean tell is O(n²) DP with n = 10⁵. Four techniques cover essentially all of it: divide-and-conquer opt, convex hull trick, Knuth, and the Aliens trick.
 
-- [ ] CSES · Subarray Squares — *D&C optimization*
-- [ ] CSES · Houses and Schools — *D&C optimization*
-- [ ] CSES · Knuth Division — *Knuth optimization*
-- [ ] CSES · Monster Game I — *CHT*
-- [ ] CSES · Monster Game II — *CHT, non-monotone*
-- [ ] LC 1478 · Allocate Mailboxes
+- [ ] CSES · Subarray Squares
+- [ ] CSES · Houses and Schools
+- [ ] CSES · Knuth Division
+- [ ] CSES · Monster Game I
+- [ ] CSES · Monster Game II
+- [ ] AC EDPC Z · Frog 3 (revisit)
+- [ ] LC 410 · Split Array Largest Sum (revisit)
 - [ ] LC 813 · Largest Sum of Averages
+- [ ] LC 1478 · Allocate Mailboxes
 - [ ] LC 2547 · Minimum Cost to Split an Array
-- [ ] LC 2604 · revisit — *if unavailable, skip*
-- [ ] LC 410 · revisit with Aliens trick (λ-penalty on splits)
+- [ ] LC 2604 · revisit
 - [ ] CF 319C · Kalila and Dimna in the Logging Industry
 - [ ] CF 321E · Ciel and Gondolas
 - [ ] CF 868F · Yet Another Minimization Problem
 - [ ] CF 660F · Bear and Bowling 4
-- [ ] AC EDPC Z · Frog 3 — *revisit, implement CHT from scratch*
+
+---
 
 ## R · Strings: Hashing, Automata, Suffix Structures
 
@@ -552,18 +538,19 @@
 *Why:* Product OAs love string problems because statements are easy to write. The 2026 hard version needs a real structure — hashing with two mods, Z-function, suffix automaton, or Aho-Corasick.
 
 ### R1 · Hashing & prefix function
+
 - [ ] CSES · String Matching
 - [ ] CSES · Finding Borders
 - [ ] CSES · Finding Periods
-- [ ] CSES · Minimal Rotation — *Booth's algorithm*
-- [ ] CSES · Longest Palindrome — *Manacher*
+- [ ] CSES · Minimal Rotation
+- [ ] CSES · Longest Palindrome
 - [ ] CSES · Palindrome Queries
 - [ ] CSES · Distinct Substrings
 - [ ] CSES · Repeating Substring
-- [ ] LC 28 · Find the Index of the First Occurrence in a String — *implement KMP, not find()*
+- [ ] LC 28 · Find the Index of the First Occurrence in a String
 - [ ] LC 214 · Shortest Palindrome
 - [ ] LC 459 · Repeated Substring Pattern
-- [ ] LC 1044 · Longest Duplicate Substring — *binary search + hashing*
+- [ ] LC 1044 · Longest Duplicate Substring
 - [ ] LC 1147 · Longest Chunked Palindrome Decomposition
 - [ ] LC 3008 · Find Beautiful Indices in the Given Array II
 - [ ] CF 471D · MUH and Cube Walls
@@ -572,20 +559,23 @@
 - [ ] CF 985F · Isomorphic Strings
 
 ### R2 · Tries, Aho-Corasick, suffix automaton
-- [ ] CSES · Word Combinations — *trie + DP*
+
+- [ ] CSES · Word Combinations
 - [ ] CSES · Counting Patterns
 - [ ] CSES · Pattern Positions
 - [ ] CSES · String Functions
 - [ ] CSES · Substring Order I
 - [ ] CSES · Substring Distribution
+- [ ] AC ACL Practice I · Number of Substrings
 - [ ] LC 208 · Implement Trie
-- [ ] LC 212 · Word Search II — *trie + backtracking pruning*
+- [ ] LC 212 · Word Search II
 - [ ] LC 336 · Palindrome Pairs
-- [ ] LC 1032 · Stream of Characters — *Aho-Corasick*
-- [ ] LC 3213 · Construct String with Minimum Cost — *Aho-Corasick + DP*
+- [ ] LC 1032 · Stream of Characters
+- [ ] LC 3213 · Construct String with Minimum Cost
 - [ ] CF 271D · Good Substrings
 - [ ] CF 963D · Frequency of String
-- [ ] AC ACL Practice I · Number of Substrings
+
+---
 
 ## S · Combinatorics, Number Theory & Modular Arithmetic
 
@@ -593,31 +583,35 @@
 
 *Why:* Counting-under-modulo has migrated from quant OAs into mainstream infra OAs. Inclusion-exclusion and "count complement instead" are the two moves that unlock most of them.
 
-- [ ] CSES · Exponentiation II — *Fermat on the exponent*
+- [ ] CSES · Exponentiation II
 - [ ] CSES · Divisor Analysis
-- [ ] CSES · Counting Necklaces — *Burnside*
-- [ ] CSES · Christmas Party — *derangements*
-- [ ] CSES · Bracket Sequences I — *Catalan*
-- [ ] CSES · Counting Coprime Pairs — *Möbius / inclusion-exclusion*
+- [ ] CSES · Counting Necklaces
+- [ ] CSES · Christmas Party
+- [ ] CSES · Bracket Sequences I
+- [ ] CSES · Counting Coprime Pairs
 - [ ] LC 920 · Number of Music Playlists
 - [ ] LC 1569 · Number of Ways to Reorder Array to Get Same BST
 - [ ] LC 1977 · Number of Ways to Separate Numbers
 - [ ] LC 2514 · Count Anagrams
-- [ ] LC 2518 · Number of Great Partitions — *count the complement*
-- [ ] CF 451E · Devu and Flowers — *inclusion-exclusion over stars and bars*
+- [ ] LC 2518 · Number of Great Partitions
+- [ ] CF 451E · Devu and Flowers
 - [ ] CF 559C · Gerald and Giant Chess
 - [ ] CF 300C · Beautiful Numbers
 
+---
+
 ## T · Flows & Matching
 
-> 📖 Guide: [[20 Flows and Matching]]*
+> 📖 Guide: [[20 Flows and Matching]]
 
 - [ ] CSES · Download Speed
-- [ ] CSES · Police Chase — *min cut*
-- [ ] CSES · School Dance — *bipartite matching*
+- [ ] CSES · Police Chase
+- [ ] CSES · School Dance
 - [ ] CSES · Distinct Routes
 - [ ] AC ACL Practice D · Maxflow
 - [ ] AC ACL Practice E · MinCostFlow
+
+---
 
 ## U · Geometry (OA-lite)
 
@@ -628,33 +622,36 @@
 - [ ] CSES · Convex Hull
 - [ ] CSES · Minimum Euclidean Distance
 
+---
+
 ## V · Constructive, Invariants & Game Theory
 
 > 📖 Guide: [[22 Constructive Invariants and Games]]
 
 *Why:* The purest "tricky problem solving" category — no algorithm, just an invariant or a parity argument. These are the ones people stare at for 40 minutes and then find in 30 seconds.
 
-- [ ] LC 810 · Chalkboard XOR Game
-- [ ] LC 877 · Stone Game — *find the invariant, don't DP it*
-- [ ] LC 913 · Cat and Mouse
-- [ ] LC 2029 · Stone Game IX
-- [ ] LC 2038 · Remove Colored Pieces if Both Neighbors are the Same Color
 - [ ] CSES · Stick Game
 - [ ] CSES · Nim Game II
 - [ ] CSES · Stair Game
 - [ ] CSES · Grundy's Game
 - [ ] CSES · Chessboard and Queens
+- [ ] LC 810 · Chalkboard XOR Game
+- [ ] LC 877 · Stone Game
+- [ ] LC 913 · Cat and Mouse
+- [ ] LC 2029 · Stone Game IX
+- [ ] LC 2038 · Remove Colored Pieces if Both Neighbors are the Same Color
+
+---
 
 ## X · Bitwise Tricks, XOR Basis & Tries
 
 > 📖 Guide: [[24 Bitwise and XOR Basis]]
 
-
+- [ ] CSES · Hamming Distance
 - [ ] LC 421 · Maximum XOR of Two Numbers in an Array
-- [ ] LC 898 · Bitwise ORs of Subarrays — *log-many distinct values*
-- [ ] LC 1707 · Maximum XOR With an Element From Array — *offline + trie*
-- [ ] LC 1938 · Maximum Genetic Difference Query — *trie on a tree, offline DFS*
+- [ ] LC 898 · Bitwise ORs of Subarrays
+- [ ] LC 1707 · Maximum XOR With an Element From Array
+- [ ] LC 1938 · Maximum Genetic Difference Query
 - [ ] LC 2317 · Maximum XOR After Operations
 - [ ] LC 2680 · Maximum OR
-- [ ] CSES · Hamming Distance
-- [ ] CF 895C · Square Subsets — *XOR basis*
+- [ ] CF 895C · Square Subsets

@@ -89,6 +89,8 @@ The same skeleton appears in several disguises:
 
 LC 871 is worth singling out because it makes the retroactive aspect explicit. You proceed as though you could travel back and refuel at a station you already passed. That is legitimate here because only the total amount of fuel matters and not when it was acquired, so the fiction never produces an invalid schedule. Once that is clear the problem becomes about eight lines.
 
+Now note that sometimes what decision to take is not given that upfront sometimes you have to find it. For an instance in bricks vs ladder problem `LC 1642` . We have choice to either move via ladder or move via bricks . This is the recurring pattern in these problems you will always have only two choices. Either you took something or not take. Or between two choices you take one and not take other. Finally understand that you should try with both doing regret either by taking something in this case you take something and then retrospectively may loose it is as well. Second is you don't take and retrospectively take it back. Finally there is also the case of opmitimistic taking vs pessimistic taking/not taking. An example of optimistic uptaking is code of course schdeule we although took it without checking if its actually possible or not. And checked later on. This is prevelant and simplyfies the code. But remember to use pessimistic code in case its not that working. 
+
 ### Stack greedy for lexicographic answers
 
 Whenever the objective is the smallest or largest string or sequence, and you are permitted to delete items, the answer is a monotonic stack together with a deletion budget.
@@ -98,7 +100,7 @@ Whenever the objective is the smallest or largest string or sequence, and you ar
 ```cpp
 string st;
 for (char c : num) {
-    while (!st.empty() && k > 0 && st.back() > c) { st.pop_back(); k--; }
+    while (!st.empty() && k>0 && st.back()>c){st.pop_back(); k--;}
     st.push_back(c);
 }
 st.resize(st.size() - k);          // budget left over, so remove from the end
@@ -118,8 +120,6 @@ while (!st.empty() && st.back() > c && lastIndex[st.back()] > i) {
 along with a set recording which letters are already placed, so that duplicates are skipped rather than added.
 
 **LC 2030** adds a third constraint, requiring at least a given number of copies of one particular letter and exactly `k` characters in total, which adds two more clauses to the same condition. Solving 402, then 316, then 2030 in that order means each problem is a small modification of the previous one, whereas attempting them in another order makes the last one considerably harder than it needs to be.
-
-This overlaps with chapter [[07 Monotonic Stacks and Deques]]. The difference is that there the stack is used to compute ranges, and here it is used to construct the answer directly.
 ### Two-pass local repair
 
 **LC 135 Candy** gives each child a rating and requires that any child with a higher rating than a neighbour receives more sweets than that neighbour, while minimising the total.
@@ -167,7 +167,6 @@ This is worth building as a habit during practice rather than saving for the ass
 - **LC 630 Course Schedule III** — *take as many courses as possible, each with a duration and a deadline.* The template from Part 2.
 - **LC 1642 Furthest Building You Can Reach** — *cross buildings using a limited number of ladders and bricks.* Regret applied to ladders. It also yields to binary search on the answer, from chapter [[04 Binary Search on the Answer]], and comparing the two is instructive.
 - **LC 871 Minimum Number of Refueling Stops** — *reach a target with the fewest stops, given fuel stations along the way.* Retroactive refuelling.
-- **CSES Factory Machines** — *given machines of differing speeds, produce k items in minimum time.* This is binary search on the answer rather than greedy, and it is included here deliberately because it feels like a greedy and is not.
 - **LC 2136 Earliest Possible Day of Full Bloom** — *plant and grow seeds, one planting at a time, minimising the day all have bloomed.* Sort by growing time descending, and write the two-element swap that establishes it.
 - **LC 2589 Minimum Time to Complete All Tasks** — *run tasks within their windows, sharing computer time where possible.* Sort by deadline, then place the required time as late as possible. The instinct to schedule as late as possible is worth keeping.
 - **CF 985C Liebig's Barrels** — *build barrels from planks, maximising the total of their minimum planks.* Sort, then reason about which planks can serve as group minima.

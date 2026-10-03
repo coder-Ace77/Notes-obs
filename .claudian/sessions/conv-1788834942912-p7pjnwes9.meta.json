@@ -1,0 +1,24 @@
+{
+  "id": "conv-1788834942912-p7pjnwes9",
+  "providerId": "claude",
+  "title": "Convert content to table",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788834942943,
+  "lastActivityAt": 1788834975432,
+  "sessionId": "ea06bda2-8f35-4359-82cd-14588382d85e",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "ea06bda2-8f35-4359-82cd-14588382d85e"
+  },
+  "currentNote": "Interviews/HLD/1. Theory/Key technologies/13. Sharding and extreme database problems.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1457,
+    "cacheReadInputTokens": 25872,
+    "contextWindow": 1000000,
+    "contextTokens": 27331,
+    "percentage": 3,
+    "contextWindowIsAuthoritative": true
+  }
+}

@@ -44,26 +44,136 @@ Now if the local properties is not clear its better to write some small examples
 
 To quickly test if conditions are correct try with star and line graphs as they mostly reaveal flaws in strategy. 
 
+## Euler tour 
 
+Given a rooted tree structure which is fixed euler tour is the way to solve problems mainly for the subtree queries. Now first lets fix the gap euler tour is the way to flatten a rooted tree to a linear structure so that segment tree can come into the picture. 
 
-### The Euler tour
+The technique works by performing a Depth-First Search (DFS) traversal starting from the root node while keeping track of a global timer or counter. When the search first enters a node, we record its entry time as `in_time[u]`. The search then recursively visits all child nodes, assigning each node its respective entry time. Once all descendants of node `u` have been completely visited and the search backtracks away from `u`, we record its exit time as `out_time[u]`. Because DFS explores a node's full subtree before returning to the parent, every descendant of `u` is guaranteed to be visited inside the interval between `in_time[u]` and `out_time[u]`.
 
-Run a depth-first search over the tree, recording the moment each vertex is first entered and the moment its exploration finishes:
+This entry and exit tracking creates a key mathematical property: the entire subtree rooted at node `u` corresponds exactly to the contiguous range of array indices from `in_time[u]` to `out_time[u]`. For example, if node 2 has an entry time of 2 and an exit time of 4, all nodes inside node 2's subtree occupy entry indices 2, 3, and 4 in the flattened array. Updating a single node's value or calculating a subtree sum simply becomes a point update or a range sum query over `[in_time[u], out_time[u]]`, converting complex tree queries into straightforward array range operations.
 
 ```cpp
+
 int timer = 0;
-void dfs(int u, int p) {
-    tin[u] = timer++;
-    for (int v : adj[u]) if (v != p) dfs(v, u);
-    tout[u] = timer;
+
+void dfs(int node, int parent) {
+    // Record entry time when first visiting the node
+    timer++;
+    in_time[node] = timer;
+
+    for (int child : adj[node]) {
+        if (child != parent) {
+            dfs(child, node);
+        }
+    }
+
+    // Record exit time after visiting all descendants
+    out_time[node] = timer;
 }
 ```
 
-The consequence worth internalising is that **the subtree of any vertex occupies a single contiguous range in the order these entry times are assigned**, specifically the range from that vertex's entry time up to but not including its finish time. A second consequence follows immediately: one vertex is an ancestor of another exactly when the ancestor's entry time is at or before the descendant's, and the ancestor's finish time is after the descendant's, which is a constant-time check requiring no traversal at all.
+The term **Euler Tour Technique** does not refer to a single rigid implementation, but rather a family of DFS traversal patterns. Depending on when you increment the timer or push a node to an array, you create distinct flattened representations. Each variation generates a different mapping tailored to solve a specific class of tree problems, such as subtree queries, root-to-node path queries, arbitrary path queries using Mo's algorithm, or $O(1)$ Lowest Common Ancestor (LCA) queries.
 
-Once a subtree is understood as a contiguous range, every array-based structure from chapters [[08 Segment Trees]] and [[09 Fenwick Offline and Mos]] becomes usable on a tree. A subtree sum with point updates becomes a Fenwick tree over the Euler-tour array, which is CSES *Subtree Queries*. A sum along the path from a vertex to the root, where entire subtrees are updated at once, becomes a Fenwick tree used as a difference array: adding a value to a vertex means adding it at that vertex's entry time and subtracting it at its finish time, after which the value at any vertex is the prefix sum up to its own entry time, which is CSES *Path Queries*.
+#### Version 1 Single-Entry Flattening (Array Size $N$)
 
----
+In this variation, the global timer increments **only once per node** when the node is first discovered during the DFS traversal. The entry time `in_time[u]` gets assigned the new timer value, while the exit time `out_time[u]` is assigned the current timer value after all children have finished executing.
+
+```cpp
+void dfs(int u, int p) {
+    in_time[u] = ++timer; // Timer increments ONLY on entry
+    flat_array[timer] = val[u]; // Node mapped to a single index
+    
+    for (int v : adj[u]) {
+        if (v != p) dfs(v, u);
+    }
+    
+    out_time[u] = timer; // Captures highest timer assigned in u's subtree
+}
+```
+
+- **Key Characteristic:** Every node appears **exactly once** in the flattened array of size $N$.
+- **Mathematical Property:** The subtree rooted at node $u$ occupies the continuous index range $[in\_time[u], out\_time[u]]$.
+- **Primary Use Case:** **Subtree Queries and Subtree Updates.** Because every node in $u$'s subtree is packed sequentially without duplicates, updating or querying a subtree simply becomes a point update or range query over $[in\_time[u], out\_time[u]]$ using a standard Segment Tree or Fenwick Tree. 
+
+#### Version 2: Two-Tick Entry/Exit Sign-Cancellation (Array Size $2N$)
+
+In this variation, the timer increments **twice for every node**: once when entering the node and once when exiting the node. This creates a flattened array of size $2N$, where every node has two distinct timestamps: `in_time[u]` and `out_time[u]`.
+
+```cpp
+void dfs(int u, int p) {
+    in_time[u] = ++timer;
+    flat_array[in_time[u]] = +val[u]; // Positive value on entry
+    
+    for (int v : adj[u]) {
+        if (v != p) dfs(v, u);
+    }
+    
+    out_time[u] = ++timer;
+    flat_array[out_time[u]] = -val[u]; // Negative value on exit
+}
+```
+
+- **Key Characteristic:** The node's value is stored as $+val[u]$ at index `in_time[u]` and as $-val[u]$ at index `out_time[u]`.
+    
+- **Mathematical Property:** If you take a **prefix sum** from index 1 up to `in_time[target]`, all nodes on the direct path from the root to `target` will have entered (adding $+val$), but not yet exited. Any side-branches or off-path subtrees explored along the way will have both entered and exited, contributing $+val + (-val) = 0$.
+    
+- **Primary Use Case:** **Root-to-Node Path Queries and Point Updates.** If you need to update a single node's value and query the sum of node values along the path from the root to node $u$, this setup allows you to handle path queries directly via prefix sums on a Fenwick Tree in $O(\log N)$ time.
+
+#### Version 3: Double-Push / Mo's Algorithm on Trees (Array Size $2N$)
+
+Instead of tracking integer timestamps, this version explicitly pushes the node identifier into a vector twice: once upon entering the node and once immediately before exiting.
+
+```cpp
+vector<int> tour;
+
+void dfs(int u, int p) {
+    in_time[u] = tour.size();
+    tour.push_back(u); // First push (entry)
+    
+    for (int v : adj[u]) {
+        if (v != p) dfs(v, u);
+    }
+    
+    out_time[u] = tour.size();
+    tour.push_back(u); // Second push (exit)
+}
+```
+
+- **Key Characteristic:** The resulting vector `tour` contains $2N$ elements, where every node ID appears twice.
+    
+- **Mathematical Property:** For any two nodes $u$ and $v$ (where `in_time[u] < in_time[v]`), the simple path between them in the tree corresponds to the array segment $[out\_time[u], in\_time[v]]$. In this subarray, any node that is **not** on the simple path between $u$ and $v$ will appear **twice** (both its entry and exit fall inside the range). Any node that **is** on the simple path will appear **exactly once**.
+    
+- **Primary Use Case:** **Mo's Algorithm on Trees (Offline Path Queries).** By maintaining a frequency count of nodes in the current range, you can toggle a node "on" when its frequency is 1 and "off" when its frequency becomes 2. This trick converts complex path queries between arbitrary pairs of nodes into standard flat-array Mo's algorithm range queries.
+
+#### Version 4: Full Traversal / Classical Euler Tour (Array Size $2N - 1$)
+
+This is the classical definition of an Euler Tour from graph theory. In this variation, a node is pushed into the tour array upon entry **and after returning from every single child traversal**.
+
+```cpp
+vector<int> tour;
+vector<int> depth_array;
+
+void dfs(int u, int p, int d) {
+    first_occurrence[u] = tour.size();
+    tour.push_back(u);
+    depth_array.push_back(d);
+    
+    for (int v : adj[u]) {
+        if (v != p) {
+            dfs(v, u, d + 1);
+            tour.push_back(u); // Re-push u after returning from child
+            depth_array.push_back(d);
+        }
+    }
+}
+```
+
+- **Key Characteristic:** The array size is $2N - 1$. The tree traversal acts like a tracer recording every movement up and down the edges.
+    
+- **Mathematical Property:** The Lowest Common Ancestor (LCA) of two nodes $u$ and $v$ is the node with the **minimum depth** in the `tour` array between `first_occurrence[u]` and `first_occurrence[v]`.
+    
+- **Primary Use Case:** **$O(1)$ LCA Queries via Range Minimum Query (RMQ).** By building a Sparse Table over the `depth_array` of size $2N - 1$, finding the LCA of any two nodes reduces to a static Range Minimum Query, answering LCA queries in $O(1)$ time after $O(N \log N)$ preprocessing.
+
 
 ## Part 2 · Finding the lowest common ancestor
 
@@ -98,10 +208,6 @@ Given two vertices, once the lowest common ancestor is known, the distance betwe
 $$\text{dist}(u, v) = \text{depth}[u] + \text{depth}[v] - 2 \cdot \text{depth}[\text{lca}(u,v)]$$
 
 **An Euler tour combined with a sparse table** answers queries in constant time after preprocessing, at the cost of slightly more code, and is worth reaching for only when a very large number of queries makes the logarithmic factor from binary lifting too slow.
-
-**Offline processing with a union-find structure**, due to Tarjan, answers all the queries in close to linear total time provided they are all known in advance, and while elegant it is rarely necessary in practice.
-
----
 
 ## Part 3 · An ordinary tree dynamic program
 
@@ -215,16 +321,11 @@ CSES *Fixed-Length Paths I* asks for the number of paths of an exact given lengt
 
 This is the lowest-frequency technique in the chapter and worth learning after everything else here is solid. The centroid itself, independent of the full decomposition, is a useful fact on its own and is what CSES *Finding a Centroid* asks for directly.
 
----
-
 ## Part 7 · Path updates and path queries
 
 When a query concerns an entire path rather than a subtree, the Euler tour alone is not enough, since a path is not generally a contiguous range.
 
 A subtree update combined with a subtree query still works directly with the Euler tour and a segment tree supporting deferred updates. A path query combined with a point update, where the aggregate can be undone, is handled by the same difference trick used for CSES Path Queries in Part 1. A path update combined with a path query, in general, needs heavy-light decomposition, which splits the tree into chains so that any path from the root to a vertex crosses only a logarithmic number of chains, each of which is a contiguous range that a segment tree can handle. CSES *Path Queries II*, which asks for the maximum along a path with point updates, genuinely needs this and is the hardest problem in this chapter, worth attempting only once everything before it feels comfortable.
-
----
-
 ## The ideas worth carrying forward
 
 1. **A subtree occupies a contiguous range in the Euler tour.** This single fact turns every array-based structure into a tree-based one.
@@ -248,8 +349,6 @@ A subtree update combined with a subtree query still works directly with the Eul
 10. **Before writing small-to-large merging, check whether an Euler tour combined with an offline sweep answers the same question with less code.**
 
 11. **The longest path in a tree may bend at some vertex**, which is why diameter-style problems combine the best two children rather than following a single branch downward.
-
----
 
 ## Where people lose these problems
 
@@ -321,22 +420,4 @@ A subtree update combined with a subtree query still works directly with the Eul
 - **CF 161D Distance in Tree** — *count paths of exactly a given length, with the length bounded by five hundred.* A dynamic program tracking, for each vertex, the count of descendants at each depth is much simpler than centroid decomposition here, and is a good example of a small parameter belonging in the state rather than requiring heavier machinery.
 - **CSES Fixed-Length Paths I** and **Fixed-Length Paths II** — *centroid decomposition.* The last topic to attempt in this chapter.
 
----
 
-**The sheet is right to describe this block as verification plus filling gaps.** Blocks M1 and M3 should move quickly if they are familiar, and the time saved there is best spent on M2, rerooting, and M4, small-to-large merging, since these are the two techniques most commonly missing and the two most likely to appear in a genuinely hard problem.
-
----
-
-## Check yourself
-
-1. What range does a subtree occupy in the Euler tour, and how is ancestry tested in constant time?
-2. Explain the second loop in the binary-lifting lowest-common-ancestor function. What invariant does it maintain?
-3. Write the distance formula in terms of depths and the lowest common ancestor.
-4. What distinguishes a problem needing one depth-first search from one needing two?
-5. Derive the rerooting transition for CSES Tree Distances II from scratch.
-6. Why does AC EDPC V require prefix and suffix products rather than a direct subtraction?
-7. Why is small-to-large merging bounded by a logarithmic number of moves per element, and what breaks if the swap step is omitted?
-8. Describe the heavy-child rule and explain why it gives the same complexity as small-to-large merging.
-9. What guarantee does centroid decomposition give about every path in the tree?
-10. Name three problems on this sheet that all reduce to "add a dimension for the choice made at this vertex."
-11. Given a question about the multiset inside each subtree, what should be checked before writing small-to-large merging?

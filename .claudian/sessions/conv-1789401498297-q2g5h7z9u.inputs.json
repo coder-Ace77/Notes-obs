@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1789401498297-q2g5h7z9u",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1789401498498-76muf8o",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1789401498287-cptkki5",
+      "timestamp": 1789401498287,
+      "rawDisplayText": "lets solve the last problem of sheet container scheduler what i would like is to wite artiicle in prpblems/Platform and infra keeping the article for real learning and guidance for both how to solve lld problem as well as how to solve this problem code lang java. \n\nLanguage should be simple human like. Don't include too many symbols , commas dasshes . Sample \n\nLow-Level Design is a detailed phase in the software development process that focuses on designing the individual components outlined in the High-Level Design. LLD delves into the specifics defining how modules, classes, functions and data structures interact to achieve the desired functionality. For example in a movie ticket booking system LLD would detail how components like seat selection, payment processing and ticket generation are implemented and interact with one another.",
+      "canonicalText": "lets solve the last problem of sheet container scheduler what i would like is to wite artiicle in prpblems/Platform and infra keeping the article for real learning and guidance for both how to solve lld problem as well as how to solve this problem code lang java. \n\nLanguage should be simple human like. Don't include too many symbols , commas dasshes . Sample \n\nLow-Level Design is a detailed phase in the software development process that focuses on designing the individual components outlined in the High-Level Design. LLD delves into the specifics defining how modules, classes, functions and data structures interact to achieve the desired functionality. For example in a movie ticket booking system LLD would detail how components like seat selection, payment processing and ticket generation are implemented and interact with one another.",
+      "context": {
+        "currentNote": {
+          "path": "DSA/Ultimate DSA/1. Ultime DSA 2026 calibration.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "0a5da8c386c2a44ecfae3d72b824a4cca7f99cc0d0675bed8ff9960bd821be84",
+      "providerUserMessageId": "7dd1fa53-78cd-4420-aef9-a3f285d6a57e",
+      "providerAssistantMessageId": "c6b40a04-3028-4a81-b67e-84929d49b84f"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1789401529344-20r15v5",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1789401529308-rotfdya",
+      "timestamp": 1789401529308,
+      "rawDisplayText": "lets solve the last problem of sheet container scheduler what i would like is to wite artiicle in prpblems/Platform and infra keeping the article for real learning and guidance for both how to solve lld problem as well as how to solve this problem code lang java. \n\nLanguage should be simple human like. Don't include too many symbols , commas dasshes . Sample \n\nLow-Level Design is a detailed phase in the software development process that focuses on designing the individual components outlined in the High-Level Design. LLD delves into the specifics defining how modules, classes, functions and data structures interact to achieve the desired functionality. For example in a movie ticket booking system LLD would detail how components like seat selection, payment processing and ticket generation are implemented and interact with one another.",
+      "canonicalText": "lets solve the last problem of sheet container scheduler what i would like is to wite artiicle in prpblems/Platform and infra keeping the article for real learning and guidance for both how to solve lld problem as well as how to solve this problem code lang java. \n\nLanguage should be simple human like. Don't include too many symbols , commas dasshes . Sample \n\nLow-Level Design is a detailed phase in the software development process that focuses on designing the individual components outlined in the High-Level Design. LLD delves into the specifics defining how modules, classes, functions and data structures interact to achieve the desired functionality. For example in a movie ticket booking system LLD would detail how components like seat selection, payment processing and ticket generation are implemented and interact with one another.",
+      "images": [],
+      "contentDigest": "0a5da8c386c2a44ecfae3d72b824a4cca7f99cc0d0675bed8ff9960bd821be84",
+      "providerUserMessageId": "26926042-26fb-480c-96de-06774cd1602b",
+      "providerAssistantMessageId": "334993fd-3aeb-45e4-a584-a699f76f935c"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1789435587033-g85dwru",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1789435586995-knsei9x",
+      "timestamp": 1789435586995,
+      "rawDisplayText": "ok what about extensibility like work;oads can be cronjobs etc. Resources can be changed. how do we handle that add a section of extensibility",
+      "canonicalText": "ok what about extensibility like work;oads can be cronjobs etc. Resources can be changed. how do we handle that add a section of extensibility",
+      "images": [],
+      "contentDigest": "c8eb2a5122743f7aaacd7ce4fc62957766b13a90e12b014e439eafcfeb77f1a6",
+      "providerUserMessageId": "ca404aa7-7277-4d03-acbd-a6850d90da20",
+      "providerAssistantMessageId": "5e3bb07e-3259-4eb7-a393-b3f9ee9ae30c"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1789435961084-0q1fc1x",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1789435961076-eeqhhie",
+      "timestamp": 1789435961076,
+      "rawDisplayText": "add section for multithreading as well",
+      "canonicalText": "add section for multithreading as well",
+      "images": [],
+      "contentDigest": "fdb460cbde8ca27721e4ad50c314783407d4eaecb96aa954863b1c7789b0a2fe",
+      "providerUserMessageId": "a9f3022e-efd0-4bd5-9b56-a3decc0cccac",
+      "providerAssistantMessageId": "8fbe420f-8a4e-406a-8398-72d2a60cddf8"
+    }
+  ]
+}

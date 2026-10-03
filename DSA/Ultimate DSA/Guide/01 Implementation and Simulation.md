@@ -8,7 +8,7 @@ sheet-section: A
 
 > **Read this before you start the problems.** You don't need to have seen any of them. Every idea comes with a small example you can follow from scratch.
 
-Back to [[00 Guide Index]] · Sheet section **A** in [[1. Ultime DSA 2026 calibration]]
+Back to [[00 Guide Index]] · Sheet section **A** in [[Ultime DSA 2026 calibration]]
 
 ---
 

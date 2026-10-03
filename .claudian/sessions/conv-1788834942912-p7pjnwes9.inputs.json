@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1788834942912-p7pjnwes9",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1788834944125-dvdja7w",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1788834942898-8wqdbyr",
+      "timestamp": 1788834942898,
+      "rawDisplayText": "convert to table",
+      "canonicalText": "convert to table",
+      "context": {
+        "currentNote": {
+          "path": "Interviews/HLD/1. Theory/Key technologies/13. Sharding and extreme database problems.md"
+        },
+        "editorSelection": {
+          "notePath": "Interviews/HLD/1. Theory/Key technologies/13. Sharding and extreme database problems.md",
+          "mode": "selection",
+          "selectedText": "ComponentPurposeNodes / sizeInstanceUnit rate**$/month****Aurora PostgreSQL** — computeusers, posts, comments32 shards × 2 (writer + replica)db.r7g.4xlarge$0.26/hr for r7g.large → $2.21/hr**$103,200**Aurora — storage30 TB cluster volume——$0.10/GB-month**$3,000**Aurora — I/O~19,200 avg IOPS——$0.20 per million requests**$10,100****Cassandra — likes**1.2T rows, 2 tables, RF 329i4i.8xlarge (7.5 TB NVMe)$2.746/hr**$58,100****Cassandra — follows**800B edges, 2 tables, RF 319i4i.8xlarge$2.746/hr**$38,100****Redis — feed cache**2.5 TB of feed lists32 (16 + replicas)cache.r7g.8xlarge$3.491/hr**$81,600****Redis — counters**560 GB of like/follower counts8cache.r7g.8xlarge$3.491/hr**$20,400****memcached — objects**1.38 TB of posts + authors12cache.r7g.8xlarge$3.491/hr**$30,600****S3 — hot media**3.4 PB (5%, recent)—S3 Standard$0.023/GB-month**$78,200****S3 — cold media**64.6 PB (95%)—Glacier Instant Retrieval$0.004/GB-month**$258,400****~130 nodes + 68 PB****$681,700**",
+          "lineCount": 1,
+          "startLine": 282
+        }
+      },
+      "images": [],
+      "contentDigest": "289de22c4369c929fb6c50dcc73d89aa783230155e5307344e7d82d20a6e38b5",
+      "providerUserMessageId": "eb8317a5-4044-4cab-a017-cbae210034b4",
+      "providerAssistantMessageId": "b38aa749-11b7-4434-a7d7-732949ead0c3"
+    }
+  ]
+}

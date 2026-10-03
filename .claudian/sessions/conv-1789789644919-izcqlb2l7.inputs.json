@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1789789644919-izcqlb2l7",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1789789645181-oqalhhy",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1789789644914-itm8g4o",
+      "timestamp": 1789789644914,
+      "rawDisplayText": "The current prompt is regarding Ultimate dsa sheet segemt tree section. Last time you were responsible to generate the questions however there are some issues with problems as well. As I have already told you sheet is made for the online assesments prep during 2026 where hard questions are asked however i can not see any problem with non lazy segemnt tree for an instance there are problems with mostly lazy propogation and advanced segment trees how ever the oa's also ask for simpler tricky non lazy sqg tree problems so can you add these as well",
+      "canonicalText": "The current prompt is regarding Ultimate dsa sheet segemt tree section. Last time you were responsible to generate the questions however there are some issues with problems as well. As I have already told you sheet is made for the online assesments prep during 2026 where hard questions are asked however i can not see any problem with non lazy segemnt tree for an instance there are problems with mostly lazy propogation and advanced segment trees how ever the oa's also ask for simpler tricky non lazy sqg tree problems so can you add these as well",
+      "context": {
+        "currentNote": {
+          "path": "DSA/Ultimate DSA/1. Ultime DSA 2026 calibration.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "b5c75d5e67b0f07f5b6ffffe4c72307130fefd10fe7a9fb3ec898c3d89541b1f",
+      "providerUserMessageId": "23b0caf9-c2ac-44e7-be30-818a85afaca1",
+      "providerAssistantMessageId": "9f716964-970b-461a-a2c0-06c001e509c1"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1789790001544-p4tw8ub",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1789790001539-7ehmirb",
+      "timestamp": 1789790001539,
+      "rawDisplayText": "Hey in the sheet itself keep the problems names only don't add tricks subtricks hints in sheet also organize the sheet itslef",
+      "canonicalText": "Hey in the sheet itself keep the problems names only don't add tricks subtricks hints in sheet also organize the sheet itslef",
+      "images": [],
+      "contentDigest": "2a5471398c1ba6c6a61d764fbe6dd5fc0b80cf00c6276a2bc30a0a5a3abf22b1",
+      "providerUserMessageId": "a30e5a80-ac09-4ce8-a96d-10ff214d46e7",
+      "providerAssistantMessageId": "8bce9050-0010-4b82-844e-3a3cb868fa65"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1789791473110-ypcup8v",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1789791473096-gp6ikh8",
+      "timestamp": 1789791473096,
+      "rawDisplayText": "continue",
+      "canonicalText": "continue",
+      "images": [],
+      "contentDigest": "61b00692723054a5a149bf4fbe7176ccd6af5efb8445c87903bfb287b52a662a",
+      "providerUserMessageId": "cdab35b4-e9f4-4372-b0c8-deb094462927",
+      "providerAssistantMessageId": "61d29219-ecbe-4f2f-8698-55ea9a6708b5"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1789793881546-emv60ex",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1789793881530-t3o39zc",
+      "timestamp": 1789793881530,
+      "rawDisplayText": "If you will look at the quide of the Segment trees it focus more on data strcutre part of segment trees however not so much on usage lets add a section for usage now i will tell you how to write this section what i want is to have article written in simple langiage and provides the general techniques used in problems from example using multiple segment trees , using 0,1 segment trees binary search on segment trees etc before writing let me know which techniques you are going to use i will let you know which ones to include and which one to not . I have already cleaned up article with my liking lets procede from here",
+      "canonicalText": "If you will look at the quide of the Segment trees it focus more on data strcutre part of segment trees however not so much on usage lets add a section for usage now i will tell you how to write this section what i want is to have article written in simple langiage and provides the general techniques used in problems from example using multiple segment trees , using 0,1 segment trees binary search on segment trees etc before writing let me know which techniques you are going to use i will let you know which ones to include and which one to not . I have already cleaned up article with my liking lets procede from here",
+      "images": [],
+      "contentDigest": "bde46bcc285d0b3dedb3c58cd862e77fcce0b9a35f030758855c3d433110b475",
+      "providerUserMessageId": "2ee18cb6-048e-4342-b919-27f5cee2de4d",
+      "providerAssistantMessageId": "66c4015c-7cbf-4d72-8abf-2b62580c6f6b"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1789794131469-tdjbkrt",
+      "userTurnOrdinal": 5,
+      "state": "accepted",
+      "localMessageId": "msg-1789794131461-eu1udjj",
+      "timestamp": 1789794131461,
+      "rawDisplayText": "ok lets add sections 1 2 5 7",
+      "canonicalText": "ok lets add sections 1 2 5 7",
+      "images": [],
+      "contentDigest": "166af6992414e7b7b2f2572212de36122479910bc8277a5b6a0e9cf732bcc38a",
+      "providerUserMessageId": "2230c51c-14d8-4d05-bf96-312efc0cf038",
+      "providerAssistantMessageId": "839cb7fb-c14d-4b95-8c28-71b53620f4ea"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1789794388268-svjn8z3",
+      "userTurnOrdinal": 6,
+      "state": "accepted",
+      "localMessageId": "msg-1789794388258-ni6lb8o",
+      "timestamp": 1789794388258,
+      "rawDisplayText": "ok seems like you have forgotting the kind of article langiage i prefer here is a sample change usage section for this \n\nLow-Level Design is a detailed phase in the software development process that focuses on designing the individual components outlined in the High-Level Design. LLD delves into the specifics defining how modules, classes, functions and data structures interact to achieve the desired functionality. For example in a movie ticket booking system LLD would detail how components like seat selection, payment processing and ticket generation are implemented and interact with one another.",
+      "canonicalText": "ok seems like you have forgotting the kind of article langiage i prefer here is a sample change usage section for this \n\nLow-Level Design is a detailed phase in the software development process that focuses on designing the individual components outlined in the High-Level Design. LLD delves into the specifics defining how modules, classes, functions and data structures interact to achieve the desired functionality. For example in a movie ticket booking system LLD would detail how components like seat selection, payment processing and ticket generation are implemented and interact with one another.",
+      "images": [],
+      "contentDigest": "86f1b9108f0c2f91466031a5e5b0c84713bb8e5ddf5cae839fafa670b7069527",
+      "providerUserMessageId": "f18ffac9-59f5-43bb-9f9e-ae0a82c03145",
+      "providerAssistantMessageId": "a952af77-3d99-4c72-a1a7-0055e5593f2d"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1789794602917-e0gyis7",
+      "userTurnOrdinal": 7,
+      "state": "accepted",
+      "localMessageId": "msg-1789794602907-2chznv1",
+      "timestamp": 1789794602907,
+      "rawDisplayText": "don't quote problems since user then has to go back see problem understand it and then solve like you have quoted pizzeria queries instead simply state a simple problem statement given following queries how will you solve",
+      "canonicalText": "don't quote problems since user then has to go back see problem understand it and then solve like you have quoted pizzeria queries instead simply state a simple problem statement given following queries how will you solve",
+      "images": [],
+      "contentDigest": "85b43897f44eb310c16d83f9fd509e7d9765a4472072641b6e5ea45ff75f2479",
+      "providerUserMessageId": "32dfe2b4-f9e3-480a-b3fc-9a8ab7bc047d"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1789794624677-4x8wqah",
+      "userTurnOrdinal": 8,
+      "state": "accepted",
+      "localMessageId": "msg-1789794624669-x3kau9l",
+      "timestamp": 1789794624669,
+      "rawDisplayText": "`don't quote problems since user then has to go back see problem understand it and then solve like you have quoted pizzeria queries instead simply state a simple problem statement given following queries and then you tell technique",
+      "canonicalText": "`don't quote problems since user then has to go back see problem understand it and then solve like you have quoted pizzeria queries instead simply state a simple problem statement given following queries and then you tell technique",
+      "images": [],
+      "contentDigest": "820394d760dd300ae64110e3dd137967a3f16fa07e69e2b170c60d6f4742b604",
+      "providerUserMessageId": "ac00ad6a-467b-480a-a929-17757244922b",
+      "providerAssistantMessageId": "2b060321-4c40-4cce-a2cf-2dde243d609f"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790928514950-xrxg32m",
+      "userTurnOrdinal": 9,
+      "state": "accepted",
+      "localMessageId": "msg-1790928514656-i6csru2",
+      "timestamp": 1790928514656,
+      "rawDisplayText": "explain the section what do these problems are about mainly line selected don't edit any files",
+      "canonicalText": "explain the section what do these problems are about mainly line selected don't edit any files",
+      "context": {
+        "editorSelection": {
+          "notePath": "DSA/Ultimate DSA/Ultime DSA 2026 calibration.md",
+          "mode": "selection",
+          "selectedText": "### The descent, disguised\n\n- [ ] LC 2286 · Booking Concert Tickets in Groups\n- [ ] LC 2940 · Find Building Where Alice and Bob Can Meet\n- [ ] LC 3072 · Distribute Elements Into Two Arrays II\n- [ ] CF 1354D · Multiset\n- [ ] CF 1181D · Irrigation",
+          "lineCount": 7,
+          "startLine": 237
+        }
+      },
+      "images": [],
+      "contentDigest": "ad352e77fd2f83a6f4961c9f355fcabca9da1d4a49567a36bc402f1cc9027a4d",
+      "providerUserMessageId": "5ea941e9-1203-4a64-b994-a1fc597c53e8",
+      "providerAssistantMessageId": "96b379f4-1bd6-4bb1-99b9-bd0c26250688"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790951386822-3i82otq",
+      "userTurnOrdinal": 10,
+      "state": "accepted",
+      "localMessageId": "msg-1790951386790-kr6yxis",
+      "timestamp": 1790951386795,
+      "rawDisplayText": "ok now actually since i have learned the semnet tree fully i want to rewrite feniwk tree anf mos article two things remove any fenwick tree problems from here and entire article should be written solely for mos for beginner who knows nothing about mo in detail it should be written with clarity and nuances which require understadning put here. You can read segment tree article to note down what imean and what style i prefer finally question in the ultimate sheet also needs to get change now  note do not change anything in segment tree artcule or questions section i have edited it to my preferences",
+      "canonicalText": "ok now actually since i have learned the semnet tree fully i want to rewrite feniwk tree anf mos article two things remove any fenwick tree problems from here and entire article should be written solely for mos for beginner who knows nothing about mo in detail it should be written with clarity and nuances which require understadning put here. You can read segment tree article to note down what imean and what style i prefer finally question in the ultimate sheet also needs to get change now  note do not change anything in segment tree artcule or questions section i have edited it to my preferences",
+      "images": [],
+      "contentDigest": "44f33eddce433620e29cd4ff13017f48db74ec15038cb3be2fa02cabd8509d80",
+      "providerUserMessageId": "ed954500-fe4e-40e3-8bf3-5844823e13b9",
+      "providerAssistantMessageId": "5e23a7e4-b9db-4040-883f-bcd802d5f0a8"
+    }
+  ]
+}

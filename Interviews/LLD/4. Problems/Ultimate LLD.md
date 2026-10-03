@@ -62,7 +62,7 @@
 - [ ] 47. API Gateway with Distributed Rate Limiting
 - [ ] 48. Message Queue with Consumer Groups (Kafka-lite)
 - [ ] 49. Object Store Metadata Service (S3-like)
-- [ ] 50. Container Scheduler (Kubernetes-lite)
+- [x] 50. Container Scheduler (Kubernetes-lite)
 
 ### Tier 1
 

@@ -1,0 +1,23 @@
+{
+  "id": "conv-1789789644919-izcqlb2l7",
+  "providerId": "claude",
+  "title": "Balance segment tree problem coverage",
+  "titleGenerationStatus": "success",
+  "createdAt": 1789789644927,
+  "lastActivityAt": 1790951626867,
+  "sessionId": "bf7d7f5d-d2b4-41fb-8e68-86c106bcf564",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "bf7d7f5d-d2b4-41fb-8e68-86c106bcf564"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 983,
+    "cacheReadInputTokens": 269797,
+    "contextWindow": 1000000,
+    "contextTokens": 270782,
+    "percentage": 27,
+    "contextWindowIsAuthoritative": true
+  }
+}

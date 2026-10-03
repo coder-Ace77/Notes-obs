@@ -1,288 +1,258 @@
----
-tags: [dsa, guide, fenwick, bit, offline-queries, mos-algorithm]
-chapter: 9
-sheet-section: I
----
-
-# Chapter 9 · Fenwick Trees, Offline Queries & Mo's Algorithm
-
-> **Read this before you start the problems.** Each technique comes with a small example, so no prior familiarity is assumed.
-
-Back to [[00 Guide Index]] · Sheet section **I** in [[1. Ultime DSA 2026 calibration]]
 
 ---
 
-## What makes these problems hard
+#### What makes these problems hard
 
-The difficulty in this block is unusual, because the problems contain very little that is conceptually complicated. What they require is noticing a permission you have been given and have not used.
+A segment tree works by deciding what each piece of the array stores so that the answers for two adjacent pieces can be combined into the answer for their union. Sums, maximums and greatest common divisors all combine this way. Some questions about a range do not. The number of distinct values in a range is the standard example. If the left half of a range holds 3 distinct values and the right half holds 4, the whole range holds anything from 4 to 7, because the same value can appear in both halves and the two numbers alone do not say how many are shared. No small summary stored per piece repairs this.
 
-When a problem supplies all its queries in advance, you are not obliged to answer them in the order they were written. You may sort them, group them, or interleave them with a pass over the data in whatever way is convenient. That freedom is often the entire solution, because a query that is difficult to answer at an arbitrary moment becomes easy if you can arrange to be at the right point in a sweep when you answer it.
+Mo's algorithm gives up on combining pieces. It starts from a different observation: if you already know the answer for one range, the answer for a nearby range is cheap to obtain, because adding or removing a single element at either end changes the answer by an amount that is easy to compute. The whole technique is a way of ordering the queries so that every query is close to the one before it.
 
-Problem setters make heavy use of this because the direct solution is obvious and runs just slowly enough to fail. With a hundred thousand elements and a hundred thousand queries, the direct approach performs around ten billion operations while the intended one performs a few million. Nothing in the statement hints at the technique, so the whole problem is recognising that reordering is available.
+Mo's algorithm applies when three things hold:
 
-The second source of difficulty is that the structures involved, particularly Fenwick trees, are easy to write incorrectly in small ways. Index conventions, coordinate compression, and the requirement that adding and removing an element be exact inverses of each other all produce errors that appear only on the second or third query.
+1. **All queries are known in advance.** The technique reorders them, so it cannot be used when each query depends on the answer to an earlier one or when queries must be answered as they arrive.
+2. **The array does not change between queries.** The basic version assumes a fixed array. A later section extends it to updates.
+3. **Adding one element to the range, or removing one element from the range, can be handled quickly**, ideally in constant time. This is where all the design work lies.
 
----
+The difficulty in these problems is concentrated in three places. The first is recognising that the problem is a Mo's problem, since nothing in the statement mentions it. The second is writing the add and remove operations so that they are exact inverses of each other. The third is a handful of small implementation details, such as the order of the pointer movements, that do not crash but silently produce wrong answers.
 
-## What these problems look like
+## The idea: a window that moves
+
+Suppose the array is `a` of length `n`, and each query is a pair `(l, r)` asking for something about the elements `a[l], a[l+1], ..., a[r]`. The direct solution scans the range for each query, which costs up to `n` per query and `n * q` in total. With `n` and `q` both equal to 100000 that is ten billion operations, which is too slow.
+
+Mo's algorithm keeps a **window** `[L, R]` over the array, together with whatever information is needed to know the answer for the elements currently inside the window. To answer a query `(l, r)` it does not start from scratch. It moves the window one step at a time until `L = l` and `R = r`, and reads off the answer.
+
+There are exactly four moves, and each one is a single element entering or leaving:
+
+- `R` moves right by one: the element `a[R+1]` enters.
+- `R` moves left by one: the element `a[R]` leaves.
+- `L` moves left by one: the element `a[L-1]` enters.
+- `L` moves right by one: the element `a[L]` leaves.
+
+Take a concrete problem. Given an array and many queries `(l, r)`, report the number of distinct values in `a[l..r]`. The window keeps an array `cnt` where `cnt[v]` is the number of times `v` occurs inside the window, and a number `distinct`. When an element enters, increase its count, and if the count just became 1, then `distinct` goes up by one. When an element leaves, decrease its count, and if the count just became 0, then `distinct` goes down by one.
+
+```cpp
+void add(int i) { if (cnt[a[i]]++ == 0) distinct++; }
+void del(int i) { if (--cnt[a[i]] == 0) distinct--; }
+```
+
+A small trace makes the mechanics concrete. Let `a = [1, 2, 1, 3]` and let the queries be `(0, 2)` followed by `(1, 3)`. The window starts empty, which is represented by `L = 0` and `R = -1`.
+
+- For `(0, 2)`, `R` moves right three times. The elements 1, 2, 1 enter. The counts are `cnt[1] = 2` and `cnt[2] = 1`, so `distinct = 2`.
+- For `(1, 3)`, `R` moves right once and the element 3 enters, so `distinct = 3` and the window is `[0, 3]`. Then `L` moves right once and the element `a[0] = 1` leaves. Its count drops from 2 to 1, which is not zero, so `distinct` stays 3. The answer is 3, which is correct since the range holds 2, 1, 3.
+
+That second step is the reason the removal rule checks whether the count reached zero. Removing a value from the window does not remove it from the answer if another copy remains inside.
+
+## Moving the window safely
+
+The four moves are written as four loops, and their order matters. For a query (l,r). and current window `(L,R)`
+
+```cpp
+while (L > l) add(--L);     // grow to the left
+while (R < r) add(++R);     // grow to the right
+while (L < l) del(L++);     // shrink from the left
+while (R > r) del(R--);     // shrink from the right
+```
+
+**Both loops that grow the window must come before both loops that shrink it.** To see why, suppose the window is `[5, 8]` and the next query is `(1, 3)`. If the right end shrinks first, `R` walks from 8 down to 3 while `L` is still 5. After removing `a[8], a[7], a[6], a[5]` the window is empty, and the next step removes `a[4]`, an element that was never inside. Its count becomes negative or its contribution is subtracted from an answer that never included it. Nothing crashes, and the later answers are all slightly wrong. If the left end grows first, `L` walks from 5 down to 1 and adds `a[4], a[3], a[2], a[1]`, giving the window `[1, 8]`. Now shrinking the right end removes `a[8]` down to `a[4]`, and every one of those elements is genuinely inside the window.
+
+The rule behind the order is that **the window must never be invalid**, meaning `L` must never exceed `R + 1`. Growing first guarantees that the window only ever gets bigger on its way to covering both the old and the new range, and shrinking afterwards trims it down to the new range.
+
+## Choosing the order of the queries
+
+Moving the window is cheap per step, so the total cost is the total distance travelled by the two ends. That distance depends entirely on the order in which the queries are processed.
+
+If the queries are processed in the order given, the cost can be as bad as the brute force. Imagine queries that alternate between `(0, 1)` and `(n-2, n-1)`. Every query moves both ends across nearly the whole array, so the total is about `n * q` again.
+
+Sorting by `l` alone does not help, because the right ends of consecutive queries can still be anywhere. Sorting by `l` and then by `r` does not help either, since two queries with different `l` values and the same neighbourhood of `r` values force the right end to travel back and forth between them.
+
+The ordering that works divides the array into **blocks** of size `B` and treats the left endpoint only coarsely:
+
+1. Group the queries by the block that their left endpoint falls into, which is `l / B`.
+2. Within one group, sort the queries by `r` in increasing order.
+
+Now count the movement.
+
+- **The left end.** Every query in a group has its `l` inside the same block of size `B`, so between two consecutive queries the left end moves at most `B`. Over all `q` queries that is at most `q * B`. Moving from one group to the next adds at most `2B` per group, which is negligible.
+- **The right end.** Within one group the queries are sorted by `r`, so the right end only moves forwards and travels at most `n` in total. There are `n / B` groups, so the right end travels at most `n * n / B` overall, counting the walk back to the start of each group.
+
+The total is therefore about `q * B + n * n / B`. The first term grows with `B` and the second shrinks with it, and the sum is smallest when they are equal, which gives
+
+```
+B = n / sqrt(q)        total movement ≈ 2 * n * sqrt(q)
+```
+
+For `n = q = 100000` this gives `B ≈ 316` and a total of roughly `6 * 10^7` steps, against `10^10` for the direct approach. That is the entire gain.
+
+When `n` and `q` are about the same size, `B = sqrt(n)` is the usual shortcut and is nearly as good. When the two differ a lot, the formula above is the one to use.
+
+**The odd-even refinement.** After finishing one group the right end sits at the largest `r` of that group and then has to walk all the way back to the small `r` values of the next group. This can be avoided by sorting the groups alternately: increasing `r` in even-numbered groups and decreasing `r` in odd-numbered groups. The right end then finishes one group near where the next group begins. This roughly halves the right end's travel and is worth including. It does not change the complexity, only the constant.
+
+## The template
+
+```cpp
+struct Query { int l, r, idx; };
+
+int n;
+vector<int> a;
+// state of the window and the function-specific add / del go here
+
+vector<long long> solve(vector<Query>& qs) {
+    if (qs.empty()) return {};
+    int B = max(1, (int)(n / sqrt((double)qs.size())));
+
+    sort(qs.begin(), qs.end(), [&](const Query& x, const Query& y) {
+        int bx = x.l / B, by = y.l / B;
+        if (bx != by) return bx < by;
+        return (bx & 1) ? x.r > y.r : x.r < y.r;     // odd-even refinement
+    });
+
+    vector<long long> ans(qs.size());
+    int L = 0, R = -1;                               // empty window
+    for (auto& qu : qs) {
+        while (L > qu.l) add(--L);
+        while (R < qu.r) add(++R);
+        while (L < qu.l) del(L++);
+        while (R > qu.r) del(R--);
+        ans[qu.idx] = current();                     // read the answer for the window
+    }
+    return ans;
+}
+```
+
+Two details in this template are easy to get wrong. The answer is stored at `ans[qu.idx]`, the position the query had in the input, because the queries have been sorted and the output must be in the original order. And the state of the window, such as `cnt`, is created once and carried across all queries. It is never reset between queries, since the whole point is that each query starts from the previous one.
+
+## Designing add and remove
+
+Everything that differs between Mo's problems is the content of `add` and `del`. The method is always the same.
+
+1. Keep `cnt[v]`, the number of times each value occurs inside the window.
+2. Express the answer as a function of those counts, and keep a running value `cur` for it.
+3. When one count changes from `c` to `c + 1`, work out how `cur` changes using only `c`. For removal, do the reverse.
+
+**The rule that prevents most bugs is that `del` must undo `add` exactly, which means performing the same steps in the opposite order.** The four examples below follow this pattern, and in each the removal is the addition read backwards.
+
+**Distinct values.** Covered above. `cur` is the number of values with a positive count.
+
+**The sum over every value `v` of `v * cnt[v]^2`.** Suppose a query asks, for the range, for the sum over each value `v` occurring in it of `v` multiplied by the square of the number of times it occurs. When `cnt[v]` goes from `c` to `c + 1` the term changes from `v*c^2` to `v*(c+1)^2`, a difference of `v*(2c+1)`.
+
+```cpp
+void add(int i) { int v = a[i]; cur += (long long)v * (2LL * cnt[v] + 1); cnt[v]++; }
+void del(int i) { int v = a[i]; cnt[v]--; cur -= (long long)v * (2LL * cnt[v] + 1); }
+```
+
+In `add` the count is read before it is increased. In `del` the count is decreased first and then read, so the amount subtracted is exactly the amount that `add` added when it went from the smaller count to the larger one. This ordering is what makes the two functions inverses. Swapping the order in `del` produces a first answer that is correct and later answers that drift.
+
+**The number of pairs of equal elements.** Suppose a query asks how many pairs of positions `i < j` in the range have `a[i] = a[j]`. Adding an element `v` creates one new pair with each copy of `v` already inside.
+
+```cpp
+void add(int i) { cur += cnt[a[i]]; cnt[a[i]]++; }
+void del(int i) { cnt[a[i]]--; cur -= cnt[a[i]]; }
+```
+
+**Subarrays with a given xor.** Suppose each query `(l, r)` asks how many subarrays inside `a[l..r]` have xor equal to `k`. This one needs a change of viewpoint before Mo's algorithm applies. Let `pre[0] = 0` and `pre[i] = a[1] xor ... xor a[i]`, using one-based positions. A subarray `a[x..y]` has xor `pre[x-1] xor pre[y]`, so it has xor `k` exactly when `pre[x-1] xor pre[y] = k`. The question therefore becomes: among the prefix values `pre[l-1], pre[l], ..., pre[r]`, count the pairs whose xor is `k`.
+
+The window must now move over the **prefix array** `pre[0..n]`, and the range for a query `(l, r)` is `[l-1, r]`, shifted by one on the left from the range in the statement. Forgetting this shift is the usual mistake. Once the window is over `pre`, adding an element pairs it with every earlier element whose value is `pre[i] xor k`.
+
+```cpp
+void add(int i) { cur += cnt[pre[i] ^ k]; cnt[pre[i]]++; }
+void del(int i) { cnt[pre[i]]--; cur -= cnt[pre[i] ^ k]; }
+```
+
+The array `cnt` needs to be indexed by every possible value of `pre[i] ^ k`, so it must be sized to the next power of two above the largest value that can occur, and not merely to the largest prefix value. When `k = 0` the two indices coincide, and the order inside `add` and `del` is what keeps an element from pairing with itself.
+
+The general lesson is that the first step in a Mo's problem is often to translate the question into the index space that the window will move over. A problem about subarrays becomes a problem about pairs of prefix positions, and the window then moves over prefix positions.
+
+**What cannot be done directly.** Maximum, minimum and similar quantities do not fit, because removing the current maximum requires knowing the next largest element, and the window does not remember it. There is a variant for this, described in the last section.
+
+## Practical details
+
+**Compress large values first.** If the values are up to a billion, `cnt` cannot be an array indexed by value. A map would work but adds a logarithmic factor to every one of the roughly `10^8` add and remove calls, which is too slow. Replace each value by its rank among the distinct values, so that `cnt` is a plain array. If the answer uses the original values, as in the sum of `v * cnt[v]^2`, keep a separate array that maps each rank back to its value.
+
+**Keep add and del tiny.** They are called around `n * sqrt(q)` times, so even a modest cost per call multiplies into seconds. A logarithmic cost per call, such as inserting into a balanced tree, usually makes the solution too slow at `n = q = 10^5`. This is also the practical test for whether Mo's algorithm applies: if you cannot write add and remove in constant time, think again.
+
+**Use 64-bit integers for the answer.** Counting pairs or summing squares in a range of size `10^5` exceeds the range of a 32-bit integer, and the overflow is silent.
+
+**Watch the indexing.** Statements usually number positions from 1. The window code above uses 0-based positions with an inclusive right end, so subtract one from both `l` and `r` when reading the queries, and never mix the two conventions.
+
+**Judge feasibility from the constraints.** With `n` and `q` around `10^5` and a time limit of two to four seconds, Mo's algorithm is comfortable. At `2 * 10^5` it is workable if add and remove are very light. At `10^6` it is not an option.
+
+## When to choose Mo's algorithm
 
 The signals are:
 
-- **All queries are supplied in advance**, as an array rather than through an interactive protocol. This is the permission to reorder.
-- **Queries have an obvious sort key**, such as a right endpoint, a threshold, or a time.
-- **The question involves counting pairs**, counting inversions, or counting elements below a value within a range.
-- **The answer would be easy if the data were processed in sorted order** rather than in index order.
-- **The product of the number of elements and the square root of the number of queries fits comfortably**, at around a hundred million operations, with no better structure apparent. That indicates Mo's algorithm.
+- All queries are given up front, as an array of ranges.
+- The array is fixed, or changes only through a small number of point updates.
+- The answer depends on **how many times values occur** in the range, or on pairs and triples of equal or related elements. Words like "distinct", "pairs of equal", "how many values occur exactly k times" and "sum of squares of counts" are typical.
+- The answer for a range cannot be built by combining the answers for two halves.
+- The constraints are around `10^5`, which fits the cost of `n * sqrt(q)`.
 
----
+Before using it, check whether something simpler works. If the answer for a range can be combined from its two halves, a segment tree from chapter [[08 Segment Trees]] is better. If the queries can be sorted by one endpoint so that a structure only ever grows, an offline sweep costing a logarithmic factor beats Mo's algorithm, which costs a square-root factor. Mo's algorithm is the fallback for when neither applies, and it earns its place because the add and remove functions are usually shorter to get right than a clever decomposition.
 
-## Part 1 · The Fenwick tree
+## Variants
 
-A Fenwick tree, also called a binary indexed tree, supports updating a single position and querying the total of a prefix, each in logarithmic time, in about six lines.
+**Mo's algorithm with updates.** Suppose the queries are interleaved with point assignments of the form "set `a[pos]` to `x`". The array is no longer fixed, but the idea extends by adding a third pointer `T` that counts how many updates have been applied. A query is now a triple `(l, r, t)`, where `t` is the number of updates that happen before it. To answer it, the window moves as before, and the time pointer moves forwards or backwards over the update list until it equals `t`.
 
-```cpp
-struct BIT {
-    int n; vector<long long> t;
-    BIT(int n) : n(n), t(n + 1, 0) {}
-    void add(int i, long long v) { for (++i; i <= n; i += i & -i) t[i] += v; }
-    long long sum(int i) { long long s = 0; for (++i; i > 0; i -= i & -i) s += t[i]; return s; }
-    long long range(int l, int r) { return sum(r) - (l ? sum(l-1) : 0); }   // inclusive
-};
-```
-
-It is worth choosing this over a segment tree whenever the operation can be undone, which covers sums, exclusive or, and counts, and whenever prefix queries are sufficient. That describes most situations. The code is shorter to produce under time pressure and runs around three times faster in practice.
-
-It cannot be used for minimums or maximums, since those cannot be undone, nor for range updates requiring deferred work. Those cases belong to chapter [[08 Segment Trees]].
-
-Two extensions are worth knowing.
-
-**Range updates with point queries.** Storing a difference array inside the tree means adding a value at the left end of a range and subtracting it just past the right end, after which the value at any position is the prefix total up to that position. This is the difference array from chapter [[06 Prefix Sums and Difference Arrays]] made to work with interleaved queries.
-
-**Finding the k-th element by descending the tree.** To locate the smallest index whose prefix total reaches a target:
+Applying an update at time `T` means changing `a[pos]` from its old value to its new value. If `pos` lies inside the current window `[L, R]`, the old value must be removed from the window state and the new value added. If `pos` lies outside the window, only the array entry changes. Undoing an update swaps the two values. For this, every update records both its old and its new value, which is filled in beforehand by replaying the updates once on a copy of the array.
 
 ```cpp
-int kth(long long k) {
-    int pos = 0;
-    for (int pw = 1 << 20; pw; pw >>= 1)
-        if (pos + pw <= n && t[pos + pw] < k) { pos += pw; k -= t[pos]; }
-    return pos;
+void applyUpdate(int k, int L, int R, bool forward) {
+    int pos  = U[k].pos;
+    int from = forward ? U[k].oldv : U[k].newv;
+    int to   = forward ? U[k].newv : U[k].oldv;
+    if (L <= pos && pos <= R) { delValue(from); addValue(to); }
+    a[pos] = to;
 }
 ```
 
-This turns a Fenwick tree into an order-statistics structure, which removes the need for a segment tree in several problems.
+The queries are sorted by `(l / B, r / B, t)`. Both `l` and `r` are now treated in blocks, and within a pair of blocks the time pointer sweeps forwards. The movement is about `q * B` for each of the two window ends plus `(n / B)^2 * U` for the time pointer, where `U` is the number of updates. Balancing these gives `B ≈ n^(2/3)` and a total of about `n^(5/3)`, which is around `2 * 10^8` for `n = 10^5` and needs light add and remove functions.
 
----
+**Mo's algorithm on a tree.** Suppose each query gives two nodes `u` and `v` of a tree and asks about the nodes on the path between them. Run a depth-first search that records each node twice, once when it is entered at position `tin[u]` and once when it is left at position `tout[u]`, producing a sequence of length `2n`. Take `tin[u] <= tin[v]` after swapping if needed, and let `w` be the lowest common ancestor.
 
-## Part 2 · Sweeping positions while querying values
+- If `w = u`, the path corresponds to the range `[tin[u], tin[v]]` of the sequence.
+- Otherwise it corresponds to the range `[tout[u], tin[v]]`, and the node `w` must additionally be included by hand while answering this query.
 
-This is the most useful pattern in the chapter, and the standard example is counting inversions, meaning pairs of positions where the earlier element is larger than the later one.
-
-Process the array from left to right. Before inserting the current element, ask how many already-inserted elements are larger than it, which is a suffix query on a tree indexed by value. Then insert it.
+In either range, a node on the path appears **exactly once**, while a node that is off the path and has both of its entries inside the range appears twice. So the window keeps a flag `inPath[node]` and, whenever a position of the sequence enters or leaves the window, **toggles** the node: if the flag is set, the node is removed from the state, and otherwise it is added. The rest of the algorithm, including the sorting, is unchanged, applied to a sequence of length `2n`.
 
 ```cpp
-// after compressing the values of a[] into the range 0 to n-1
-BIT bit(n); long long inv = 0;
-for (int i = 0; i < n; i++) {
-    inv += bit.range(a[i] + 1, n - 1);       // already-seen values larger than a[i]
-    bit.add(a[i], 1);
+void toggle(int v) {
+    if (inPath[v]) del(v); else add(v);
+    inPath[v] = !inPath[v];
 }
 ```
 
-The way to hold this in mind is that the tree is indexed by value and its contents represent everything to the left of the current position. Advancing the sweep changes what "to the left" means, and each query asks a question about values within that set. That description covers LC 315, LC 493, LC 327, CF 61E, CF 459D and CSES *Nested Ranges Count*.
-
-**Counting triples** extends the same idea. CF 61E asks for triples of positions in strictly decreasing order of value. For each position taken as the middle of a triple, compute how many larger values lie to its left and how many smaller values lie to its right, then sum the products. That requires two sweeps, one in each direction, and the decomposition of counting candidates on each side of a middle element is reusable. LC 2179 uses the same structure.
-
----
-
-## Part 3 · Sorting queries by a threshold
-
-When a query carries a parameter and the answer behaves consistently as that parameter grows, sorting the queries by it means the structure only ever grows and never needs anything undone.
-
-**LC 1697** asks, for each query, whether two nodes are connected using only edges below a given weight. Sorting the edges by weight and the queries by their limit, then adding edges into a union-find structure as the sweep passes their weight, means each query can be answered by a connectivity check at that moment. This belongs to chapter [[10 DSU Advanced]].
-
-**LC 2503** asks how many grid cells are reachable from the origin using only cells below a query value. Sorting the queries in increasing order means a flood outwards from the origin only ever expands, so no work is ever repeated.
-
-The property that makes both work is that the structure only grows. When a problem genuinely requires undoing, the response is rollback or a decomposition over time, both of which are covered in chapter [[10 DSU Advanced]].
-
----
-
-## Part 4 · Sweeping the right endpoint with a last-occurrence marker
-
-This pattern is described in chapter [[08 Segment Trees]] as well, because it belongs to both, and it is the single most reusable offline technique on the sheet.
-
-The problem is to count distinct values within a range, with all queries supplied in advance.
-
-Sort the queries by their right endpoint and sweep that endpoint from left to right. Maintain a tree in which position `j` holds one exactly when `j` is currently the rightmost occurrence of its value among positions up to the current endpoint. When the sweep advances to a new position, if that value appeared earlier, subtract one at its previous position, then add one at the current position. The number of distinct values in a range is then the sum over that range.
-
-The reason this is correct is that each distinct value should contribute exactly once, and counting it at its rightmost occurrence guarantees that the counted position falls inside the query range precisely when the value appears somewhere in it.
-
-**CF 703D** is a good variation. It asks for the exclusive or of all values appearing an even number of times in a range. The useful observation is that the exclusive or of everything in the range, combined with the exclusive or of the distinct values in the range, leaves exactly the values appearing an even number of times. The first quantity is a prefix exclusive or and the second is the sweep above with exclusive or in place of counting, so a difficult-looking problem becomes two straightforward pieces.
-
----
-
-## Part 5 · Mo's algorithm
-
-Mo's algorithm applies when the queries are ranges, all supplied in advance, there are no updates, and the answer for a range can be adjusted in constant time when either endpoint moves by one. It is the fallback for when no decomposition into prefix queries exists.
-
-The idea is to reorder the queries so that the total movement of the two endpoints is small. Divide the positions into blocks and sort the queries by which block their left endpoint falls in, then by their right endpoint, alternating the direction of that second key from block to block.
-
-```cpp
-int B = max(1, (int)(n / sqrt(q + 1)));
-sort(qs.begin(), qs.end(), [&](const Q& a, const Q& b){
-    if (a.l / B != b.l / B) return a.l / B < b.l / B;
-    return ((a.l / B) & 1) ? a.r > b.r : a.r < b.r;      // alternating direction
-});
-
-int curL = 0, curR = -1;
-for (auto& qu : qs) {
-    while (curR < qu.r) add(++curR);
-    while (curL > qu.l) add(--curL);
-    while (curR > qu.r) remove(curR--);
-    while (curL < qu.l) remove(curL++);
-    ans[qu.idx] = current;
-}
-```
-
-The four loops must appear in this order, with both expansions before both contractions. Contracting first can momentarily leave the left pointer beyond the right pointer, which makes the tracked range invalid and corrupts the counters in a way that produces plausible but wrong answers.
-
-The cost is proportional to the number of elements plus the number of queries, multiplied by the square root of the number of elements. The left pointer moves within a block for each query and jumps across the array when the block changes, giving a total governed by the query count times the block size plus the squared element count divided by the block size, which is smallest when the block size is the element count divided by the square root of the query count.
-
-The only design work is writing the functions that add and remove one element while keeping the answer current:
-
-| Problem | What is tracked | What adding does |
-|---|---|---|
-| CF 86D Powerful array | the sum of value times squared count | `cur += v * (2 * cnt[v] + 1); cnt[v]++` |
-| CF 617E XOR and Favorite Number | the number of prefix pairs differing by `k` | `cur += cnt[pre[i] ^ k]; cnt[pre[i]]++` |
-| counting distinct values | how many values have a positive count | `if (++cnt[v] == 1) distinct++` |
-
-CF 617E is worth extra attention because of its indexing. The question concerns pieces of the array, which correspond to *pairs of prefix positions*, so the range that Mo's algorithm moves over is a range of prefix indices shifted by one from the range in the statement. Getting that shift right is most of the problem, and it is a good illustration of translating a problem into the index space that a tool operates on.
-
-When a sweep with a Fenwick tree exists, it is preferable, since it costs a logarithmic factor rather than a square-root one and involves fewer things to get wrong. Mo's algorithm is worth reaching for only after you have satisfied yourself that no sweep applies.
-
----
-
-## Part 6 · Sparse tables
-
-For range minimums and maximums on an array that never changes, a sparse table answers queries in constant time after a preprocessing pass.
-
-```cpp
-int LOG = 32 - __builtin_clz(n);
-vector<vector<int>> sp(LOG, vector<int>(n));
-sp[0] = a;
-for (int k = 1; k < LOG; k++)
-    for (int i = 0; i + (1<<k) <= n; i++)
-        sp[k][i] = min(sp[k-1][i], sp[k-1][i + (1<<(k-1))]);
-
-auto query = [&](int l, int r) {                 // inclusive
-    int k = 31 - __builtin_clz(r - l + 1);
-    return min(sp[k][l], sp[k][r - (1<<k) + 1]);
-};
-```
-
-The query combines two overlapping blocks that together cover the range. Overlapping is harmless because taking the minimum of a value with itself changes nothing, which is the property that makes this work for minimums and maximums and not for sums. Remembering that distinction is more useful than remembering the code.
-
-Sparse tables also give constant-time lowest common ancestor queries via an Euler tour, which is covered in chapter [[13 Trees]].
-
----
-
-## The ideas worth carrying forward
-
-1. **Queries supplied in advance may be answered in any order.** Checking for this in every query problem costs a few seconds and occasionally solves the problem outright.
-
-2. **A Fenwick tree indexed by value, swept along positions, holds everything to the left of the current point.** This converts two-dimensional pair counting into one-dimensional prefix queries.
-
-3. **Counting triples decomposes into candidates on each side of a middle element**, computed by two sweeps in opposite directions.
-
-4. **Counting each distinct value at its rightmost occurrence** is the basis of the whole distinct-values family, and the pattern applies well beyond counting.
-
-5. **Sorted queries mean the structure only ever grows**, so nothing needs undoing. Sorting is what buys that property.
-
-6. **Mo's algorithm is a fallback rather than a first choice.** Look for a sweep before reaching for it.
-
-7. **In Mo's algorithm, both expansions come before both contractions**, since the alternative can briefly invert the range.
-
-8. **A Fenwick tree can be descended in logarithmic time** to answer order-statistics questions, which sometimes removes the need for a segment tree.
-
-9. **Sparse tables work for minimums and maximums because overlapping blocks are harmless.** They do not work for sums.
-
-10. **Prefer a Fenwick tree to a segment tree whenever the operation can be undone and prefixes suffice.** It is shorter, faster, and offers fewer opportunities for error.
-
----
+**When removal is impossible.** For a quantity such as the maximum in a range, an element cannot be taken out of the state. The fix is a version of the algorithm that only ever adds. The groups of queries are formed as before, and for each group the right end moves strictly forwards, adding elements as usual. For each individual query, the left end starts from the end of its block, moves left to `l` while adding elements, answers the query, and then **rolls back** every change made during that walk by restoring the saved values. Queries whose range lies entirely inside one block are answered by brute force. The state therefore needs a way to undo the last additions, which is straightforward for a maximum since the previous value can be saved before each change.
 
 ## Where people lose these problems
 
-**Forgetting to compress the values.** With values up to a billion and a tree indexed by value, compression has to come first.
+**Shrinking before growing.** The window briefly becomes invalid and subtracts elements that were never added. The answers are wrong with no obvious cause.
 
-**Index conventions.** Fenwick trees are naturally one-indexed, since the bit trick fails at zero. The template above hides this behind an increment, but writing one from scratch requires being deliberate about it.
+**An add and a del that are not exact inverses.** In the squared-count example, reading the count before decrementing in `del` makes the subtracted amount differ from the added amount. The first answer is correct and later ones drift.
 
-**Mixing inclusive and exclusive ranges between structures.** The Fenwick template here uses inclusive ranges while the segment tree in chapter [[08 Segment Trees]] uses half-open ones, and that inconsistency is worth resolving in your own template file.
+**Resetting the state between queries.** This turns the algorithm back into the brute force, and often also corrupts the counts.
 
-**Ordering Mo's loops with contractions first.** The symptom is wrong answers with no obvious cause.
+**Forgetting the prefix shift.** In problems about subarrays that are solved through prefix values, the window moves over the prefix array and the left end of each query is `l - 1` rather than `l`.
 
-**Choosing the block size badly.** The element count divided by the square root of the query count is the right choice; the square root of the element count is the usual approximation and is acceptable when the two counts are similar. A hardcoded constant is not.
+**Choosing the block size badly.** A constant such as 500 regardless of the input ruins the balance between the two terms. Use `n / sqrt(q)`, or `sqrt(n)` when the two sizes are similar, and make sure the block size is at least 1.
 
-**Adding and removing that are not exact inverses.** In CF 86D, adding performs an update and then increments the count, so removing must decrement first and then update. Getting the order wrong produces a correct first answer followed by incorrect ones, which is a confusing symptom to diagnose.
+**Using a map for the counts.** The solution is correct and times out. Compress the values and use an array.
 
-**Using a sparse table for sums.** Overlapping blocks double-count, so a prefix sum is the correct tool.
+**Writing answers in sorted order.** The queries were reordered, so the answer must be stored at the query's original index.
 
-**In CSES Josephus Problem II, simulating.** The problem repeatedly removes the k-th remaining element, which is an order-statistics question answered by descending a Fenwick tree.
-
-**In CSES Collecting Numbers II, recomputing everything after each swap.** The answer depends on relationships between values that are adjacent in value rather than in position, so a swap only affects a constant number of those relationships. The correct procedure is to subtract the affected relationships, perform the swap, and add them back, taking care when the two swapped values are themselves adjacent in value.
+**A 32-bit answer.** Counting pairs in a range of `10^5` elements gives values near `5 * 10^9`.
 
 ---
 
-## Working through the problem list
+## Quick questions
 
-### Block 1 · The structures
-
-- **CSES Dynamic Range Sum Queries** — *update single positions and query range sums.* The Fenwick template exactly.
-- **CSES Range Xor Queries** — *the same with exclusive or.* Since exclusive or is its own inverse, a range is the combination of two prefixes.
-- **CSES Static Range Minimum Queries** — *range minimums on a fixed array.* The sparse table.
-- **AC ACL Practice B · Fenwick Tree** — *the same template again in AtCoder form.*
-
-### Block 2 · Sweeping positions, querying values
-
-- **CSES Collecting Numbers II** — *count how many passes are needed to collect numbers in order, under repeated swaps.* Maintaining a global count under local changes.
-- **CF 459D Pashmak and Parmida's problem** — *count pairs where a prefix occurrence count exceeds a suffix occurrence count.* Precompute the two counts, then sweep with a Fenwick tree. A clean two-phase problem of medium difficulty.
-- **CF 61E Enemy is weak** — *count triples of positions in strictly decreasing order.* The middle-element decomposition.
-- **LC 2179 Count Good Triplets in an Array** — *count triples appearing in the same relative order in two permutations.* The same decomposition with a mapping step first.
-- **LC 2519 Count the Number of K-Big Indices** — *count positions with at least k smaller elements on each side.* Two sweeps and an intersection.
-- **CF 220B Little Elephant and Array** — *count values whose occurrence count within a range equals the value itself.* Offline by right endpoint with an indicator tree, which leads into the next block.
-
-### Block 3 · Sweeping the right endpoint
-
-- **CF 703D Mishka and Interesting sum** — *the exclusive-or problem from Part 4.*
-- **CF 1093E Intersection of Permutations** — *count values appearing in a range of one permutation and a range of another, with updates.* Mapping the values of one permutation to their positions in the other turns this into counting points in a rectangle with point updates, which needs a Fenwick tree of ordered sets or a divide-and-conquer approach over time. Genuinely difficult and best treated as a stretch problem.
-
-### Block 4 · Mo's algorithm
-
-- **CF 86D Powerful array** — *sum, over distinct values in a range, of the squared count times the value.* The standard first exercise, with constant-time updates.
-- **CF 617E XOR and Favorite Number** — *count pieces of a range whose exclusive or equals a given value.* Mo's algorithm over prefix indices, where the index shift is the difficulty.
-
-### Block 5 · Order statistics and others
-
-- **CSES Josephus Problem II** — *repeatedly remove every k-th remaining person.* Descend the Fenwick tree.
-- **LC 1157 Online Majority Element In Subarray** — *find an element occupying a majority of a range.* The word "online" removes the option of sorting the queries. Two approaches work: sampling around twenty random positions in the range, since a majority element is very likely to be hit; or a segment tree whose nodes store a majority candidate and a count, which combine correctly. The segment tree version is the more instructive, and it connects back to chapter [[08 Segment Trees]].
-- **AC ACL Practice C · Floor Sum** — *sum the integer parts of a linear function over a range.* Unrelated to Fenwick trees, but a genuinely useful primitive for counting lattice points, and worth having in twenty lines.
-- **LC 3245 Alternating Groups III** — *heavy, and reasonable to skip if unavailable.*
-
----
-
-**A reasonable target here is around 75% of submissions passing first time.**
-
-The failures in this block are mechanical rather than conceptual, arising from compression, indexing, and the requirement that adding and removing be exact inverses. That means they respond to consistent conventions rather than to additional practice.
-
----
-
-## Check yourself
-
-1. Write the Fenwick add and query from memory. What does the bit trick in the loop accomplish?
-2. When do you choose a Fenwick tree over a segment tree, and when can you not?
-3. Explain what it means to say the tree is indexed by value and contains everything to the left, in the context of counting inversions.
-4. How do two sweeps count triples?
-5. Describe the last-occurrence sweep for counting distinct values in a range, and say why counting at the rightmost occurrence is correct.
-6. Decompose CF 703D's answer into two simpler quantities.
-7. Write Mo's four loops in the correct order and explain why the order matters.
-8. What is the best block size for Mo's algorithm, and where does it come from?
-9. Why do sparse tables work for minimums but not for sums?
-10. Name three problems on this sheet where sorting the queries is the whole solution.
+1. What three conditions must hold for Mo's algorithm to apply?
+2. Why can the number of distinct values in a range not be obtained by combining the answers for two halves?
+3. Write the four pointer loops in the correct order and give a concrete example where a different order breaks.
+4. Why does sorting the queries by `l` alone, or by `l` then `r`, fail to reduce the total movement?
+5. Derive the cost `q * B + n * n / B` and the block size that minimises it.
+6. What does the odd-even refinement change, and what does it leave unchanged?
+7. Write `add` and `del` for the number of equal pairs in a range, and explain why `del` performs its steps in the opposite order.
+8. In the xor-subarray problem, why does the window move over `pre[0..n]`, and what is the range for a query `(l, r)`?
+9. Why is a map a bad choice for the counts, and what replaces it?
+10. How does the time pointer extend the algorithm to updates, and what block size does that require?
+11. In Mo's algorithm on a tree, why does a node on the path appear exactly once in the range of the sequence?
+12. Why can a plain Mo's algorithm not maintain a range maximum, and what does the add-only variant do instead?

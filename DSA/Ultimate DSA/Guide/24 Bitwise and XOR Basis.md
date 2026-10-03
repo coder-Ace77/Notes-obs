@@ -8,7 +8,7 @@ sheet-section: X
 
 > **Thesis:** XOR is addition in a vector space over GF(2). Once you believe that sentence, "the set of achievable XORs of a subset" stops being a search problem and becomes linear algebra — and several impossible-looking problems collapse into fifteen lines.
 
-Back to [[00 Guide Index]] · Sheet section **X** in [[1. Ultime DSA 2026 calibration]]
+Back to [[00 Guide Index]] · Sheet section **X** in [[Ultime DSA 2026 calibration]]
 
 ---
 

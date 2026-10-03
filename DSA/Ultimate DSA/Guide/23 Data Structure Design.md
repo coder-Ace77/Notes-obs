@@ -8,7 +8,7 @@ sheet-section: W
 
 > **Thesis:** Design problems are graded on whether *every* operation actually hits the stated bound. The design move is almost always the same: **combine a hash map with an ordered structure, so the map gives you `O(1)` location and the structure gives you `O(1)` reordering.**
 
-Back to [[00 Guide Index]] · Sheet section **W** in [[1. Ultime DSA 2026 calibration]]
+Back to [[00 Guide Index]] · Sheet section **W** in [[Ultime DSA 2026 calibration]]
 
 ---
 

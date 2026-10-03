@@ -1,0 +1,24 @@
+{
+  "id": "conv-1789401498297-q2g5h7z9u",
+  "providerId": "claude",
+  "title": "Write LLD article on Container Scheduler in Java",
+  "titleGenerationStatus": "success",
+  "createdAt": 1789401498302,
+  "lastActivityAt": 1789436080222,
+  "sessionId": "99becdfb-7e99-4d04-a369-bb952c96208b",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "99becdfb-7e99-4d04-a369-bb952c96208b"
+  },
+  "currentNote": "DSA/Ultimate DSA/=Ultime DSA 2026 calibration.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 632,
+    "cacheReadInputTokens": 95183,
+    "contextWindow": 1000000,
+    "contextTokens": 95817,
+    "percentage": 10,
+    "contextWindowIsAuthoritative": true
+  }
+}

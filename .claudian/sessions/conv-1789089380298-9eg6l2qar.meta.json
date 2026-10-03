@@ -1,0 +1,24 @@
+{
+  "id": "conv-1789089380298-9eg6l2qar",
+  "providerId": "claude",
+  "title": "Explain invariant concept",
+  "titleGenerationStatus": "success",
+  "createdAt": 1789089380305,
+  "lastActivityAt": 1789090508080,
+  "sessionId": "454210bb-17ca-49dd-ba42-fac339dcf777",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "454210bb-17ca-49dd-ba42-fac339dcf777"
+  },
+  "currentNote": "DSA/Ultimate DSA/Guide/08 Segment Trees.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 23366,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 1000000,
+    "contextTokens": 23368,
+    "percentage": 2,
+    "contextWindowIsAuthoritative": true
+  }
+}

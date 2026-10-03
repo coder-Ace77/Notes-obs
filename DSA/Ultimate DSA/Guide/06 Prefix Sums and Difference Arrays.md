@@ -8,7 +8,7 @@ sheet-section: F
 
 > **Read this before you start the problems.** Each technique comes with a small example you can follow without having seen the problem it comes from.
 
-Back to [[00 Guide Index]] · Sheet section **F** in [[1. Ultime DSA 2026 calibration]]
+Back to [[00 Guide Index]] · Sheet section **F** in [[Ultime DSA 2026 calibration]]
 
 ---
 
