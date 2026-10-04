@@ -50,8 +50,6 @@
 - [x] LC 2402 · Meeting Rooms III
 - [ ] CF 545C · Woodcutters
 
----
-
 ## C · Greedy with a Proof Obligation
 
 > 📖 Guide: [[03 Greedy and Exchange Arguments]]
@@ -80,8 +78,6 @@
 - [ ] CF 1401D · Maximum Distributed Tree
 - [x] CF 763A · Timofey and a tree
 
----
-
 ## D · Binary Search
 
 > 📖 Guide: [[04 Binary Search on the Answer]]
@@ -103,37 +99,19 @@
 - [x] LC 2560 · House Robber IV
 - [x] LC 2861 · Maximum Number of Alloys
 
----
-
 ## E · Sliding Window & Two Pointers, Hard Variants
 
 > 📖 Guide: [[05 Sliding Window and Two Pointers]]
 
-*Why:* Windows that aren't monotone. The 2026 version adds "count subarrays where predicate holds" which needs the at-most-K decomposition or a monotonic deque inside the window.
-
-- [ ] CSES · Subarray Distinct Values
-- [ ] CSES · Sliding Median
-- [ ] CSES · Sliding Cost
-- [ ] CSES · Maximum Subarray Sum II
-- [ ] LC 76 · Minimum Window Substring
-- [ ] LC 239 · Sliding Window Maximum
-- [ ] LC 480 · Sliding Window Median
-- [ ] LC 992 · Subarrays with K Different Integers
-- [ ] LC 1004 · Max Consecutive Ones III
-- [ ] LC 1438 · Longest Continuous Subarray With Absolute Diff ≤ Limit
-- [ ] LC 1499 · Max Value of Equation
-- [ ] LC 1521 · Find a Value of a Mysterious Function Closest to Target
-- [ ] LC 1793 · Maximum Score of a Good Subarray
-- [ ] LC 1888 · Minimum Number of Flips to Make the Binary String Alternating
-- [ ] LC 2009 · Minimum Number of Operations to Make Array Continuous
-- [ ] LC 2030 · Smallest K-Length Subsequence With Occurrences of a Letter
-- [ ] LC 2444 · Count Subarrays With Fixed Bounds
-- [ ] LC 2537 · Count the Number of Good Subarrays
-- [ ] LC 2762 · Continuous Subarrays
-- [ ] LC 3234 · Count the Number of Substrings With Dominant Ones
-- [ ] CF 6E · Exposition
-
----
+- [x] CSES · Subarray Distinct Values
+- [x] CSES . Sliding Window Median
+- [x] CSES · Sliding Cost
+- [x] LC 76 · Minimum Window Substring
+- [x] LC 239 · Sliding Window Maximum
+- [x] LC 992 · Subarrays with K Different Integers
+- [x] LC 1004 · Max Consecutive Ones III
+- [x] LC 1499 · Max Value of Equation
+- [x] LC 1793 · Maximum Score of a Good Subarray
 
 ## F · Prefix Sums, Difference Arrays & Offline Sweeps
 
@@ -159,8 +137,6 @@
 - [ ] LC 2132 · Stamping the Grid
 - [ ] LC 2536 · Increment Submatrices by One
 - [ ] LC 3179 · Find the N-th Value After K Seconds
-
----
 
 ## G · Monotonic Stacks & Deques
 
@@ -249,8 +225,7 @@
 
 ---
 
-## J · DSU: Rollback, Offline, Small-to-Large, Reconstruction
-
+## J · DSU: 
 > 📖 Guide: [[10 DSU Advanced]]
 
 - [x] AC ACL Practice A · Disjoint Set Union
@@ -261,17 +236,14 @@
 - [ ] CSES · Dynamic Connectivity ` -- [todo]`
 - [x] LC 2867 · Count Valid Paths in a Tree
 - [x] CF 1213G · Path Queries
-
----
-
 ## K · Shortest Paths & State-Space Search
 
 > 📖 Guide: [[11 Shortest Paths and State Space]]
 
-- [ ] CSES · Shortest Routes I
-- [ ] CSES · Shortest Routes II
-- [ ] CSES · Flight Discount
-- [ ] CSES · Flight Routes
+- [x] CSES · Shortest Routes I
+- [x] CSES · Shortest Routes II
+- [x] CSES · Flight Discount
+- [ ] CSES · Flight Routes 
 - [ ] CSES · Investigation
 - [ ] CSES · High Score
 - [ ] CSES · Cycle Finding
@@ -295,8 +267,6 @@
 - [ ] CF 1063B · Labyrinth
 - [ ] CF 173B · Chamber of Secrets
 - [ ] CF 59E · Shortest Path
-
----
 
 ## L · Graph Structure: SCC, 2-SAT, Bridges, Eulerian
 
@@ -326,8 +296,6 @@
 - [ ] CF 427C · Checkposts
 - [ ] CF 118E · Bertown roads
 - [ ] CF 776D · The Door Problem
-
----
 
 ## M · Trees: LCA, Rerooting, Small-to-Large, Tree DP
 
@@ -575,8 +543,6 @@
 - [ ] CF 271D · Good Substrings
 - [ ] CF 963D · Frequency of String
 
----
-
 ## S · Combinatorics, Number Theory & Modular Arithmetic
 
 > 📖 Guide: [[19 Combinatorics and Number Theory]]
@@ -598,8 +564,6 @@
 - [ ] CF 559C · Gerald and Giant Chess
 - [ ] CF 300C · Beautiful Numbers
 
----
-
 ## T · Flows & Matching
 
 > 📖 Guide: [[20 Flows and Matching]]
@@ -610,9 +574,6 @@
 - [ ] CSES · Distinct Routes
 - [ ] AC ACL Practice D · Maxflow
 - [ ] AC ACL Practice E · MinCostFlow
-
----
-
 ## U · Geometry (OA-lite)
 
 > 📖 Guide: [[21 Geometry]]
@@ -621,8 +582,6 @@
 - [ ] CSES · Line Segment Intersection
 - [ ] CSES · Convex Hull
 - [ ] CSES · Minimum Euclidean Distance
-
----
 
 ## V · Constructive, Invariants & Game Theory
 

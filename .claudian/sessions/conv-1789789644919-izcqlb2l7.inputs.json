@@ -154,6 +154,84 @@
       "contentDigest": "44f33eddce433620e29cd4ff13017f48db74ec15038cb3be2fa02cabd8509d80",
       "providerUserMessageId": "ed954500-fe4e-40e3-8bf3-5844823e13b9",
       "providerAssistantMessageId": "5e23a7e4-b9db-4040-883f-bcd802d5f0a8"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1791086114727-667vbj6",
+      "userTurnOrdinal": 11,
+      "state": "accepted",
+      "localMessageId": "msg-1791086114704-qxju2ae",
+      "timestamp": 1791086114704,
+      "rawDisplayText": "For the sliding window article there is no content for two pointers so keeping in mind the article is written i want you to add two pointer content but before writing can you give outline of what you are thinking to solve",
+      "canonicalText": "For the sliding window article there is no content for two pointers so keeping in mind the article is written i want you to add two pointer content but before writing can you give outline of what you are thinking to solve",
+      "images": [],
+      "contentDigest": "83f3d7d10072897a958b8008502b5c79dbf627953b34fce3e0b8ff9a95ed699e",
+      "providerUserMessageId": "27d810ae-84dc-4d1a-b904-1c23db5649e9"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1791086126324-cctafg5",
+      "userTurnOrdinal": 12,
+      "state": "accepted",
+      "localMessageId": "msg-1791086126316-dmfkfrh",
+      "timestamp": 1791086126316,
+      "rawDisplayText": "For the sliding window article there is no content for two pointers so keeping in mind the article is written i want you to add two pointer content but before writing can you give outline of what you are thinking to add in the code",
+      "canonicalText": "For the sliding window article there is no content for two pointers so keeping in mind the article is written i want you to add two pointer content but before writing can you give outline of what you are thinking to add in the code",
+      "images": [],
+      "contentDigest": "2f3a9aa5e751f67a97a7108bcabcc550ad7c313898c6c60d99d166031bb24ff8",
+      "providerUserMessageId": "2f4adea5-9ec2-41ba-8466-3509a6d410e5",
+      "providerAssistantMessageId": "24b8f65b-28bb-45b0-b2e2-3a84ed404337"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1791086278625-3wcpobw",
+      "userTurnOrdinal": 13,
+      "state": "accepted",
+      "localMessageId": "msg-1791086278618-zafei4x",
+      "timestamp": 1791086278618,
+      "rawDisplayText": "see its too much since these topics also overlap with other topics linked list etc and what about topics like this \n\nGreedy Two-Pointer Optimization via Domination (also referred to as Domination-Based State Elimination or an Implicit Monotonic Queue).\n\nIt belongs to the broader family of State Space Reduction techniques, where you optimize away dedicated data structures like deques, heaps, or segment trees by mathematically proving that a smaller set of candidates—or in this case, just two pointers—can track all valid optimal choices.",
+      "canonicalText": "see its too much since these topics also overlap with other topics linked list etc and what about topics like this \n\nGreedy Two-Pointer Optimization via Domination (also referred to as Domination-Based State Elimination or an Implicit Monotonic Queue).\n\nIt belongs to the broader family of State Space Reduction techniques, where you optimize away dedicated data structures like deques, heaps, or segment trees by mathematically proving that a smaller set of candidates—or in this case, just two pointers—can track all valid optimal choices.",
+      "images": [],
+      "contentDigest": "999ccc0d5834a9b4a8faf865c3cbec2418715502202dc22ae5d1e5cd445df160",
+      "providerUserMessageId": "5adfd64f-9e67-4e8e-bf15-bce607dc7366",
+      "providerAssistantMessageId": "d89b5dd3-dac8-460a-862e-6de8d737f2be"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1791086566092-ogztu36",
+      "userTurnOrdinal": 14,
+      "state": "accepted",
+      "localMessageId": "msg-1791086566084-ze4tp3x",
+      "timestamp": 1791086566084,
+      "rawDisplayText": "nope you are generating some redundant things what i want is simple two pointer mastery topics with insights so from above \n\n- opposite end pointers on sorted array read write pointers opposite end pointers on greedy comparison and finally this \n\nGreedy Two-Pointer Optimization via Domination now let me know if there are some more advanced tenique like last one however usable not ultra unsable so let me know if any more exists what you need to concentrate is the philostphy of technique that should get cleared",
+      "canonicalText": "nope you are generating some redundant things what i want is simple two pointer mastery topics with insights so from above \n\n- opposite end pointers on sorted array read write pointers opposite end pointers on greedy comparison and finally this \n\nGreedy Two-Pointer Optimization via Domination now let me know if there are some more advanced tenique like last one however usable not ultra unsable so let me know if any more exists what you need to concentrate is the philostphy of technique that should get cleared",
+      "images": [],
+      "contentDigest": "77fa0ce388ab9f1da2b8ab48da97081a24f9bbd028fd3ff0ead15fed6245ef9a",
+      "providerUserMessageId": "b4e8af50-bce7-4ef5-b8b8-ccc76a24c1f9",
+      "providerAssistantMessageId": "b57d4ed1-34c6-4b38-beef-208042161b1e"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1791086757953-eyz1sk0",
+      "userTurnOrdinal": 15,
+      "state": "accepted",
+      "localMessageId": "msg-1791086757945-sria1z3",
+      "timestamp": 1791086757945,
+      "rawDisplayText": "ok go ahead note too keep the writing lang style like this \n\nLow-Level Design is a detailed phase in the software development process that focuses on designing the individual components outlined in the High-Level Design. LLD delves into the specifics defining how modules, classes, functions and data structures interact to achieve the desired functionality. For example in a movie ticket booking system LLD would detail how components like seat selection, payment processing and ticket generation are implemented and interact with one another. \n\nObserve simplicity of languageb and how long the sentences it is longer than yours which i prefer also keep in ind to add code snippets and explaners for them",
+      "canonicalText": "ok go ahead note too keep the writing lang style like this \n\nLow-Level Design is a detailed phase in the software development process that focuses on designing the individual components outlined in the High-Level Design. LLD delves into the specifics defining how modules, classes, functions and data structures interact to achieve the desired functionality. For example in a movie ticket booking system LLD would detail how components like seat selection, payment processing and ticket generation are implemented and interact with one another. \n\nObserve simplicity of languageb and how long the sentences it is longer than yours which i prefer also keep in ind to add code snippets and explaners for them",
+      "context": {
+        "editorSelection": {
+          "notePath": "Prompts/Learning prompt.md",
+          "mode": "selection",
+          "selectedText": "Low-Level Design is a detailed phase in the software development process that focuses on designing the individual components outlined in the High-Level Design. LLD delves into the specifics defining how modules, classes, functions and data structures interact to achieve the desired functionality. For example in a movie ticket booking system LLD would detail how components like seat selection, payment processing and ticket generation are implemented and interact with one another.",
+          "lineCount": 1,
+          "startLine": 10
+        }
+      },
+      "images": [],
+      "contentDigest": "b09f363612f42cbec1d720e50580e68d8578a2574e71441417d46cf76b3f0345",
+      "providerUserMessageId": "18f846a5-cbfe-4008-9c03-b95246730fd9",
+      "providerAssistantMessageId": "298d60b9-6607-4438-a82d-f7880b0d54ef"
     }
   ]
 }

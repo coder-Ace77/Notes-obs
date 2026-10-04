@@ -4,7 +4,7 @@ chapter: 10
 sheet-section: J
 ---
 
-# Chapter 10 · DSU: Rollback, Offline, Small-to-Large, Reconstruction
+# Chapter 10 · DSU - 
 
 > **Read this before you start the problems.** Each technique is introduced with a worked example, so no prior familiarity is assumed.
 

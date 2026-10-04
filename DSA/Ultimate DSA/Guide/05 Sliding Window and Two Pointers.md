@@ -61,18 +61,13 @@ The second is that the quantity being maintained inside the window is no longer 
 
 Finally it should be established before using this technique that all the valid subarrays of valid window are also valid for example in question shortest subarray with at least given sum. If the numbers are pve this condition of if window is valid subarray keeps on to be valid however as soon as negative numbers are introduced it may be false. 
 
-Also sometimes we track the opposite variation of it 
-## Part 1 · The condition that makes a window valid
-
-The technique applies when shrinking a valid window leaves it valid, or equivalently when growing an invalid window leaves it invalid.
+Also sometimes we track the opposite variation of it window tracked is invalid one and again the point is any subarray of invalid window should keep on invalid. 
 
 Take the condition "at most `k` distinct characters." If the window from `l` to `r` contains at most `k` distinct characters, then the window from `l + 1` to `r` certainly does too, since removing a character cannot increase the number of distinct ones. Shrinking therefore never causes harm, which means that when a window becomes invalid, advancing the left edge is guaranteed to eventually fix it, and no position ever needs revisiting.
 
 The condition fails for "longest run with sum at most `K`" when negative numbers are allowed, because adding an element can decrease the sum. An invalid window can become valid by growing, so the structure the technique relies on is absent. This is why LC 862, which asks for the shortest run with sum at least `K` and permits negatives, is not a window problem at all and instead needs a monotonic deque over prefix sums.
 
-It is worth completing the sentence "if the window from `l` to `r` is valid then the window from `l + 1` to `r` is valid, because ..." before writing anything, in the same way as the consistency check in chapter [[04 Binary Search on the Answer]]. It takes a few seconds and distinguishes a correct approach from a plausible one.
-
----
+It is worth completing the sentence "if the window from `l` to `r` is valid then the window from `l + 1` to `r` is valid, because ..." before writing anything. 
 
 ## Part 2 · The two window shapes
 
@@ -101,11 +96,7 @@ for (int r = 0; r < n; r++) {
 
 The difference is `while (!valid())` against `while (valid())`, together with where the answer is recorded. In the first shape you record after restoring validity, and in the second you record just before breaking it. Getting these crossed produces a solution that runs and gives wrong answers, and it is the most common structural error in the category.
 
-LC 76 Minimum Window Substring is the second shape, where the validity test asks whether all required characters are present. Rather than re-scanning a frequency map on every step, the standard approach keeps a counter of how many distinct required characters have reached their required count, incremented only at the moment a character's count first reaches its requirement. That makes the validity test constant time.
-
----
-
-## Part 3 · Counting windows rather than measuring them
+### Counting windows 
 
 This is the idea that turns counting problems from impossible into routine, and it has two halves.
 
@@ -116,7 +107,6 @@ The way around this is that "at most `k`" does satisfy the shrinking condition, 
 $$\text{exactly}(k) = \text{atMost}(k) - \text{atMost}(k-1)$$
 
 so the problem reduces to two runs of an ordinary window.
-
 **The second half concerns how to count inside the window.**
 
 ```cpp
@@ -137,9 +127,7 @@ The line `res += r - l + 1` deserves attention because it does the counting. Onc
 
 That accounting idea transfers even to problems where the "at most" decomposition does not apply. LC 2444 Count Subarrays With Fixed Bounds tracks the most recent position of the minimum bound, of the maximum bound, and of any out-of-range value, and adds a quantity derived from those three at each step. The bookkeeping is different, but the principle of counting each run once at its right end is the same, and recognising that the principle transfers is more useful than remembering either formula.
 
----
-
-## Part 4 · Maintaining a maximum or minimum with a deque
+### Maintaining a maximum or minimum with a deque
 
 For a window of fixed size, or for any window where you need the largest or smallest element, a monotonic deque gives a linear solution where a heap would give `O(n log n)`.
 
@@ -161,9 +149,7 @@ When both the maximum and the minimum of a window are needed, as in LC 1438, run
 
 A `multiset` is a reasonable alternative here. It is shorter to write and runs in `O(n log n)`, which is fine for LeetCode-scale constraints, so it is worth reaching for under time pressure and keeping the deque for cases where the constraints are tight.
 
----
-
-## Part 5 · Windows carrying a real structure
+### Windows carrying a real structure
 
 **Maintaining a median.** LC 480 and CSES *Sliding Median* need the middle value of the window. There are two workable approaches.
 
@@ -180,113 +166,259 @@ auto mid = ms.begin();          // maintained to point at the median
 
 The iterator handling is genuinely awkward, so it is worth writing once carefully and keeping. CSES *Sliding Cost*, which asks for the total distance to the median, is the same structure with two running sums added, one for each half.
 
-**Bitwise operations over a window.** LC 1521, LC 898 and LC 2419 look like window problems but rely on a different property. As a run is extended, its running AND can only lose bits and its running OR can only gain them, and each change removes or adds at least one bit permanently. Since there are only about thirty bits, the running AND takes at most about thirty distinct values across all left endpoints for a fixed right endpoint.
+## Two pointers
 
-That means you can carry the small set of distinct values forward:
+Everything so far has been about a window, which is a pair of pointers that bound a range of the array while we keep track of what is currently inside that range. Two pointers is the wider family that this belongs to, and its other members use a pair of pointers in a completely different way. In these problems the range between the pointers does not matter and nothing is maintained about it. Each pointer is simply a position that we are still considering, and at every step we compare what the two pointers point at and use that comparison to prove that one of the positions can never be part of the answer, which lets us throw it away and move that pointer forward.
+
+ A brute force solution looks at every pair of positions, which is quadratic. A two pointer solution is linear because at every step it can explain why one position is no longer needed, and every position can only be thrown away once. The skill that these problems train is therefore not moving pointers, which is easy, but proving that the position you are about to discard really cannot be in a better answer. 
+
+The sections below go through the common shapes in an order that starts with the easiest proof and ends with the most general one.
+
+### Opposite-end pointers on a sorted array
+
+Suppose we are given an array that is already sorted in increasing order and a target number, and we want to know whether any two different elements add up to the target. The brute force checks every pair and takes `O(n^2)` time. The opposite-end version places one pointer `l` at the first element and the other pointer `r` at the last element and looks at their sum.
 
 ```cpp
-vector<int> cur;                       // distinct AND-values of runs ending at r; about 30 entries
-for (int r = 0; r < n; r++) {
-    for (int& v : cur) v &= a[r];
-    cur.push_back(a[r]);
-    cur.erase(unique(cur.begin(), cur.end()), cur.end());
-    for (int v : cur) best = min(best, abs(v - target));
+int l = 0, r = n - 1;
+while (l < r) {
+    long long s = (long long)a[l] + a[r];
+    if (s == target) return true;
+    if (s < target) l++;
+    else            r--;
+}
+return false;
+```
+
+The reason this is correct comes from the sorted order ,suppose `a[l] + a[r]` is smaller than the target. Then `a[l]` is too small to work with `a[r]`, and `a[r]` is the largest element that is still available, so every other partner `a[l]` could have is no larger than `a[r]` and gives an even smaller sum. That means `a[l]` cannot reach the target with anything that is left, so it can be discarded and `l` moves right. If the sum is larger than the target the same reasoning applies to `a[r]` from the other side, because `a[l]` is the smallest element that is still available and even it is too small to rescue `a[r]`. Either way exactly one element is thrown away per step, so the loop runs at most `n` times.
+
+The loop condition is `l < r` and not `l <= r`, because the two pointers must refer to different elements. Using `<=` would let the same element pair with itself.
+
+**Counting instead of searching.** The same pointers can count pairs whose sum is at most the target. When `a[l] + a[r]` is within the target, then `a[l]` also works with every element between `l + 1` and `r`, since they are all no larger than `a[r]`. That is `r - l` valid pairs counted in one step, after which `a[l]` has been fully accounted for and can be discarded.
+
+```cpp
+long long cnt = 0;
+int l = 0, r = n - 1;
+while (l < r) {
+    if (a[l] + a[r] <= target) { cnt += r - l; l++; }
+    else r--;
 }
 ```
 
-This is not a sliding window at all, and it is grouped here because the problems appear in the same section. The underlying observation recurs in chapter [[24 Bitwise and XOR Basis]] and is worth treating as its own technique.
+### Read and write pointers
 
----
+In this shape both pointers move in the same direction over the same array, but they have different jobs. The **read** pointer scans every element once, and the **write** pointer marks the place where the next element we decide to keep will be stored. The array is rebuilt in place, and because we never allocate a second array the extra memory is constant.
 
-## The ideas worth carrying forward
+Take the problem of removing duplicates from a sorted array in place and returning how many distinct values remain.
 
-1. **A window requires that shrinking preserves validity.** Completing the sentence "if `[l, r]` is valid then `[l+1, r]` is valid, because ..." takes a few seconds and identifies the cases where the technique does not apply.
+```cpp
+int w = 0;
+for (int r = 0; r < n; r++) {
+    if (w == 0 || a[r] != a[w-1]) a[w++] = a[r];
+}
+return w;
+```
 
-2. **Negative values in a sum condition usually break the window.** That combination points to prefix sums instead.
+The idea that makes this easy to reason about is an **invariant**, which is a statement that is true before and after every iteration. Here it is that `a[0..w)` already contains the answer for everything the reader has seen so far. A new element is kept only if it differs from the last kept element `a[w-1]`, and because the input is sorted, comparing with the last kept value is enough to know whether it has appeared before. When the loop ends, the invariant says `a[0..w)` is the answer for the whole array.
 
-3. **The two shapes differ by one character, and by where the answer is recorded.** The longest-window shape records after restoring validity, and the shortest-window shape records before breaking it.
+Two facts guarantee that nothing is destroyed. The writer never gets ahead of the reader, so `w <= r` always holds, which means a write can only overwrite a position that has already been read. And elements are copied in the order they were read, so the relative order of the kept elements stays unchanged. Removing every occurrence of a given value, or moving all zeros to the end by first compacting the non-zeros and then filling the rest with zeros, is the same code with a different keep condition.
 
-4. **`res += r - l + 1` counts every valid run exactly once, at its right end.** This single line does the counting work in most counting problems in this block.
+**More than two regions.** The same invariant idea extends to three groups. Suppose an array contains only 0, 1 and 2 and we want it sorted in one pass without counting. Three pointers cut the array into four regions, and the invariant describes each of them.
 
-5. **Counting runs with exactly `k` of something becomes two runs of an "at most" window**, because "at most" satisfies the shrinking condition while "exactly" does not.
+```cpp
+int low = 0, mid = 0, high = n - 1;
+// [0, low)      all zeros
+// [low, mid)    all ones
+// [mid, high]   not yet looked at
+// (high, n)     all twos
+while (mid <= high) {
+    if (a[mid] == 0)      swap(a[low++], a[mid++]);
+    else if (a[mid] == 1) mid++;
+    else                  swap(a[mid], a[high--]);
+}
+```
 
-6. **The counting-at-the-right-end principle transfers even when the decomposition does not.** LC 2444 uses different bookkeeping and the same accounting.
+The detail that people get wrong is that `mid` moves forward after swapping with `low` but not after swapping with `high`. The element that arrives from `low` is known to be a one, because everything between `low` and `mid` has already been classified as a one, so it can safely be passed over. The element that arrives from `high` comes from the unexamined region and could be anything, so `mid` has to stay where it is and look at it. 
 
-7. **A monotonic deque stores indices**, since the index is what determines when an element leaves the window.
+### Opposite-end pointers on a greedy comparison
 
-8. **Two deques side by side give both the maximum and the minimum in linear time**, and a `multiset` gives the same thing in three lines with an extra logarithmic factor.
+The sorted array gave us a way to know what a comparison meant. Many problems have no sorted order, but they still allow opposite-end pointers because one of the two sides is a **bottleneck**, meaning it limits the result so strongly that its fate can be decided without looking at the other side's details.
 
-9. **Each element entering and leaving once is what makes these linear.** The same argument covers deques, monotonic stacks and disjoint-interval maps.
+Suppose we are given the heights of vertical bars standing at positions `0` to `n-1`, and we choose two of them. The area they enclose is the smaller of the two heights multiplied by the distance between them, and we want the largest possible area.
 
-10. **A running AND or OR over an extending run changes only about thirty times**, so the distinct values form a small set that can be carried forward.
+```cpp
+int l = 0, r = n - 1;
+long long best = 0;
+while (l < r) {
+    best = max(best, (long long)min(h[l], h[r]) * (r - l));
+    if (h[l] < h[r]) l++;
+    else             r--;
+}
+```
 
-11. **A window can carry any aggregate**, including a frequency map, a multiset, two heaps or a monotonic deque. Writing your solutions with explicit `add`, `remove` and `valid` helpers makes the mechanics identical across problems and makes the code easier to debug.
+Start with the pointers at the two ends, which gives the largest possible width. The shorter of the two bars decides the height of the area, and the argument for moving it goes as follows. If we keep the shorter bar at `l` and pair it with any bar closer than `r`, the width is smaller and the height is still at most `h[l]`, so the area cannot be better than the one we just recorded. The shorter bar has therefore already given its best answer, and it can be discarded. Moving the taller bar instead would never help, because the height stays limited by the shorter one while the width only shrinks.
 
----
+The same idea solves the classic water trapping problem. Given the heights of bars of width one, the water that sits above a bar equals the smaller of the tallest bar on its left and the tallest bar on its right, minus the bar's own height. The direct solution builds two arrays of running maximums. With opposite-end pointers we can avoid them, because only the smaller of the two running maximums matters and the smaller side is the bottleneck.
 
-## Where people lose these problems
+```cpp
+int l = 0, r = n - 1, lm = 0, rm = 0;
+long long water = 0;
+while (l < r) {
+    lm = max(lm, h[l]);      // tallest bar seen from the left so far
+    rm = max(rm, h[r]);      // tallest bar seen from the right so far
+    if (lm < rm) { water += lm - h[l]; l++; }
+    else         { water += rm - h[r]; r--; }
+}
+```
 
-**Applying a window to a sum problem with negative values.** This is the characteristic failure of the category. When negatives are possible and the condition concerns a sum, chapter [[06 Prefix Sums and Difference Arrays]] is the right place to look.
+When `lm < rm`, the true tallest bar to the right of position `l` is at least `rm`, which is larger than `lm`, so the water above `l` is limited by the left side alone and equals `lm - h[l]`. That value is final, and `l` can move on. When `lm >= rm` the same reasoning holds mirrored for position `r`. Every step settles exactly one position, and the order in which positions are settled does not matter because each one is settled using only information that is already known to be decisive.
 
-**Shrinking with an `if` where a `while` is needed.** One new element can require several removals before the window becomes valid again.
+### Monotone boundary pointers
 
-**Recording the answer at the wrong point in the shortest-window shape.** The record has to happen inside the shrinking loop, before the removal that breaks validity.
+A different use of two pointers appears when, for each position, we are looking for a boundary on the other side, and that boundary only ever moves in one direction as we go along. Take a sorted array and a number `d`, and count the pairs `i < j` whose difference `a[j] - a[i]` is at most `d`.
 
-**Leaving zero-count entries in a frequency map.** If the number of distinct values is being read from the map's size, entries must be erased when their count reaches zero rather than merely decremented. Keeping a separate integer count is safer and faster.
+```cpp
+long long countAtMost(const vector<int>& a, int d) {
+    long long cnt = 0;
+    int i = 0;
+    for (int j = 0; j < (int)a.size(); j++) {
+        while (a[j] - a[i] > d) i++;       // smallest i that still works with j
+        cnt += j - i;                      // every position from i to j-1 works
+    }
+    return cnt;
+}
+```
 
-**Reading the deque front before expiring stale indices.** The first several answers then include elements that have already left the window.
+For each `j`, the positions `i` that pair validly with it form a block ending at `j - 1`, and the pointer `i` marks where that block starts. As `j` increases, `a[j]` does not decrease, so any `i` that was too far away for the previous `j` is certainly too far away for this one. That is the **monotonicity** that lets the pointer `i` only ever move forward, which makes the total work linear even though there is a loop inside a loop, because the inner loop's total number of steps over the whole run is at most `n`.
 
-**Calling `multiset::erase` with a value.** That removes every matching element rather than one, and `erase(find(x))` is what was intended. This is the same trap as in chapter [[02 Intervals and Sweep Line]].
+It is useful to be clear about how this differs from a sliding window, since the code looks almost identical. A window carries the contents of the range between the pointers, for example a count or a set, and removes elements as the left edge moves. Here nothing about the range is stored. The pointer `i` is only a remembered answer to the question "where does the valid block for this `j` begin", and we are allowed to reuse the previous answer because that question has a monotone answer. The alternative is to run a binary search for every `j`, which also works and costs an extra logarithmic factor. The pointer removes that factor, but it can only be used after you have checked that the boundary really is monotone, which fails as soon as negative numbers or an unsorted order appear.
 
-**In LC 1888, missing the doubling.** The second operation moves the first character to the end, which means the reachable strings are the windows of length `n` in the string concatenated with itself. Once that is noticed the problem becomes a fixed-size window with two counters, and without it the problem looks intractable.
+### Two pointers inside a binary search
 
-**In LC 2009, working in terms of operations rather than retained elements.** After sorting and removing duplicates, the answer is the array length minus the largest number of distinct values that fit inside a window spanning `n - 1` in value. Reframing minimum changes as maximum retentions is what makes the window appear.
+The monotone pointer pass is a counting tool, and counting tools are what a binary search on the answer needs. Suppose we have a sorted array of `n` numbers and we look at all the `n(n-1)/2` differences between pairs, and we want the `k`-th smallest of them. Writing those differences out would need quadratic memory, so we never list them. Instead we ask a counting question: for a value `x`, how many pairs have a difference of at most `x`. That count grows as `x` grows, which is exactly the property a binary search needs, and each count is one linear pass with the code above.
 
----
+```cpp
+sort(a.begin(), a.end());
+int lo = 0, hi = a.back() - a.front();
+while (lo < hi) {
+    int mid = lo + (hi - lo) / 2;
+    if (countAtMost(a, mid) >= k) hi = mid;     // enough pairs, the answer is mid or smaller
+    else                          lo = mid + 1; // too few pairs, the answer is larger
+}
+return lo;
+```
 
-## Working through the problem list
+The loop finds the smallest `x` for which at least `k` pairs have a difference of at most `x`. That value is automatically a difference that really occurs, because if no pair had a difference of exactly `x` then the count at `x - 1` would be the same as the count at `x` and the search would have chosen the smaller number. The total cost is `O(n log(range))`, which is far better than anything that tries to list the pairs. The general lesson, which is also used in chapter [[04 Binary Search on the Answer]], is that when the feasibility check of a binary search is a counting question over pairs, two pointers is often the way to make that check linear.
 
-### Block 1 · The basic mechanics
+### Greedy two-pointer optimisation via domination
 
-- **LC 1004 Max Consecutive Ones III** — *find the longest run of ones allowing up to k zeros to be flipped.* The longest-window shape in its simplest form.
-- **LC 76 Minimum Window Substring** — *find the shortest substring of s containing all characters of t.* The shortest-window shape with the counter described in Part 2. Worth repeating until it flows, since it underpins several later problems.
-- **LC 239 Sliding Window Maximum** — *report the maximum in every window of size k.* The deque template, worth being able to write in about ninety seconds.
-- **CSES Subarray Distinct Values** — *count runs containing at most k distinct values.* Direct practice for the counting line.
+The sections above are all instances of one principle, and this section states it directly. Say that a candidate **A dominates** a candidate **B** if A is at least as good as B no matter what happens in the future, so that B can be removed from consideration permanently without ever changing the final answer. A dominance based algorithm keeps only the candidates that are not dominated, and if each step removes at least one candidate, the algorithm is linear. In the sorted pair problem the dominated candidate was an element too small for any remaining partner, in the bars problem it was the shorter bar, and in the water problem it was the position on the side with the smaller running maximum.
 
-### Block 2 · Counting runs
+Dominance has two parts that both have to hold, and forgetting the second one is the most common way to go wrong. The first is **value**: A must be at least as good as B for every possible continuation. The second is **lifetime**: A must remain available for at least as long as B does. When candidates can expire, as in a window or under a distance limit, an older candidate expires sooner, so a newer candidate with a value at least as good dominates it, but an older candidate with a better value does not dominate a newer one because it may expire first.
 
-- **LC 992 Subarrays with K Different Integers** — *count runs containing exactly k distinct integers.* The decomposition from Part 3, best attempted straight after the CSES problem above so the difference is visible.
-- **LC 2537 Count the Number of Good Subarrays** — *count runs containing at least k pairs of equal elements.* This condition behaves consistently on its own, since adding elements only creates pairs, so a single window suffices and the counting is done from the left end instead. A useful contrast.
-- **LC 2444 Count Subarrays With Fixed Bounds** — *count runs whose minimum and maximum are exactly the given values.* Three tracked positions rather than a decomposition.
-- **LC 3234 Count the Number of Substrings With Dominant Ones** — *count substrings where the number of ones is at least the square of the number of zeros.* Relies on the number of zeros in a valid substring being small. Genuinely difficult and best saved for last.
+To make this concrete, here is the checklist to run through before trusting any pointer move. Name the candidate being discarded. Name the candidate that dominates it. Convince yourself that the dominance holds for every future the algorithm can still reach, including expiry. And confirm that each step discards at least one candidate, since that is what makes the algorithm linear.
 
-### Block 3 · Windows carrying structures
+**Expanding from a fixed position.** Given an array and an index `k`, we want a subarray that contains position `k` and has the largest value of (smallest element) multiplied by (length). We start with the single element at `k` and repeatedly extend one step to the left or one step to the right.
 
-- **LC 1438 Longest Continuous Subarray With Absolute Diff ≤ Limit** — *find the longest run whose largest and smallest elements differ by at most a limit.* Two deques, or a multiset. Worth doing both ways.
-- **LC 2762 Continuous Subarrays** — *count runs where any two elements differ by at most two.* The same structure as 1438, combined with the counting line.
-- **CSES Sliding Median** — *report the median of every window of size k.* The multiset-with-iterator approach.
-- **LC 480 Sliding Window Median** — *the same problem in LeetCode form*, with overflow to watch for when averaging two middle values.
-- **CSES Sliding Cost** — *report the minimum total cost of making every element in each window equal.* The median structure with two running sums, and the payoff for building it carefully.
-- **CSES Maximum Subarray Sum II** — *find the largest sum over runs whose length lies between a and b.* Prefix sums with a deque holding the smallest prefix values in the permitted range. This bridges into chapter [[06 Prefix Sums and Difference Arrays]] and teaches the technique that LC 862 also needs.
+```cpp
+int l = k, r = k, mn = a[k];
+long long best = a[k];
+while (l > 0 || r < n - 1) {
+    if (l == 0)                 r++;
+    else if (r == n - 1)        l--;
+    else if (a[l-1] > a[r+1])   l--;      // extend toward the larger neighbour
+    else                        r++;
+    mn = min({mn, a[l], a[r]});
+    best = max(best, (long long)mn * (r - l + 1));
+}
+```
 
-### Block 4 · Reframing
+Extending toward the larger neighbour is correct because, for every possible length, this procedure produces the window containing `k` with the largest possible minimum. Taking the smaller neighbour would lower the minimum to at most that smaller value, whereas taking the larger neighbour keeps it at least as high, and the window of that length that took the smaller neighbour is dominated. Since the score depends only on the minimum and the length, the best window of each length is the only one worth considering.
 
-- **LC 2009 Minimum Number of Operations to Make Array Continuous** — *change the fewest elements so that the array holds n consecutive distinct values.* The retention reframing described above.
-- **LC 1888 Minimum Flips to Make Alternating** — *make a binary string alternate, using flips and rotations.* The doubling reframing.
-- **LC 1793 Maximum Score of a Good Subarray** — *find the run containing index k maximising its minimum times its length.* Expand outwards from `k`, always extending towards the larger neighbour. A two-pointer scan starting from the middle, which is an under-used shape.
-- **LC 1499 Max Value of Equation** — *maximise `y_i + y_j + |x_i - x_j|` subject to a limit on `|x_i - x_j|`.* Rewriting the expression for `i < j` as `(y_i - x_i) + (y_j + x_j)` turns it into a maximum-deque over `y - x` inside a window. The rewrite is the whole problem, and separating an expression into a part depending on `i` and a part depending on `j` is a move that reappears in chapter [[17 DP Optimization]].
-- **LC 1521 Find a Value of a Mysterious Function Closest to Target** — *find the run whose AND is closest to a target.* The bounded-distinct-values technique from Part 5.
-- **CF 6E Exposition** — *find the longest run whose height range is within a limit.* The Codeforces form of LC 1438.
+**Eliminating starting points.** Suppose there are `n` stations arranged in a circle. At station `i` we collect `gain[i]` fuel, and travelling to the next station costs `cost[i]`. We want a station to start at, with an empty tank, such that we can go all the way around, or to learn that none exists.
 
----
+```cpp
+int total = 0, tank = 0, start = 0;
+for (int i = 0; i < n; i++) {
+    int d = gain[i] - cost[i];
+    total += d;
+    tank += d;
+    if (tank < 0) { start = i + 1; tank = 0; }     // every start from the old one up to i fails
+}
+return total >= 0 ? start : -1;
+```
 
-**A reasonable target here is around 80% of submissions passing first time.**
+This works because of a domination argument that discards many candidates at once. If we start at `s` and the tank first becomes negative at station `i`, then any station `s'` strictly between `s` and `i` is also a bad start. When we travelled from `s` we arrived at `s'` with a tank that was not negative, so starting fresh at `s'` with an empty tank is never better than what we had, and since we ran out by `i` starting from `s`, we would also run out by `i` starting from `s'`. All of those starts are removed with a single jump of the pointer to `i + 1`. The final check on `total` handles the other half of the argument, which is that if the whole circle has enough fuel overall then the last surviving start must work.
 
-The mechanics are simple and the ways to go wrong form a short list. When accuracy falls below that, the cause is usually either confusion between the two shapes or a shrinking condition that was never checked.
+**Pairing with the best partner.** Suppose people have the given weights and each boat carries at most two people with a combined weight of at most `limit`. We want the smallest number of boats.
 
----
+```cpp
+sort(w.begin(), w.end());
+int l = 0, r = n - 1, boats = 0;
+while (l <= r) {
+    if (w[l] + w[r] <= limit) l++;      // the lightest person shares the boat
+    r--;                                // the heaviest person always leaves
+    boats++;
+}
+return boats;
+```
 
-## Check yourself
+Look at the heaviest remaining person. If this person cannot share a boat with the lightest person, then they cannot share with anyone, so they must travel alone. If they can share with the lightest person, then pairing them with the lightest is at least as good as pairing them with anyone else, because the lightest person is the easiest to fit in every possible later situation. In both cases the heaviest person is settled, which is another form of domination.
+
+**Collapsing a deque into a variable.** The monotonic deque from the earlier part of this chapter is itself a dominance structure, because when a new element is at least as large as an older one it dominates it, being both better and available for longer, so the older one is popped. The deque therefore keeps a chain of non-dominated candidates. Consider choosing two positions `i < j` to maximise `a[i] + a[j] + i - j`, which can be rewritten as `(a[i] + i) + (a[j] - j)`. If there is no restriction on how far apart `i` and `j` may be, nothing ever expires, so the single best earlier value dominates all the others and one variable is enough.
+
+```cpp
+int bestLeft = a[0] + 0, ans = INT_MIN;
+for (int j = 1; j < n; j++) {
+    ans = max(ans, bestLeft + a[j] - j);
+    bestLeft = max(bestLeft, a[j] + j);
+}
+```
+
+If we add the restriction `j - i <= k`, then older candidates do expire, so an older and better candidate is no longer safe to discard, and we need the full chain that the deque maintains.
+
+```cpp
+deque<int> dq;                                   // indices, with a[i] + i decreasing
+int ans = INT_MIN;
+for (int j = 0; j < n; j++) {
+    while (!dq.empty() && dq.front() < j - k) dq.pop_front();     // expired
+    if (!dq.empty()) ans = max(ans, a[dq.front()] + dq.front() + a[j] - j);
+    while (!dq.empty() && a[dq.back()] + dq.back() <= a[j] + j) dq.pop_back();
+    dq.push_back(j);
+}
+```
+
+Seeing these two versions next to each other is the clearest way to understand when a data structure is necessary. The deque is the general solution and the single variable is what it shrinks to when the lifetime part of dominance disappears.
+
+### Choosing between them
+
+| What the problem looks like | Shape to try |
+|---|---|
+| A sorted array and a question about pairs or a fixed number of elements | Opposite-end pointers on a sorted array |
+| Rearranging or filtering an array in place with constant extra memory | Read and write pointers |
+| Two ends and a bottleneck, with no sorted order | Opposite-end pointers on a greedy comparison |
+| For each position, a boundary on the other side that only moves one way | Monotone boundary pointers |
+| Finding the best value where counting pairs below a threshold is easy | Two pointers inside a binary search |
+| Candidates that can be proven useless once something better appears | Domination |
+
+### Where people lose these problems
+
+**Using `l <= r` where `l < r` is needed.** In pair problems the two pointers must refer to different elements, and equality lets an element pair with itself. The boats problem is the opposite case, where a single remaining person is a legitimate case and `l <= r` is correct, so the condition has to be derived from the problem each time.
+
+**Forgetting to sort.** Opposite-end pointers on a sorted array have no proof without the order. If indices must be returned, sort pairs of value and position.
+
+**Skipping duplicates incorrectly.** In the three-number problem the skip must happen after recording a match and for the fixed element as well, otherwise the same triple appears several times, and a skip that is placed before the match is recorded can lose valid answers.
+
+**Moving the wrong pointer on a tie.** When the two compared values are equal, check that the argument still holds for the pointer you move. In the bars problem either pointer is safe on a tie, and in the water problem the tie goes to the right side, but this has to be checked, not assumed.
+
+**Advancing `mid` after swapping with `high`.** The element that arrives is unexamined, so it has to be looked at before `mid` moves.
+
+**Assuming the boundary is monotone.** A monotone boundary pointer needs the underlying order to be monotone. With negative numbers in a sum, or with an unsorted array, the pointer would move past positions that later turn out to be needed.
+
+**Overflow.** Sums of two or three values and products of a height and a width can leave the 32-bit range, so store them in `long long`.
+
+**Using domination without the lifetime check.** If candidates expire, a better but older candidate is not safe to keep as the only one, and the solution fails exactly on the inputs where the best candidate is far away.
+
+### Check yourself
 
 1. State the shrinking condition. Give a specific condition where it fails, and say what you would use instead.
 2. Write the two window shapes side by side. Where does each record the answer, and why?
@@ -297,3 +429,14 @@ The mechanics are simple and the ways to go wrong form a short list. When accura
 7. How many distinct values can the AND of a run take as the left end varies for a fixed right end, and why?
 8. Rewrite `y_i + y_j + |x_i - x_j|`, for `i < j`, as a term depending only on `i` plus a term depending only on `j`.
 9. What reframing turns LC 2009 into a window problem?
+10. In a sorted pair search, why is it safe to discard `a[l]` when `a[l] + a[r]` is below the target? State the argument in one sentence.
+11. How does counting pairs with sum at most a target discard `a[l]` while adding `r - l` to the count?
+12. State the invariant of a read and write pointer pair, and explain why the writer can never overwrite an element that has not been read.
+13. In the three-group partition, why does `mid` advance after a swap with `low` but not after a swap with `high`?
+14. Why is the shorter bar the one to discard in the most-water problem? Why does moving the taller bar never help?
+15. In the water trapping version with two pointers, why is the water above position `l` final when `lm < rm`?
+16. What is the difference between a monotone boundary pointer and a sliding window, and what must be verified before using the pointer?
+17. Why is the smallest `x` with at least `k` pairs of difference at most `x` guaranteed to be a real pair difference?
+18. Define domination. What are its two parts, and which one is forgotten when a window or distance limit is present?
+19. Why can the circular route search skip every start between the failing start and the failing station?
+20. When does the monotonic deque collapse into a single variable, and what makes it necessary again?

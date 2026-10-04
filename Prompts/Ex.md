@@ -1,0 +1,7 @@
+- [x] Shoulder press = 3 * 15
+- [x] Lateral raise = 3 * 10 
+- [x] Curls = 3* 15
+- [x] Hammer = 2 *10
+- [x] Push up = 50
+- [x] Cruches = 30
+- [x] Run = total 3-4 min
