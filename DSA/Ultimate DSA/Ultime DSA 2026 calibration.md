@@ -243,21 +243,16 @@
 - [x] CSES · Shortest Routes I
 - [x] CSES · Shortest Routes II
 - [x] CSES · Flight Discount
-- [ ] CSES · Flight Routes 
-- [ ] CSES · Investigation
-- [ ] CSES · High Score
-- [ ] CSES · Cycle Finding
-- [ ] CSES · Monsters
-- [ ] CSES · Message Route
-- [ ] CSES · Labyrinth
-- [ ] LC 407 · Trapping Rain Water II
-- [ ] LC 787 · Cheapest Flights Within K Stops
-- [ ] LC 815 · Bus Routes
-- [ ] LC 847 · Shortest Path Visiting All Nodes
-- [ ] LC 864 · Shortest Path to Get All Keys
-- [ ] LC 1129 · Shortest Path with Alternating Colors
+- [x] CSES · Flight Routes 
+- [x] CSES · Investigation
+- [x] CSES · Monsters
+- [x] CSES · Message Route
+- [x] CSES · Labyrinth
+- [x] LC 787 · Cheapest Flights Within K Stops
+- [x] LC 815 · Bus Routes
+- [x] LC 864 · Shortest Path to Get All Keys
+- [ ] LC 1129 · Shortest Path with Alternating Colors 
 - [ ] LC 1293 · Shortest Path in a Grid with Obstacles Elimination
-- [ ] LC 1368 · Minimum Cost to Make at Least One Valid Path in a Grid
 - [ ] LC 1928 · Minimum Cost to Reach Destination in Time
 - [ ] LC 2045 · Second Minimum Time to Reach Destination
 - [ ] LC 2290 · Minimum Obstacle Removal to Reach Corner
