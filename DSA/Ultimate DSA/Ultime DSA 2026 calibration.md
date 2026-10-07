@@ -251,7 +251,7 @@
 - [x] LC 787 · Cheapest Flights Within K Stops
 - [x] LC 815 · Bus Routes
 - [x] LC 864 · Shortest Path to Get All Keys
-- [ ] LC 1129 · Shortest Path with Alternating Colors 
+- [x] LC 1129 · Shortest Path with Alternating Colors 
 - [ ] LC 1293 · Shortest Path in a Grid with Obstacles Elimination
 - [ ] LC 1928 · Minimum Cost to Reach Destination in Time
 - [ ] LC 2045 · Second Minimum Time to Reach Destination

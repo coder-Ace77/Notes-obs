@@ -46,3 +46,40 @@ Everything else is unchanged.  And why is it true again reason is that broarder 
 The same skeleton also covers finding the widest path, the most reliable path when edges carry probabilities, and the path with the fewest colour changes.
 
 **LC 2045 Second Minimum Time to Reach Destination** combines two variations, which is what makes it a genuine hard problem. It needs the second shortest distinct distance, which means keeping the two best values at each node and relaxing into the second when a value beats it without equalling the first. It also has costs that depend on arrival time, since arriving during a red light means waiting until it turns green. Neither variation is difficult alone.
+
+### Traversing on the transformed graph
+
+Many times problems force you to change the graph itself you are traversing on for example consider problem of finding shortest path with alternate colors. The problem can be solved by maintaining constrains like last node traverse color edge along with node in queue and moving forward if and only if colors are alternating. COnsider alogirithm 
+
+```cpp
+vector<vector<int>> dist(n,vector<int> (2,1e9));
+queue<pair<int,int>> q;
+dist[0][0]=dist[0][1]=0;
+
+q.push({0,0});
+q.push({0,1});
+
+while(!q.empty()){
+	auto [node,type]=q.front();
+	q.pop();
+
+	for(auto e:adj[node]){
+		// skip unused edge
+		if(e.second==type)continue;
+		if(dist[e.first][e.second]>dist[node][type]+1){
+			dist[e.first][e.second]=dist[node][type]+1;
+			q.push({e.first,e.second});
+		}
+	}
+}
+```
+
+Now observe the two things although this algorithm can be considered somewhat modified version of actual bfs with constraints. But to prove that it actually works it is important to visualize this as running on state graph where each node is `(node,color of last edge)`. There are edges if and only if two nodes have different colors. Now we can prove things on transformed graph - 
+
+- Every alternate path gets exposed - Every alternate path exsits in transformed graph by definition. So our algorithm traverses everything reachable. 
+- No invalid path gets explored is true due to condition where we skip invalid edges. 
+
+Since alternating paths in the original graph and paths in the state graph correspond one-to-one with the same lengths, plain BFS on the state graph gives the shortest alternating distance.
+
+The reason `dist[node]` alone would be wrong is that the best alternating path may need to pass through a node twice, or reach it by a longer route, to arrive with the right color. With one `visited` flag per node, the first arrival would block the second, even though the two have different futures: one can only leave on blue edges, the other only on red. Two arrivals at the same `(node, color)`, however, have identical futures, so keeping only the shortest is safe.
+
