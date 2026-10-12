@@ -252,16 +252,14 @@
 - [x] LC 815 · Bus Routes
 - [x] LC 864 · Shortest Path to Get All Keys
 - [x] LC 1129 · Shortest Path with Alternating Colors 
-- [ ] LC 1293 · Shortest Path in a Grid with Obstacles Elimination
-- [ ] LC 1928 · Minimum Cost to Reach Destination in Time
-- [ ] LC 2045 · Second Minimum Time to Reach Destination
-- [ ] LC 2290 · Minimum Obstacle Removal to Reach Corner
-- [ ] LC 2577 · Minimum Time to Visit a Cell In a Grid
-- [ ] LC 2812 · Find the Safest Path in a Grid
-- [ ] CF 20C · Dijkstra?
-- [ ] CF 1063B · Labyrinth
-- [ ] CF 173B · Chamber of Secrets
-- [ ] CF 59E · Shortest Path
+- [x] LC 1293 · Shortest Path in a Grid with Obstacles Elimination
+- [x] LC 1928 · Minimum Cost to Reach Destination in Time
+- [x] LC 2045 · Second Minimum Time to Reach Destination
+- [x] LC 2290 · Minimum Obstacle Removal to Reach Corner
+- [x] LC 2577 · Minimum Time to Visit a Cell In a Grid
+- [x] LC 2812 · Find the Safest Path in a Grid
+- [x] CF 1063B · Labyrinth
+- [x] CF 59E · Shortest Path
 
 ## L · Graph Structure: SCC, 2-SAT, Bridges, Eulerian
 
@@ -346,31 +344,23 @@
 
 ---
 
-## N · Dynamic Programming: The Classic-Hard Core
+## Dynamic Programming
 
 > 📖 Guide: [[14 Dynamic Programming Core]]
 
-### N1 · Educational DP Contest (do all 26, in order)
+#### Classical problems
 
-- [ ] AC EDPC A · Frog 1
-- [ ] AC EDPC B · Frog 2
-- [ ] AC EDPC C · Vacation
-- [ ] AC EDPC D · Knapsack 1
-- [ ] AC EDPC E · Knapsack 2
-- [ ] AC EDPC F · LCS
-- [ ] AC EDPC G · Longest Path
-- [ ] AC EDPC H · Grid 1
-- [ ] AC EDPC I · Coins
-- [ ] AC EDPC J · Sushi
-- [ ] AC EDPC K · Stones
-- [ ] AC EDPC L · Deque
-- [ ] AC EDPC M · Candies
-- [ ] AC EDPC N · Slimes
-- [ ] AC EDPC O · Matching
-- [ ] AC EDPC P · Independent Set
-- [ ] AC EDPC Q · Flowers
-- [ ] AC EDPC R · Walk
-- [ ] AC EDPC S · Digit Sum
+- [x] AC EDPC D · Knapsack 1
+- [x] AC EDPC E · Knapsack 2
+- [x] AC EDPC F · LCS
+- [x] AC EDPC G · Longest Path
+- [x] AC EDPC K · Stones
+- [x] AC EDPC L · Deque
+- [x] AC EDPC M · Candies
+- [x] AC EDPC N · Slimes
+- [x] AC EDPC O · Matching
+- [x] AC EDPC P · Independent Set
+- [x] AC EDPC Q · Flower- 
 - [ ] AC EDPC T · Permutation
 - [ ] AC EDPC U · Grouping
 - [ ] AC EDPC V · Subtree
@@ -379,7 +369,7 @@
 - [ ] AC EDPC Y · Grid 2
 - [ ] AC EDPC Z · Frog 3
 
-### N2 · LeetCode hard DP with a twist
+#### Hard DP with a twist
 
 - [ ] CSES · Increasing Subsequence
 - [ ] CSES · Projects
@@ -408,13 +398,9 @@
 - [ ] CF 1114D · Flood Fill
 - [ ] CF 1132F · Clear the String
 
----
-
-## O · Bitmask DP, Broken Profile & Subset Convolution
+#### Bitmask DP, Broken Profile & Subset Convolution
 
 > 📖 Guide: [[15 Bitmask DP]]
-
-*Why:* n ≤ 20 in an OA statement is a giveaway, and candidates still miss it. The harder 2026 version hides the small dimension (distinct values, colors, primes) rather than stating it.
 
 - [ ] CSES · Elevator Rides
 - [ ] CSES · Counting Tilings
@@ -438,61 +424,44 @@
 - [ ] CF 580D · Kefa and Dishes
 - [ ] CF 8C · Looking for Order
 
----
-
-## P · Digit DP, Automata DP, Probability & Expectation
+#### Digit DP, Automata DP, Probability & Expectation
 
 > 📖 Guide: [[16 Digit DP and Expectation]]
 
-*Why:* Digit DP is nearly guaranteed in at least one quant-adjacent or infra OA per season, and expectation DP is the #1 thing strong CP people still fumble under time pressure.
 
-- [ ] CSES · Counting Numbers
-- [ ] CSES · Dice Probability
-- [ ] CSES · Moving Robots
-- [ ] CSES · Candy Lottery
-- [ ] CSES · Throwing Dice
-- [ ] CSES · Graph Paths I
-- [ ] CSES · Graph Paths II
-- [ ] CSES · Required Substring
-- [ ] LC 233 · Number of Digit One
-- [ ] LC 357 · Count Numbers with Unique Digits
-- [ ] LC 600 · Non-negative Integers without Consecutive Ones
-- [ ] LC 837 · New 21 Game
-- [ ] LC 902 · Numbers At Most N Given Digit Set
-- [ ] LC 1012 · Numbers With Repeated Digits
-- [ ] LC 1467 · Probability of a Two Boxes Having The Same Number of Distinct Balls
-- [ ] LC 2376 · Count Special Integers
-- [ ] LC 2719 · Count of Integers
-- [ ] LC 3007 · Maximum Number That Sum of the Prices Is Less Than or Equal to K (revisit)
-- [ ] CF 55D · Beautiful numbers
-- [ ] CF 628D · Magic Numbers
-- [ ] CF 442B · Andrey and Problem
+Digit DP
 
----
+- [ ] AC EDPC S · Digit Sum
+- [ ] **LC 357 · Count Numbers with Unique Digits**
+- [ ] **LC 902 · Numbers At Most N Given Digit Set**
+- [ ] **LC 233 · Number of Digit One**
+- [ ] **LC 600 · Non-negative Integers without Consecutive Ones**
+- [ ] **CSES · Counting Numbers**
+- [ ] **LC 2376 · Count Special Integers**
+- [ ] **LC 1012 · Numbers With Repeated Digits**
+- [ ] **LC 2719 · Count of Integers**
+- [ ] **LC 3007 · Maximum Number That Sum of the Prices Is ≤ K**
+- [ ] **CF 628D · Magic Numbers**
+- [ ] **CF 55D · Beautiful numbers**
 
-## Q · DP Optimization
+Probability and expectation 
 
-> 📖 Guide: [[17 DP Optimization]]
+- [x] **CSES · Dice Probability**
+- [ ] **CSES · Candy Lottery**
+- [ ] **LC 837 · New 21 Game**
+- [ ] ATcoder I Coins
+- [ ] Atcoder J Sushi
+- [ ] **CF 442B · Andrey and Problem**
+- [ ] **LC 1467 · Probability of Two Boxes Having the Same Number of Distinct Balls**
+- [ ] **CSES · Moving Robots**
 
-*Why:* The clean tell is O(n²) DP with n = 10⁵. Four techniques cover essentially all of it: divide-and-conquer opt, convex hull trick, Knuth, and the Aliens trick.
+#### DP Optimization
 
-- [ ] CSES · Subarray Squares
-- [ ] CSES · Houses and Schools
-- [ ] CSES · Knuth Division
-- [ ] CSES · Monster Game I
-- [ ] CSES · Monster Game II
-- [ ] AC EDPC Z · Frog 3 (revisit)
-- [ ] LC 410 · Split Array Largest Sum (revisit)
-- [ ] LC 813 · Largest Sum of Averages
-- [ ] LC 1478 · Allocate Mailboxes
-- [ ] LC 2547 · Minimum Cost to Split an Array
-- [ ] LC 2604 · revisit
-- [ ] CF 319C · Kalila and Dimna in the Logging Industry
-- [ ] CF 321E · Ciel and Gondolas
-- [ ] CF 868F · Yet Another Minimization Problem
-- [ ] CF 660F · Bear and Bowling 4
-
----
+- [ ]  LC 813 · Largest Sum of Averages
+- [ ] LC 410 · Split Array Largest Sum
+- [ ]  LC 1478 · Allocate Mailboxes
+- [ ]  LC 2547 · Minimum Cost to Split an Array
+- [ ]  LC 2604
 
 ## R · Strings: Hashing, Automata, Suffix Structures
 
