@@ -4,39 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "282f52f599b223e7",
+        "id": "3228a6d6292b1c44",
         "type": "tabs",
         "children": [
           {
-            "id": "8d169f7aeac9d248",
+            "id": "3fda7a43c32d6203",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Interviews/HLD/1. Theory/Basics/6. API(Application programming interface).md",
+                "file": "Interviews/HLD/2. Patterns/1. Real time updates.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "6. API(Application programming interface)"
-            }
-          },
-          {
-            "id": "6b72453944ab2002",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Interviews/HLD/1. Theory/Basics/7. Data modelling.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "7. Data modelling"
+              "title": "1. Real time updates"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -213,19 +198,24 @@
       "remotely-save:Remotely Save": false
     }
   },
-  "active": "6b72453944ab2002",
+  "active": "3fda7a43c32d6203",
   "lastOpenFiles": [
+    "Pasted image 20261013080319.png",
+    "Pasted image 20261013075413.png",
+    "Pasted image 20261013075145.png",
+    "Data/Pasted image 20261013071038.png",
+    "Data/Pasted image 20261013065347.png",
+    "Interviews/HLD/2. Patterns/1. Real time updates.md",
+    "file:/home/mohd-adil/Downloads/phase3-evolution-of-design-patterns.md",
+    "Interviews/HLD/2. Patterns",
+    "Interviews/HLD/1. Theory/Basics/6. API(Application programming interface).md",
+    "Interviews/HLD/1. Theory/Basics/7. Data modelling.md",
     "Data/Pasted image 20261012120856.png",
     "Data/Pasted image 20261012164829.png",
     "Data/Pasted image 20261012160503.png",
     "Data/Pasted image 20261012124127.png",
     "Data/Pasted image 20261012122714.png",
     "Data/Pasted image 20261012122221.png",
-    "Data/Pasted image 20261012161851.png",
-    "Data/Pasted image 20261012114153.png",
-    "Data/Pasted image 20261012160124.png",
-    "Data/Pasted image 20261012160534.png",
-    "Data/Pasted image 20261012122614.png",
     "Interviews/HLD/3. Problems/1. Uber.md",
     "Interviews/HLD/3. Problems/9. Youtube.md",
     "Interviews/HLD/3. Problems/4. Bitly.md",
@@ -242,16 +232,12 @@
     "Interviews/HLD/1. Theory/Key technologies/2. Postgres essentials for real world.md",
     "Interviews/HLD/1. Theory/Key technologies/1. Postgres for system design.md",
     "Interviews/HLD/3. Problems",
-    "Interviews/HLD/1. Theory/Basics/6. API(Application programming interface).md",
-    "Interviews/HLD/1. Theory/Basics/7. Data modelling.md",
     "Interviews/HLD/1. Theory/Basics/5. Networking essentials.md",
     "Interviews/HLD/1. Theory/Key technologies/8. API gateway and loadbalancer.md",
     "Interviews/HLD/1. Theory/Key technologies/10. Locking.md",
     "Prompts/Learning prompt.md",
     "Prompts/Ex.md",
     "Interviews/HLD/1. Theory/Key technologies/9. Cassandra.md",
-    "Interviews/HLD/1. Theory/Key technologies/7. Elasticsearch.md",
-    "Interviews/HLD/1. Theory/Key technologies/6. Full text searches.md",
     "DSA/Ultimate DSA/Guide/05 Sliding Window and Two Pointers.md.tmp.25822.4be622d1faea",
     "DSA/Ultimate DSA/Guide/05 Sliding Window and Two Pointers.md.tmp.25822.40521cb7979b",
     "DSA/Ultimate DSA/Guide/09 Fenwick Offline and Mos.md.tmp.201134.23c85cfcc9ba",
@@ -259,7 +245,6 @@
     "DSA/Ultimate DSA/Guide/08 Segment Trees.md.tmp.14240.9a4640f1ac3a",
     "DSA/Ultimate DSA/Guide/08 Segment Trees.md.tmp.14240.3ed8701ca9d2",
     "DSA/Ultimate DSA/Guide/08 Segment Trees.md.tmp.14240.a18f718a9b3a",
-    "DSA/Ultimate DSA/Guide/08 Segment Trees.md.tmp.14240.b7d6cad80da2",
-    "DSA/Ultimate DSA/Guide/08 Segment Trees.md.tmp.14240.933f67767eb0"
+    "DSA/Ultimate DSA/Guide/08 Segment Trees.md.tmp.14240.b7d6cad80da2"
   ]
 }
